@@ -2,10 +2,16 @@
 //
 
 #include <iostream>
+#include "Platform.h"
+#include <vector>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    vector<Platform*> platforms;
+
+    platforms.push_back(new Platform());
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
