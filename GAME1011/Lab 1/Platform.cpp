@@ -19,7 +19,7 @@ string Platform::PlatformList()
 {
 	return string();
 }
-
+//test
 void Platform::RetypePlatform()
 {
 	char choice;
