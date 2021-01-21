@@ -3,24 +3,21 @@
 
 Platform::Platform()
 {
+	cout << "\n_____________________________________________________________\n";
 	cout << "\n\nWhat do you want to name the new Platform?\n\n";
-	SetPlatformName();
 
-	cout << "\nWhat is the name of the Manufactuer?\n\n";
-	SetManufactuer();
+	cin >> ws;
+	getline(cin, platformName);
+
+
+	cout << "\nWhat is the name of the Manufacturer?\n\n";
+
+	getline(cin, manufacturerName);
+
 
 	MainMenu();
 }
 
-void Platform::SetPlatformName()
-{
-	cin >> platformName; 
-}
-
-void Platform::SetManufactuer()
-{
-	cin >> manufactuerName;
-}
 
 void Platform::CreateGame()
 {
@@ -29,59 +26,79 @@ void Platform::CreateGame()
 
 string Platform::PlatformList()
 {
-	string itemsInPlatform;
+	string itemsInPlatform = "\n" + platformName;
+
+	if (games.empty())
+		itemsInPlatform += "\n\nThere are no games currently\n\n";
+	else
+	{
+		itemsInPlatform += "\n\nThere are " + to_string(games.size());
+		itemsInPlatform += " games currently\n\n";
+	}
 	return itemsInPlatform;
 }
 
 void Platform::RetypePlatform()
 {
-	char choice;
-	string nameChange;
+	string choice, nameChange;
 
 
 	do
 	{
+		cout << "\n_____________________________________________________________\n";
+
 		cout << "What do you want to retype?\n\nA.Platform's Name\nB.Manufactuer's Name\nC.None of the above. Please go back.\n\n";
 
 		cin >> choice;
 
-		switch (toupper(choice))
+		if (choice.size() > 1)
+			cout << "\n\nToo many characters. Taking first letter\n";
+
+		switch (toupper(choice[0]))
 		{
 		case 'A':
 
 			do
 			{
-				choice = '\n';
+				cout << "\n_____________________________________________________________\n";
+
+				choice[0] = '\n';
 
 				cout << "\n\nPlatform's current name is: " << platformName << endl << endl;
 				cout << "Changing name to ";
 
-				cin >> nameChange;
+				cin >> ws;
+				getline(cin, nameChange);
 
-				while (toupper(choice) != 'A' && toupper(choice) != 'B' && toupper(choice) != 'C')
+				while (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C')
 				{
+					cout << "\n_____________________________________________________________\n";
+
 					cout << "\nAre you sure you want to change Platform name from " << platformName << " to " << nameChange << "?";
 					cout << "\n\nA.Yes, change it\nB.No, I'd like to rewrite it\nC.I would like to leave it as " << platformName << endl << endl;
 
 					cin >> choice;
 
-					if (toupper(choice) == 'A')
+					if (choice.size() > 1)
+						cout << "\n\nToo many characters. Taking first letter\n";
+
+					if (toupper(choice[0]) == 'A')
 					{
 						platformName = nameChange;
 
 						cout << "\n\nPlatform's name has been changed to " << platformName << endl << endl;
 					}
-					else if (toupper(choice) == 'B')
+					else if (toupper(choice[0]) == 'B')
 					{
-						cout << "\n\nPlatform's name has lefted as " << platformName << endl << endl;
+						cout << "\n\nPlatform's name has will stay as " << platformName << endl << endl;
 					}
-					else if (toupper(choice) != 'C')
+					else if (toupper(choice[0]) != 'C')
 					{
 						cout << "\n\nChoice does not exist. Try again\n";
 					}
 				}
 
-			} while (toupper(choice) != 'C' && toupper(choice) != 'A');
+			} while (toupper(choice[0]) != 'C' && toupper(choice[0]) != 'A');
 
 
 			break;
@@ -89,33 +106,41 @@ void Platform::RetypePlatform()
 
 			do
 			{
-				choice = '\n';
+				cout << "\n_____________________________________________________________\n";
 
-				cout << "\n\nManufactuer's current name is: " << manufactuerName << endl << endl;
+				choice[0] = '\n';
+
+				cout << "\n\nManufacturer's current name is: " << manufacturerName << endl << endl;
 				cout << "Changing name to ";
 
-				cin >> nameChange;
+				cin >> ws;
+				getline(cin, nameChange);
 
-				while (toupper(choice) != 'A' && toupper(choice) != 'B' && toupper(choice) != 'C')
+				while (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C')
 				{
-					cout << "\nAre you sure you want to change Manufactuer name from " << manufactuerName << " to " << nameChange << "?";
-					cout << "\n\nA.Yes, change it\nB.No, I'd like to rewrite it\nC.I would like to leave it as " << manufactuerName << endl << endl;
+					cout << "\n_____________________________________________________________\n";
+
+					cout << "\nAre you sure you want to change Manufacturer name from " << manufacturerName << " to " << nameChange << "?";
+					cout << "\n\nA.Yes, change it\nB.No, I'd like to rewrite it\nC.I would like to leave it as " << manufacturerName << endl << endl;
 
 					cin >> choice;
 
-					if (toupper(choice) == 'A')
-					{
-						manufactuerName = nameChange;
+					if (choice.size() > 1)
+						cout << "\n\nToo many characters. Taking first letter\n";
 
-						cout << "\n\nManufactuer's name has been changed to " << manufactuerName << endl << endl;
+					if (toupper(choice[0]) == 'A')
+					{
+						manufacturerName = nameChange;
+
+						cout << "\n\nManufactuer's name has been changed to " << manufacturerName << endl << endl;
 					}
-					else if (toupper(choice) != 'C' && toupper(choice) == 'B')
+					else if (toupper(choice[0]) != 'C' && toupper(choice[0]) == 'B')
 					{
 						cout << "\n\nChoice does not exist. Try again\n";
 					}
 				}
 
-			} while (toupper(choice) != 'C' && toupper(choice) != 'A');
+			} while (toupper(choice[0]) != 'C' && toupper(choice[0]) != 'A');
 			break;
 
 
@@ -128,50 +153,57 @@ void Platform::RetypePlatform()
 			break;
 		}
 
-	}while (toupper(choice) != 'C');
+	} while (toupper(choice[0]) != 'C');
 }
 
 void Platform::MainMenu()
 {
-	char choice;
+	string choice;
 	int numChoice;
 
 	do
 	{
-		cout << "\n\n\nWelcome to " << platformName;
-		cout << "\n\nMade by " << manufactuerName << endl << endl;
+		cout << "\n_____________________________________________________________\n";
+		cout << "\n\nWelcome to " << platformName;
+		cout << "\n\nMade by " << manufacturerName << endl << endl;
 
 		if (games.empty())
 			cout << "It seems that you currently have no games. ";
 		else
 		{
-			cout << "Games";
+			cout << "Games that currently exists in " << platformName << endl;
+			for (int i = 0; i <= games.size() - 1;i++)
+			{
+				cout << games[i]->GameList();
+			}
 		}
 
-		cout << "Type:\n\nA.To create a Game\nB.To Exit Platform\nC.Change Platform or Manufactur's name";
+		cout << "Type:\n\nA.To create a Game\nB.To Exit Platform\nC.Change Platform or Manufacturer's name";
 
 		if (!games.empty())
-			cout << "\nD. Enter The Game\n\n";
+			cout << "\nD. Enter The Game";
 
-		cout << "\nEnter choice here: ";
+		cout << "\n\nEnter choice here: ";
 		cin >> choice;
 
-		if (toupper(choice) == 'A')
+		if (toupper(choice[0]) == 'A')
 		{
 			CreateGame();
 		}
-		else if (toupper(choice) == 'C')
+		else if (toupper(choice[0]) == 'C')
 		{
 			RetypePlatform();
 		}
-		else if (toupper(choice) == 'D')
+		else if (toupper(choice[0]) == 'D')
 		{
 			if (!games.empty())
 			{
+				cout << "\n_____________________________________________________________\n";
 				cout << "\n\nSorry. This option is not available at the moment.\nEnter A and Create a new game to activate choice later.";
 			}
 			else
 			{
+				cout << "\n_____________________________________________________________\n";
 				do
 				{
 
@@ -189,15 +221,21 @@ void Platform::MainMenu()
 						games[numChoice]->MainMenu();
 
 					else if (numChoice != games.size())
-						cout << "\n\nThat is not on of the choices.Please try again.\n";
+						cout << "\n\nThat is not one of the choices.Please try again.\n";
 
 				} while (numChoice == games.size());
 			}
 		}
-		else if (toupper(choice) != 'B')
+		else if (toupper(choice[0]) != 'B')
 		{
-			cout << "\nThat is not one if the following choices. Please try again.";
+			cout << "\nThat is not one of the following choices. Please try again.";
 		}
 
-	} while (toupper(choice)!='B');
+	} while (toupper(choice[0]) != 'B');
 }
+
+string Platform::GetPlatformName()
+{
+	return platformName;
+}
+
