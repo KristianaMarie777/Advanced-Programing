@@ -3,89 +3,46 @@
 
 #include <iostream>
 #include "Platform.h"
-#include <vector>
+#include <cctype>
 
 int main()
 {
-    string choice;
-    int numChoice;
-    vector<Platform*> platforms;
+    string names, numChoice;
+    int num, value;
+    Platform* platforms;
+    cout << "Hello user\n\n";
 
     do
     {
-        cout << "\n________________________________________________________________________________________________________________________\n";
-        cout << "Hello user\n\n";
 
-        if (platforms.empty())
+        cout << "How Many Platforms do you want to create?: ";
+        cin >> numChoice;
+
+        system("CLS");
+
+        for (size_t i = 0; i < numChoice.size(); i++)
         {
-            cout << "It seems that you currently have no platforms. ";
-        }
-        else
-        {
-            cout << "Platforms that currently exist in program\n\n";
-            for (int i = 0; i <= platforms.size() - 1;i++)
+            value = i;
+            if (isalpha(numChoice[i]))
             {
-                cout << platforms[i]->PlatformList();
+                cout << "That is not a number. Please type again.\n\n";
             }
         }
 
-        cout << "Do you want to:\n\nA. Create a new Platform\nB.Leave program";
 
-        if (!platforms.empty())
-            cout << "\nC.Enter Platform";
+    } while (isalpha(numChoice[value]));
 
-        cout << "\n\n";
+    num = stoi(numChoice);
 
-        cin >> choice;
+    platforms = new Platform [num];
+    
+    for (int i = 0; i < num; i++)
+    {
+        cout << platforms[i].GetPlatformName();
 
-        if (choice.size() > 1)
-            cout << "\n\nToo many characters. Taking first letter\n";
-
-        if (toupper(choice[0]) == 'A')
-        {
-            platforms.push_back(new Platform());
-        }
-        else if (toupper(choice[0]) == 'C')
-        {
+    }
 
 
-            if (platforms.empty())
-            {
-                cout << "\n________________________________________________________________________________________________________________________\n";
 
-                cout << "\n\nSorry. This option is not available at the moment.\nEnter A and Create a new game to activate choice later.";
-            }
-            else
-            {
-                do
-                {
-                    cout << "\n________________________________________________________________________________________________________________________\n";
-
-                    cout << "\nWhich game do you want to Enter?\n\n";
-
-                    for (int i = 0; i == platforms.size() - 1; i++)
-                    {
-                        cout << i << ". " << platforms[i]->GetPlatformName() << endl;
-                    }
-                    cout << platforms.size() << ". Go Back to Platform's Main Menu\n\n\nEnter choice here: ";
-
-                    cin >> numChoice;
-
-                    if (numChoice >= 0 && numChoice < platforms.size())
-                        platforms[numChoice]->MainMenu();
-
-                    else if (numChoice != platforms.size())
-                        cout << "\n\nThat is not on of the choices.Please try again.\n";
-
-                } while (numChoice != platforms.size());
-            }
-        }
-        else if (toupper(choice[0]) != 'B')
-        {
-            cout << "\n\nNot one of the choices. Try again.";
-        }
-
-    } while(toupper(choice[0]) != 'B');
-    return 0;
 }
 
