@@ -45,10 +45,9 @@ int main()
 
     
     system("CLS");
-    
     for (int i = 0; i < num;i++)
     {
-        cout << platforms[i].GetPlatformDescription() << "\n\n\n";
+        cout << (platforms+i)->GetPlatformDescription() << "\n\n\n";
     }
 
 }
