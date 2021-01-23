@@ -1,122 +1,77 @@
 #include "Platform.h"
 #include <cctype>
 
-Platform::Platform()
+void Platform::AddPlatformInfo(int n)
 {
-	cout << "What is the name of this Platform?: ";
+	string numChoice;
+	int num = 0;
+	platformNum = n;
+
+	cout << "What is the name of Platform " << n << "?: ";
 	cin >> ws;
 	getline(cin, platformName);
 
-	cout << "\n\nWhat is the name the this Platform?: ";
-	getline(cin, platformName);
-
-}
-
-void Platform::CreateGame()
-{
-	games.push_back(new Game());
-}
-
-string Platform::PlatformList()
-{
-	string itemsInPlatform = "\n" ;
-
-	for (int i = 0; i < 10; i++)
-	{
-
-	}
-
-	if (games.empty())
-		itemsInPlatform += "\n\nThere are no games currently\n\n";
-	else
-	{
-		itemsInPlatform += "\n\nThere are " + to_string(games.size());
-		itemsInPlatform += " games currently\n\n";
-	}
-	return itemsInPlatform;
-}
-
-void Platform::MainMenu()
-{
-	string choice;
-	int numChoice;
-
+	cout << "\nWhat is the name of it's Manufacturer?: ";
+	getline(cin, manufacturerName);
 	do
 	{
-		cout << "\n________________________________________________________________________________________________________________________\n";
-		cout << "\n\nWelcome to " << platformName;
-		cout << "\n\nMade by " << manufacturerName << endl << endl;
+		cout << "\nHow Many Games are in " << platformName << "?: ";
+		getline(cin, numChoice);
 
-		if (games.empty())
-			cout << "It seems that you currently have no games. ";
-		else
+		for (int i = 0; i < numChoice.size(); i++)
 		{
-			cout << "Games that currently exists in " << platformName << endl;
-			for (int i = 0; i <= games.size() - 1;i++)
+			num = i;
+			if (isalpha(numChoice[i]))
 			{
-				cout << games[i]->GameList();
+				system("CLS");
+				cout << "What is the name of Platform " << platformNum << "?: " << platformName;
+				cout << "\n\nWhat is the name of it's Manufacturer?: " << manufacturerName;
+				cout << "\n\nThere are letters in your answer. type again.";
+				break;
 			}
 		}
 
-		cout << "Type:\n\nA.To create a Game\nB.To Exit Platform\nC.Change Platform or Manufacturer's name";
+	} while (isalpha(numChoice[num]));
+	
+	numofGames = stoi(numChoice);
+	
+	games = new Game[stoi(numChoice)];
 
-		if (!games.empty())
-			cout << "\nD. Enter The Game";
+	for (int i = 0;i < stoi(numChoice);i++)
+	{
+		system("CLS");
+		games[i].AddGameInfo(MenuText(numChoice),i+1);
+	}
 
-		cout << "\n\nEnter choice here: ";
-		cin >> choice;
-
-		if (toupper(choice[0]) == 'A')
-		{
-			CreateGame();
-		}
-		else if (toupper(choice[0]) == 'D')
-		{
-			if (!games.empty())
-			{
-				cout << "\n________________________________________________________________________________________________________________________\n";
-				cout << "\n\nSorry. This option is not available at the moment.\nEnter A and Create a new game to activate choice later.";
-			}
-			else
-			{
-				cout << "\n________________________________________________________________________________________________________________________\n";
-				do
-				{
-
-					cout << "\nWhich game do you want to Enter?\n\n";
-
-					for (int i = 0; i == games.size() - 1; i++)
-					{
-						cout << i << ". " << games[i]->GetGameName() << endl;
-					}
-					cout << games.size() << ". Go Back to Platform's Main Menu\n\n\nEnter choice here: ";
-
-					cin >> numChoice;
-
-					if (numChoice >= 0 && numChoice < games.size())
-						games[numChoice]->MainMenu();
-
-					else if (numChoice != games.size())
-						cout << "\n\nThat is not one of the choices.Please try again.\n";
-
-				} while (numChoice == games.size());
-			}
-		}
-		else if (toupper(choice[0]) != 'B')
-		{
-			cout << "\nThat is not one of the following choices. Please try again.";
-		}
-
-	} while (toupper(choice[0]) != 'B');
 }
 
-string Platform::GetPlatformName()
+void Platform::SetPlatNum(int i)
 {
-	return platformName;
+	platformNum = i;
 }
 
-void Platform::SetNames()
+string Platform::MenuText(string a)
 {
+	string text = "What is the name of Platform " + to_string(platformNum);
+	text += "?: " + platformName;
+	text += "\n\nWhat is the name of it's Manufacturer?: " + manufacturerName;
+	text += "\n\nHow Many Games are in " + platformName + "?: " + a;
+	return text;
+}
 
+string Platform::GetPlatformDescription()
+{
+	string text= "Platform #" + to_string(platformNum)+": " + platformName;
+	text += "\nManufacturer: " + manufacturerName;
+	for (size_t i = 0; i < numofGames; i++)
+	{
+		text += "\n" + GetGameInfo(i);
+	}
+	return text;
+}
+
+string Platform::GetGameInfo(int n)
+{
+	return games[n].GetGameDescription();
 }
 

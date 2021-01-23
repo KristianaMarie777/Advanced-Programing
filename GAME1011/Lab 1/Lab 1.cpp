@@ -9,7 +9,7 @@ int main()
 {
     string names, numChoice;
     int num, value;
-    Platform* platforms;
+    
     cout << "Hello user\n\n";
 
     do
@@ -20,12 +20,13 @@ int main()
 
         system("CLS");
 
-        for (size_t i = 0; i < numChoice.size(); i++)
+        for (int i = 0; i < numChoice.size(); i++)
         {
             value = i;
             if (isalpha(numChoice[i]))
             {
                 cout << "That is not a number. Please type again.\n\n";
+                break;
             }
         }
 
@@ -34,15 +35,21 @@ int main()
 
     num = stoi(numChoice);
 
-    platforms = new Platform [num];
-    
+    Platform* platforms = new Platform[num];
+
     for (int i = 0; i < num; i++)
     {
-        cout << platforms[i].GetPlatformName();
-
+        system("CLS");
+        platforms[i].AddPlatformInfo(i+1);
     }
 
-
+    
+    system("CLS");
+    
+    for (int i = 0; i < num;i++)
+    {
+        cout << platforms[i].GetPlatformDescription() << "\n\n\n";
+    }
 
 }
 

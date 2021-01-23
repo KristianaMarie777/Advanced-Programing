@@ -3,7 +3,6 @@
 #define _PLATFORM_H_
 
 #include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -12,87 +11,164 @@ class Achievement
 {
 private:
 	string achievementTitle, achievementDescription;
-	int scoreValue;
+	int scoreValue, achievementNum;
 
 public:
-	Achievement()
+	void AddAchievementinfo(string a,int n)
 	{
+		string numChoice;
+		int num = 0;
+		achievementNum = n;
+
+		cout << a;
+
+		cout << "\n\nWhat is the name of Achievement " << n << "?: ";
+		cin >> ws;
+		getline(cin, achievementTitle);
+
+		cout << "\nWhat is it's description?: ";
+		getline(cin, achievementDescription);
+
+		do
+		{
+			cout << "\nHow much XP are you going to get?: ";
+			getline(cin, numChoice);
+
+			for (int i = 0; i < numChoice.size(); i++)
+			{
+				num = i;
+				if (isalpha(numChoice[i]))
+				{
+
+					system("CLS");
+
+					cout << a;
+
+					cout << "\n\nWhat is the name of Achievement " << n << "?: " << achievementTitle;
+
+					cout << "\n\nWhat is it's description?: " <<  achievementDescription;
+
+					cout << "\n\nThere are letters in your answer. Type again.";
+					break;
+				}
+			}
+
+		} while (isalpha(numChoice[num]));
+
+		scoreValue = stoi(numChoice);
 
 	}
 
-	string GetTitle()
+	string GetAchievementDescription()
 	{
-		return achievementTitle;
-	}
+		string list = "Achievement "+to_string(achievementNum)+": "+ achievementTitle;
 
-	string AchievementFullDescription()
-	{
-		string list = achievementTitle + "\n\n\n";
-
-		list += achievementDescription[40];
 		list += "\n" + achievementDescription;
-		list += "\n\n" + scoreValue;
+		list += "\nGet " + to_string(scoreValue) +"XP";
 
 
 		return list;
 	}
 
-	void MainMenu()
-	{
-
-	}
-	string Achievementlist()
-	{
-		string list = "\n" + achievementTitle;
-
-		list += "\n\nEarn " + to_string(scoreValue);
-		list += "xp";
-
-		return list;
-	}
 };
 
 class Game
 {
 private:
 	string gameName, publisherName, developerName;
-	vector<Achievement*> achievement;
+	int numOfAchievement, gameNum;
+	Achievement* achievement;
 
 public:
-	Game()
+	void AddGameInfo(string a, int n)
 	{
+		string numChoice;
+		int num = 0;
+		gameNum = n;
 
 
-	}
+		cout << a;
 
-	void CreateAchievement()
-	{
-		achievement.push_back(new Achievement());
-	}
+		cout << "\n\nWhat is the name of Game " << n <<"?: ";
+		cin >> ws;
+		getline(cin, gameName);
 
-	string GetGameName()
-	{
-		return  gameName;
-	}
+		cout << "\nWhat is the name of it's Publisher?: ";
+		getline(cin, publisherName);
 
-	string GameList()
-	{
-		string list = "\n" + gameName;
+		cout << "\nWhat is the name of it's Developer?: ";
+		getline(cin, developerName);
 
-		if (achievement.empty())
-			list += "\n\nThere are no achievements currently\n\n";
-		else
+		do
 		{
-			list += "\n\nThere are " + to_string(achievement.size());
-			list += " games currently\n\n";
-		}
+			cout << "\nHow Many Achievements are in " << gameName << "?: ";
+			getline(cin, numChoice);
 
-		return list;
+			for (int i = 0; i < numChoice.size(); i++)
+			{
+				num = i;
+				if (isalpha(numChoice[i]))
+				{
+					
+					system("CLS");
+
+					cout << a;
+
+					cout << "\n\nWhat is the name of Game " << n << "?: " << gameName;
+
+					cout << "\n\nWhat is the name of it's Publisher?: " << publisherName;
+
+					cout << "\n\nWhat is the name of it's Developer?: " << developerName;
+
+					cout << "\n\nThere are letters in your answer. type again.";
+					break;
+				}
+			}
+
+		} while (isalpha(numChoice[num]));
+
+		numOfAchievement = stoi(numChoice);
+
+		achievement = new Achievement[stoi(numChoice)];
+
+		for (int i = 0;i < stoi(numChoice);i++)
+		{
+			system("CLS");
+			achievement[i].AddAchievementinfo(MenuText(a), i + 1);
+		}
 	}
 
-	void MainMenu()
+	string GetGameDescription()
 	{
+		string text = "Game " + to_string(gameNum) +": "+ gameName;
+		text += "\nPublisher: " + publisherName;
+		text += "\nDeveloper: " + developerName;
+		for (int i = 0; i < numOfAchievement; i++)
+		{
+			text += "\n" + GetAchievementInfo(i);
+		}
+		return  text;
+	}
+	
+	string GetAchievementInfo(int i)
+	{
+		return achievement[i].GetAchievementDescription();
+	}
 
+	string MenuText(string a)
+	{
+		string text = a;
+
+		text += "\n\n";
+		
+		text += "What is the name of Game " + to_string(gameNum) + "?: " + gameName;
+
+		text += "\n\nWhat is the name of it's Publisher?: " + publisherName;
+
+		text += "\n\nWhat is the name of it's Developer?: " + developerName;
+		text += "\n\nHow Many Achievements are in " + gameName + "?: " + to_string(numOfAchievement);
+
+		return text;
 	}
 };
 
@@ -100,14 +176,14 @@ class Platform
 {
 private:
 	string platformName, manufacturerName;
-	vector<Game*> games;
+	int numofGames, platformNum;
+	Game* games;
 public:
-	Platform();
-	void CreateGame();
-	string PlatformList();
-	void MainMenu();
-	string GetPlatformName();
-	void SetNames();
+	void AddPlatformInfo(int n);
+	void SetPlatNum(int i);
+	string MenuText(string a);
+	string GetPlatformDescription();
+	string GetGameInfo(int n);
 
 };
 
