@@ -1,5 +1,5 @@
 // Lab 1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//this is a check
 
 #include <iostream>
 #include "Platform.h"
