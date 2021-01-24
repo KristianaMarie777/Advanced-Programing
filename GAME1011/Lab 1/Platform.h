@@ -180,7 +180,6 @@ private:
 	Game* games;
 public:
 	void AddPlatformInfo(int n);
-	void SetPlatNum(int i);
 	string MenuText(string a);
 	string GetPlatformDescription();
 	string GetGameInfo(int n);

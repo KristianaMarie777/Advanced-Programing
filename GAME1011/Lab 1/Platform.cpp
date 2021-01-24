@@ -45,11 +45,6 @@ void Platform::AddPlatformInfo(int n)
 
 }
 
-void Platform::SetPlatNum(int i)
-{
-	platformNum = i;
-}
-
 string Platform::MenuText(string a)
 {
 	string text = "What is the name of Platform " + to_string(platformNum);
