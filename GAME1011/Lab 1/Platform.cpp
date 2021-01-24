@@ -1,6 +1,6 @@
 #include "Platform.h"
 #include <cctype>
-//this
+//push forward
 void Platform::AddPlatformInfo(int n)
 {
 	string numChoice;
