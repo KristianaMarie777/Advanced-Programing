@@ -10,12 +10,11 @@ using namespace std;
 
 int main()
 {
-	Character* characters = {new Human };
+	
 	string choice, innerChoice, characterName, numChoice, menuReload, abilityName;
 	string* abilityList;
-	float health;
-	int numcheck,numAbillites,characterNum = 0;
-	
+	int health, numcheck,numAbillites,characterNum = 0;
+	Character* characters = {};
 	
 	do
 	{
@@ -38,10 +37,13 @@ int main()
 		switch (choice[0])
 		{
 		case 'A':
+
+			menuReload = "What type of Character do you want to create?: \n\nA. Human\nB. Undead\nC. Ghost\n\nEnter choice here: ";
+			cout << menuReload;
+
 			do
 			{
-				menuReload = "What type of Character do you want to create?: \n\nA. Human\nB. Undead\nC. Ghost\n\nEnter choice here: ";
-				cout << menuReload;
+
 				cin >> ws;
 				getline(cin, choice);
 				
@@ -53,6 +55,7 @@ int main()
 				if (choice[0] != 'A' && choice[0] != 'B' && choice[0] != 'C')
 				{
 					system("CLS");
+					cout << menuReload;
 					cout << "That is not one of the choices. Please try again\n\n";
 				}
 				
@@ -66,31 +69,67 @@ int main()
 			
 			menuReload += characterName;
 			
-
-			
-			do
+			//Allows only Ghost to have modified health.
+			if (choice[0] == 'C')
 			{
-				cout << "How much health will the character have: ";
-
-				//getting character's max health
-				cin >> ws;
-				getline(cin, numChoice);
-				
-				
-				for (int i = 0; i < numChoice.size();i++)
+				do
 				{
-					numcheck = i;
-					if (!isdigit(numChoice[i]))
+					cout << "How much health will the character have: ";
+
+					//getting character's max health
+					cin >> ws;
+					getline(cin, numChoice);
+
+
+					for (int i = 0; i < numChoice.size();i++)
 					{
-						system("CLS");
-						cout << menuReload;
-						
-						cout << "This answer has characters other than numbers. Try again.\n\n";
-						break;
+						numcheck = i;
+						if (!isdigit(numChoice[i]))
+						{
+							system("CLS");
+							cout << menuReload;
+
+							cout << "This answer has characters other than numbers. Try again.\n\n";
+							break;
+						}
 					}
+				} while (!isdigit(numChoice[numcheck]));
+				health = stoi(numChoice);
+			}
+
+			//Keeps Humans from having Abilites
+			if (choice[0] != 'A')
+			{
+				do
+				{
+
+					cout << "How many special abilites will the character have: ";
+
+					cin >> ws;
+					getline(cin, numChoice);
+
+
+					for (int i = 0; i < numChoice.size();i++)
+					{
+						numcheck = i;
+						if (!isdigit(numChoice[i]))
+						{
+							cout << "This answer has characters other than numbers. Try again.\n\n";
+							break;
+						}
+					}
+				} while (!isdigit(numChoice[numcheck]));
+
+				numAbillites = stoi(numChoice);
+
+				for (int i = 0; i < numAbillites; i++)
+				{
+					cin >> abilityName;
+					abilityList = new string(abilityName);
 				}
-			} while (!isdigit(numChoice[numcheck]));
-			health = stoi(numChoice);
+
+				
+			}
 
 			do
 			{
@@ -103,27 +142,37 @@ int main()
 
 				for (int i = 0; i < numChoice.size();i++)
 				{
+
 					numcheck = i;
 					if (!isdigit(numChoice[i]))
 					{
 						cout << "This answer has characters other than numbers. Try again.\n\n";
 						break;
 					}
+
 				}
-			} while (!isdigit(numChoice[numcheck]));
+
+				if (stoi(numChoice) > 1 && choice[0] == 'C')
+				{
+					cout << "Ghost cannot have more than 1 weapons. Try again.\n\n";
+				}
+			} while (!isdigit(numChoice[numcheck]) || (stoi(numChoice) > 1 && choice[0] == 'C'));
 
 			numAbillites = stoi(numChoice);
 
 			for (int i = 0; i < numAbillites; i++)
 			{
+				if (numAbillites == 1)
+					cout << "What is the name of this ability: ";
+				else
+					cout << "What is the name of ability " << i << ": ";
 				cin >> abilityName;
 				abilityList = new string(abilityName);
 			}
 
-			abilityList = new string("No-Special-Abilities");
 
 			
-			
+			abilityList = new string("No-Special-Abilities");
 			if (choice[0] == 'A')
 			{
 				cout << "Creating Human Character ";
@@ -132,7 +181,7 @@ int main()
 					Sleep(500);
 					cout << ".";
 				}
-				characters = { new Human };
+				characters = { new Human(characterName,numAbillites,abilityList) };
 			}
 			else if (choice[0] == 'B')
 			{
@@ -142,23 +191,25 @@ int main()
 					Sleep(500);
 					cout << ".";
 				}
-				characters = { new Undead(characterName,health,numAbillites,abilityList) };
+				characters = { new Undead(characterName,numAbillites,abilityList) };
 			}
 			else if (choice[0] == 'C')
 			{
-				cout << "Creating Undead Character ";
+				cout << "Creating Ghost Character ";
 				for (int i = 0; i < 3; i++)
 				{
 					Sleep(500);
 					cout << ".";
 				}
-				characters = { new Ghost };
+				characters = { new Ghost(characterName,health,numAbillites,abilityList) };
 			}
+
 			system("CLS");
 			characterNum += 1;
 			break;
 
 		case 'B':
+
 			if (characterNum != 0)
 			{
 
