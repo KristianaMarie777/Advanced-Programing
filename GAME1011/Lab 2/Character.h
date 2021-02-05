@@ -20,12 +20,20 @@ public:
 	Character()
 	{
 		setCharacterName("");
+		setNumOfweapons(0);
 	}
 	void setHealthBar(float heathBar)
 	{
 		this->healthBar = healthBar;
 	}
-	
+	static void setNumOfweapons(signed int num)
+	{
+		if (num == 0)
+			numOfWeapons = 0;
+		else
+			numOfWeapons += num;
+
+	}
 	float getHealthBar() const
 	{
 		return healthBar;
@@ -41,9 +49,25 @@ public:
 		return characterName;
 	}
 
-	void addtWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname)
+	int getNumOfWeapons()const
 	{
-		weapon = new Weapon(name,description,damageValue,numSpecialAbilities,specialAbilityname);
+		return numOfWeapons;
+	}
+
+	string getWeaponName()
+	{
+		string description = "";
+		for (int i = 0; i < numOfWeapons; i++)
+		{
+			description += to_string(i) + ". " + weapon[i].getName();
+		}
+		return description;
+	}
+
+	void addtWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
+	{
+		weapon = {new Weapon(name, description, damageValue, numSpecialAbilities, specialAbilityname)};
+		setNumOfweapons(1);
 	}
 	virtual string DisplayInfo() const = 0;
 };

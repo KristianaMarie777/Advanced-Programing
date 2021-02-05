@@ -1,6 +1,3 @@
-// Lab 2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include "Character.h"
 #include <vector>
@@ -11,9 +8,9 @@ using namespace std;
 int main()
 {
 	
-	string choice, innerChoice, characterName, numChoice, menuReload, abilityName;
-	string* abilityList;
-	int health, numcheck,numAbillites,characterNum = 0;
+	string choice, innerChoice, characterName, numChoice, menuReload, title, weaponName, weaponDescription;
+	string* abilityList, *weaponList, *weaponSpecialAlist;
+	int health, numcheck,numAbillites, damageValue,weaponSpecialA, numWeapon,characterNum = 0;
 	Character* characters = {};
 	
 	do
@@ -139,8 +136,8 @@ int main()
 
 				for (int i = 0; i < numAbillites; i++)
 				{
-					cin >> abilityName;
-					abilityList = new string(abilityName);
+					cin >> title;
+					abilityList = new string(title);
 				}
 
 				
@@ -148,7 +145,7 @@ int main()
 
 			do
 			{
-				cout << "How many special abilites will the character have (Can use ";
+				cout << "How many Weapons can the character have (Can use ";
 				if (choice[0] == 'A')
 					cout << "an unlimited amount of weapons): ";
 				else if (choice[0] == 'B')
@@ -181,21 +178,108 @@ int main()
 					cout << "Undead cannot have more than 2 weapons. Try again.\n\n";
 				}
 
-			} while (!isdigit(numChoice[numcheck]) || (stoi(numChoice) > 1 && choice[0] == 'C'));
+			} while (!isdigit(numChoice[numcheck]) || (stoi(numChoice) > 2 && choice[0] == 'B') ||(stoi(numChoice) > 1 && choice[0] == 'C'));
 
-			numAbillites = stoi(numChoice);
-
-			for (int i = 0; i < numAbillites; i++)
+			numWeapon = stoi(numChoice);
+			if (numWeapon != 0)
 			{
-				if (numAbillites == 1)
-					cout << "What is the name of this ability: ";
-				else
-					cout << "What is the name of ability " << i << ": ";
-				cin >> abilityName;
-				abilityList = new string(abilityName);
+				do
+				{
+					cout << "Choose which weapon the character would use: \n\n";
+					if (characters->getNumOfWeapons() == 0)
+					{
+						cout << "It seems you have no other weapons. To create on press: \n";
+					}
+					else
+					{
+						cout << characters->getWeaponName();
+					}
+
+					cout << "A. Create new weapon\n\nEnter choice here: ";
+
+					cin >> choice;
+
+					switch (choice[0])
+					{
+					case 'A':
+						
+						cout << "What is the name of this weapon: ";
+						cin >> ws;
+						getline(cin, weaponName);
+
+						cout << "What the weapon's description: ";
+						cin >> ws;
+						getline(cin, weaponDescription);
+
+						do
+						{
+							cout << "How much Damage does it inflict on enemies: ";
+							cin >> ws;
+							getline(cin, numChoice);
+							
+							for (int i = 0; i < numChoice.size(); i++)
+							{
+
+								numcheck = i;
+								if (!isdigit(numChoice[numcheck]))
+								{
+									break;
+								}
+
+							}
+
+						} while (!isdigit(numChoice[numcheck]));
+
+						damageValue = stoi(numChoice);
+
+						do
+						{
+
+							cout << "How many abilities does it have: ";
+							cin >> ws;
+							getline(cin, numChoice);
+
+							for (int i = 0; i < numChoice.size(); i++)
+							{
+								
+								numcheck = i;
+								if (!isdigit(numChoice[numcheck]))
+								{
+									break;
+								}
+
+							}
+
+						} while (!isdigit(numChoice[numcheck]));
+
+						weaponSpecialA = stoi(numChoice);
+
+						for (int i = 0; i < weaponSpecialA; i++)
+						{
+							if (weaponSpecialA == 1)
+								cout << "What is the name of this ability: ";
+							else
+								cout << "What is the name of ability " << i << ": ";
+
+							cin >> title;
+
+							weaponSpecialAlist = { new string(title) };
+						}
+
+						weaponSpecialAlist = { new string("NO-SPECIAL-ABILITIES") };
+
+						characters->addtWeapon(weaponName,weaponDescription,damageValue,weaponSpecialA,weaponSpecialAlist);
+						
+						break;
+					
+					default:
+						break;
+					}
+
+				} while (true);
+
+
 			}
-
-
 			
 			abilityList = new string("No-Special-Abilities");
 			if (choice[0] == 'A')
@@ -244,7 +328,7 @@ int main()
 				}
 				cout << "\n\nPress enter to Exit\n";
 				cin.ignore();
-				system("CLS");
+				characterNum = characterNum;
 			}
 			else
 			{
@@ -255,10 +339,14 @@ int main()
 					cout << ".";
 				}
 			}
+
 			system("CLS");
+			break;
 		case 'C':
 			characterNum -= 1;
+			break;
 		case 'D':
+			break;
 		default:
 			break;
 		}
