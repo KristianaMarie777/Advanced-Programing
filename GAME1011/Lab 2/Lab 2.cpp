@@ -34,10 +34,11 @@ int main()
 
 		system("CLS");
 		
-		switch (choice[0])
+		switch (toupper(choice[0]))
 		{
 		case 'A':
 
+			
 			menuReload = "What type of Character do you want to create?: \n\nA. Human\nB. Undead\nC. Ghost\n\nEnter choice here: ";
 			cout << menuReload;
 
@@ -45,21 +46,29 @@ int main()
 			{
 
 				cin >> ws;
+				//incase User places spaces in answer
 				getline(cin, choice);
-				
-				
+
+
+				//there are more than one character in answer
 				if (choice[1] != NULL)
 				{
 					cout << "Too many Characters Taking first character...\n\n";
 				}
-				if (choice[0] != 'A' && choice[0] != 'B' && choice[0] != 'C')
+				//one of the choices have no been picked (A,B,C)
+				if (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C')
 				{
+					/// clear the scree after making a mistake
 					system("CLS");
+					//reload the previous menu
 					cout << menuReload;
+					//give reason for the reload
 					cout << "That is not one of the choices. Please try again\n\n";
 				}
 				
-			} while (choice[0] != 'A' && choice[0] != 'B' && choice[0] != 'C');
+			} while (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C');
+
+			choice[0] = toupper(choice[0]);
 
 			menuReload += choice + "\nWhat is the name of this character: ";
 			cout << "\nWhat is the name of this character: ";
@@ -103,7 +112,13 @@ int main()
 				do
 				{
 
-					cout << "How many special abilites will the character have: ";
+					cout << "How many special abilites will the character have (Can have ";
+					if (choice[0] == 'A')
+						cout << "no abilities): ";
+					else if (choice[0] == 'B')
+						cout << "up to 4 abilities): ";
+					else if (choice[0] == 'C')
+						cout << "an unlimited amount of abilities): ";
 
 					cin >> ws;
 					getline(cin, numChoice);
@@ -133,8 +148,13 @@ int main()
 
 			do
 			{
-
-				cout << "How many special abilites will the character have: ";
+				cout << "How many special abilites will the character have (Can use ";
+				if (choice[0] == 'A')
+					cout << "an unlimited amount of weapons): ";
+				else if (choice[0] == 'B')
+					cout << "up to 2 weapons): ";
+				else if (choice[0] == 'C')
+					cout << "up to 1 weapon): ";
 
 				cin >> ws;
 				getline(cin, numChoice);
@@ -156,6 +176,11 @@ int main()
 				{
 					cout << "Ghost cannot have more than 1 weapons. Try again.\n\n";
 				}
+				else if (stoi(numChoice) > 2 && choice[0] == 'B')
+				{
+					cout << "Undead cannot have more than 2 weapons. Try again.\n\n";
+				}
+
 			} while (!isdigit(numChoice[numcheck]) || (stoi(numChoice) > 1 && choice[0] == 'C'));
 
 			numAbillites = stoi(numChoice);

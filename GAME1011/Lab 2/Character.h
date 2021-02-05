@@ -14,8 +14,8 @@ class Character
 private:
 	float healthBar;
 	string characterName;
-	Weapon* weapon;
-
+	static Weapon* weapon;
+	static int numOfWeapons;                            
 public:
 	Character()
 	{
@@ -40,7 +40,11 @@ public:
 	{
 		return characterName;
 	}
-	
+
+	void addtWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname)
+	{
+		weapon = new Weapon(name,description,damageValue,numSpecialAbilities,specialAbilityname);
+	}
 	virtual string DisplayInfo() const = 0;
 };
 
@@ -50,6 +54,7 @@ class Undead : public Character
 private:
 	string* abilities;
 	int numAbilities;
+	string weapon[2];
 public:
 
 	Undead(string name, int numAbilities, string abilityList[])
@@ -122,6 +127,7 @@ class Human : public Character
 private:
 	string* abilities;
 	int numAbilities;
+	string* weapon;
 public:
 	Human(string name, int numAbilities, string abilityList[])
 	{
@@ -176,6 +182,7 @@ class Ghost : public Character
 private:
 	string* abilities;
 	int numAbilities;
+	string weapon;
 public:
 	
 	Ghost(string name,float health ,int numAbilities, string abilityList[])

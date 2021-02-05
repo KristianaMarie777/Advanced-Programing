@@ -11,11 +11,17 @@ private:
 	string weaponName, weaponDescription;
 	float damageValue;
 	string* specialAbilites;
-	static int weaponNum;
+	int abilityNum = 0;
 public:
-	Weapon()
+	Weapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
 	{
-		
+		setName(name);
+		setDescription(description);
+		setDamageValue(damageValue);
+		for (int i = 0; i < numSpecialAbilities; i++)
+		{
+			setAbilities(specialAbilityname[i]);
+		}
 	}
 
 	void setName(string weaponName)
@@ -28,7 +34,7 @@ public:
 		this->weaponDescription = weaponDescription;
 	}
 
-	void setDramageValue(float damageValue)
+	void setDamageValue(float damageValue)
 	{
 		this->damageValue = damageValue;
 	}
@@ -36,15 +42,12 @@ public:
 	void setAbilities(string name)
 	{
 		specialAbilites = new string(name);
-		setWeaponNum();
+		setAbilitesNum();
 	}
 
-	static void setWeaponNum()
+	void setAbilitesNum()
 	{
-		if (weaponNum == NULL)
-			weaponNum = 1;
-		else
-			weaponNum += 1;
+		abilityNum += 1;
 	}
 
 	string getName() const
@@ -67,9 +70,9 @@ public:
 		return specialAbilites[num];
 	}
 
-	int getWeaponNum() const
+	int getAbilitiesNum() const
 	{
-		return weaponNum;
+		return abilityNum;
 	}
 
 	~Weapon()
