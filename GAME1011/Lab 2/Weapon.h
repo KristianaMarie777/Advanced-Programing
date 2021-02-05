@@ -3,11 +3,19 @@
 #define _WEAPON_H_
 
 #include "Character.h"
+#include <iostream>
+using namespace std;
 class Weapon
 {
 public:
-	Weapon();
-	~Weapon();
+	Weapon()
+	{
+		cout << "chect";
+	}
+	~Weapon()
+	{
+		cout << "chect";
+	}
 
 private:
 

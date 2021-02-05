@@ -4,15 +4,18 @@
 #include <iostream>
 #include "Character.h"
 #include <vector>
+#include <windows.h>
 
 using namespace std;
 
 int main()
 {
-	string choice, innerChoice, characterName, numChoice, menuReload;
+	Character* characters = {new Human };
+	string choice, innerChoice, characterName, numChoice, menuReload, abilityName;
+	string* abilityList;
 	float health;
-	int numcheck,numAbillites;
-	Character* characters;
+	int numcheck,numAbillites,characterNum = 0;
+	
 	
 	do
 	{
@@ -20,7 +23,7 @@ int main()
 
 		cout << "Do you want to:\n\n";
 		cout << "A. Create a new character\n";
-		if (characters != NULL)
+		if (characterNum != 0)
 		{
 			cout << "B. Look at Your characters\n";
 			cout << "C. Delete Character\n";
@@ -59,18 +62,17 @@ int main()
 			cout << "\nWhat is the name of this character: ";
 
 			cin >> ws;
-			getline(cin, choice);
+			getline(cin, characterName);
 			
-			menuReload += choice;
+			menuReload += characterName;
 			
+
 			
 			do
 			{
 				cout << "How much health will the character have: ";
 
 				//getting character's max health
-				
-				
 				cin >> ws;
 				getline(cin, numChoice);
 				
@@ -88,7 +90,6 @@ int main()
 					}
 				}
 			} while (!isdigit(numChoice[numcheck]));
-
 			health = stoi(numChoice);
 
 			do
@@ -99,7 +100,7 @@ int main()
 				cin >> ws;
 				getline(cin, numChoice);
 
-				
+
 				for (int i = 0; i < numChoice.size();i++)
 				{
 					numcheck = i;
@@ -113,22 +114,74 @@ int main()
 
 			numAbillites = stoi(numChoice);
 
+			for (int i = 0; i < numAbillites; i++)
+			{
+				cin >> abilityName;
+				abilityList = new string(abilityName);
+			}
+
+			abilityList = new string("No-Special-Abilities");
+
+			
+			
 			if (choice[0] == 'A')
 			{
-				characters = new Undead(characterName);
+				cout << "Creating Human Character ";
+				for (int i = 0; i < 3; i++)
+				{
+					Sleep(500);
+					cout << ".";
+				}
+				characters = { new Human };
 			}
-			else if (choice[0] == 'A')
+			else if (choice[0] == 'B')
 			{
-
+				cout << "Creating Undead Character ";
+				for (int i = 0; i < 3; i++)
+				{
+					Sleep(500);
+					cout << ".";
+				}
+				characters = { new Undead(characterName,health,numAbillites,abilityList) };
 			}
-			else if (choice[0] == 'A')
+			else if (choice[0] == 'C')
 			{
-
+				cout << "Creating Undead Character ";
+				for (int i = 0; i < 3; i++)
+				{
+					Sleep(500);
+					cout << ".";
+				}
+				characters = { new Ghost };
 			}
+			system("CLS");
+			characterNum += 1;
 			break;
 
 		case 'B':
+			if (characterNum != 0)
+			{
+
+				for (int i = 0; i < characterNum; i++)
+				{
+					cout << characters->DisplayInfo();
+				}
+				cout << "\n\nPress enter to Exit\n";
+				cin.ignore();
+				system("CLS");
+			}
+			else
+			{
+				cout << "This choice is not available yet. Create a new character to activate it\n resetting choices ";
+				for (int i = 0; i < 3; i++)
+				{
+					Sleep(500);
+					cout << ".";
+				}
+			}
+			system("CLS");
 		case 'C':
+			characterNum -= 1;
 		case 'D':
 		default:
 			break;

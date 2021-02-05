@@ -16,7 +16,10 @@ private:
 	Weapon weapon;
 
 public:
-	
+	Character()
+	{
+		setCharacterName("");
+	}
 	void setHealthBar(float heathBar)
 	{
 		this->healthBar = healthBar;
@@ -47,17 +50,16 @@ private:
 	string* abilities;
 public:
 
-	Undead(string name, float health, int numAbilities, string abilitesNames[])
+	Undead(string name, float health, int numAbilities, string abilityList[])
 	{
 	
 		setCharacterName(name);
 		
 		setHealthBar(health);
 
-		for (int i = 0; i < numAbilities; i++)
+		for (int i = 0; i < numAbilities-1; i++)
 		{
-		
-			setAbilities(abilitesNames[i]);
+			setAbilities(abilityList[numAbilities]);
 		
 		}
 	
@@ -70,8 +72,9 @@ public:
 	
 	}
 	
-	string DisplayInfo() const
+	virtual string DisplayInfo() const
 	{
+
 		string description;
 
 		description = "Undead ";
@@ -80,23 +83,51 @@ public:
 		return description;
 	}
 };
-
-class Human
+class Human : public Character
 {
 public:
-	Human();
-	
-private:
+	void setAbilities(string name)
+	{
 
+		abilities = new string(name);
+
+	}
+
+	virtual string DisplayInfo() const
+	{
+
+		string description;
+
+		description = "Undead ";
+		description += getCharacterName();
+
+		return description;
+	}
+private:
+	string* abilities;
 };
 
-class Ghost
+class Ghost : public Character
 {
 public:
-	Ghost();
-	
+	void setAbilities(string name)
+	{
+
+		abilities = new string(name);
+
+	}
+
+	virtual string DisplayInfo() const
+	{
+
+		string description;
+
+		description = "Undead ";
+		description += getCharacterName();
+
+		return description;
+	}
 private:
-
+	string* abilities;
 };
-
 #endif // !_CHARACTER_H_
