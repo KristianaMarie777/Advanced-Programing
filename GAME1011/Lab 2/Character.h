@@ -14,26 +14,19 @@ class Character
 private:
 	float healthBar;
 	string characterName;
-	static Weapon* weapon;
-	static int numOfWeapons;                            
+	Weapon* weapon;
+	int numOfWeapons = 0;
 public:
+	
 	Character()
 	{
 		setCharacterName("");
-		setNumOfweapons(0);
 	}
 	void setHealthBar(float heathBar)
 	{
 		this->healthBar = healthBar;
 	}
-	static void setNumOfweapons(signed int num)
-	{
-		if (num == 0)
-			numOfWeapons = 0;
-		else
-			numOfWeapons += num;
-
-	}
+	
 	float getHealthBar() const
 	{
 		return healthBar;
@@ -49,7 +42,7 @@ public:
 		return characterName;
 	}
 
-	int getNumOfWeapons()const
+	int getNumOfWeapons()
 	{
 		return numOfWeapons;
 	}
@@ -63,11 +56,12 @@ public:
 		}
 		return description;
 	}
-
-	void addtWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
+	void addWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
 	{
-		weapon = {new Weapon(name, description, damageValue, numSpecialAbilities, specialAbilityname)};
-		setNumOfweapons(1);
+		Weapon weapon(name, description, damageValue, numSpecialAbilities, specialAbilityname);
+		if (numOfWeapons == NULL)
+			numOfWeapons = 0;
+		numOfWeapons += 1;
 	}
 	virtual string DisplayInfo() const = 0;
 };
@@ -150,17 +144,17 @@ class Human : public Character
 {
 private:
 	string* abilities;
-	int numAbilities;
+	int weaponNum;
 	string* weapon;
 public:
-	Human(string name, int numAbilities, string abilityList[])
+	Human(string name, int num, string weaponList[])
 	{
 		setCharacterName(name);
 		setHealthBar(100.00f);
 
-		for (int i = 0; i < numAbilities - 1; i++)
+		for (int i = 0; i < num - 1; i++)
 		{
-			setAbilities(abilityList[numAbilities]);
+			setAbilities(weaponList[num]);
 		}
 
 	}
@@ -174,14 +168,14 @@ public:
 	{
 
 		string description;
-		description = "Undead " + getCharacterName() + "\n";
+		description = "Human " + getCharacterName() + "\n";
 		description += "Has " + to_string(getHealthBar()) + " Health points\n";
 		
-		if (numAbilities == 0)
+		if (weaponNum == 0)
 		{
 			description += "Uses the weapon \n";
 		}
-		else if (numAbilities == 1)
+		else if (weaponNum == 1)
 		{
 			description += "Uses the weapon \n";
 		}
@@ -198,7 +192,7 @@ public:
 
 		return description;
 	}
-
+	
 };
 
 class Ghost : public Character

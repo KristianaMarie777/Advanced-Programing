@@ -16,11 +16,15 @@ public:
 	Weapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
 	{
 		setName(name);
+		cout << "pass setName\n";
 		setDescription(description);
+		cout << "pass setDescription\n";
 		setDamageValue(damageValue);
+		cout << "pass setDamageValue\n";
 		for (int i = 0; i < numSpecialAbilities; i++)
 		{
 			setAbilities(specialAbilityname[i]);
+			cout << "pass setAbilitiy\n";
 		}
 	}
 
