@@ -14,14 +14,40 @@ class Character
 private:
 	float healthBar;
 	string characterName;
-	Weapon* weapon;
-	int numOfWeapons = 0;
+	static Weapon* weapon;
+	static int numOfWeapons;
+	static int characterNum;
 public:
 	
 	Character()
 	{
 		setCharacterName("");
+
 	}
+
+	//for characterNum
+	static void setCharacterNumZero()
+	{
+		characterNum = 0;
+	}
+	static void addCharacterNum()
+	{
+		characterNum += 1;
+	}
+	static void deleteCharacterNum()
+	{
+		characterNum -= 1;
+	}
+
+	static void setWeaponNumZero()
+	{
+		characterNum = 0;
+	}
+	static void addWeaponNum()
+	{
+		characterNum += 1;
+	}
+	
 	void setHealthBar(float heathBar)
 	{
 		this->healthBar = healthBar;
@@ -30,6 +56,11 @@ public:
 	float getHealthBar() const
 	{
 		return healthBar;
+	}
+	
+	int getCharacterNum()
+	{
+		return characterNum;
 	}
 	
 	void setCharacterName(string characterName)
@@ -42,28 +73,38 @@ public:
 		return characterName;
 	}
 
-	int getNumOfWeapons()
+	int getNumOfWeapons() const
 	{
 		return numOfWeapons;
 	}
 
-	string getWeaponName()
+	//string getWeaponName()
+	//{
+	//	string description = "";
+	//	for (int i = 0; i < numOfWeapons; i++)
+	//	{
+	//		description += to_string(i) + ". " + weapon[i].getName();
+	//	}
+	//	return description;
+	//}
+
+	string getWeaponName(int a) const
 	{
-		string description = "";
-		for (int i = 0; i < numOfWeapons; i++)
-		{
-			description += to_string(i) + ". " + weapon[i].getName();
-		}
-		return description;
+		return weapon[a].getName();
 	}
-	void addWeapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
+	
+	void addWeapon(string name, string description, float damageValue, int numSpecialAbilities, int startValue, string specialAbilityname[])
 	{
-		Weapon weapon(name, description, damageValue, numSpecialAbilities, specialAbilityname);
-		if (numOfWeapons == NULL)
-			numOfWeapons = 0;
-		numOfWeapons += 1;
+		Weapon weapon(name, description, damageValue, numSpecialAbilities, startValue, specialAbilityname);
+		addWeaponNum();
 	}
-	virtual string DisplayInfo() const = 0;
+
+	Weapon getWeapon(int i) const
+	{
+		return weapon[i];
+	}
+
+	virtual void DisplayInfo() const = 0;
 };
 
 class Undead : public Character
@@ -71,198 +112,67 @@ class Undead : public Character
 
 private:
 	string* abilities;
-	int numAbilities;
-	string weapon[2];
+	string weaponName[2];
+	bool exsists;
 public:
 
-	Undead(string name, int numAbilities, string abilityList[])
+	Undead(string name,/*float heathBar, */ int numOfWeapons,
+		string weaponListName[], string weaponListDes[], int weaponDamage[], 
+		int numAbilities[], string abilityList[])
 	{
-	
+
+		int valueStart = 0;
+		
+		if (!(getCharacterNum() >= 0))
+		{
+			setCharacterNumZero();
+		}
+		if(!(getNumOfWeapons()>=0))
+		{
+			setWeaponNumZero();
+		}
+		
 		setCharacterName(name);
 		
 		setHealthBar(200.0f);
 
-		setNumAbilites(numAbilities);
-		for (int i = 0; i < numAbilities-1; i++)
+		for (int i=0;i< numOfWeapons;i++)
 		{
-			setAbilities(abilityList[numAbilities]);
-		
-		}
-	
-	}
-	
-	void setNumAbilites(int numAbilities)
-	{
-		this->numAbilities = numAbilities;
-	}
-
-	int getNumAbilites() const
-	{
-		return numAbilities;
-	}
-
-	void setAbilities(string name)
-	{
-		abilities = new string(name);
-	}
-
-	string getAbilities(int num)const
-	{
-		return abilities[num];
-	}
-
-	virtual string DisplayInfo() const
-	{
-
-		string description;
-		description = "Undead " + getCharacterName() + "\n";
-		description += "Has " +	to_string( getHealthBar()) + " Health points\n";
-		description += "Uses the weapon \n";
-
-		if (numAbilities == 0)
-		{
-			description += "Has no abilites\n";
-		}
-		else if (numAbilities == 1)
-		{
-			description += "Has the ability " + abilities[0] +"\n";
-		}
-		else
-		{
-			description += "Has the following abilities: \n";
-			for (int i = 0; i < getNumAbilites(); i++)
+			exsists = false;
+			weaponName[i] = weaponListName[i];
+			
+			for(int a=0;a < getNumOfWeapons();a++)
 			{
-				description += getAbilities(i) + "\n";
+				if (weaponName[i] == getWeaponName(a))
+				{
+					exsists = true;
+				}
+			}
+
+			if (!exsists)
+			{
+				addWeapon(weaponListName[i],weaponListDes[i],weaponDamage[i],numAbilities[i],valueStart,abilityList);
+				valueStart += (numAbilities[i] - 1);
 			}
 		}
 
-		return description;
-	}
-};
-
-class Human : public Character
-{
-private:
-	string* abilities;
-	int weaponNum;
-	string* weapon;
-public:
-	Human(string name, int num, string weaponList[])
-	{
-		setCharacterName(name);
-		setHealthBar(100.00f);
-
-		for (int i = 0; i < num - 1; i++)
-		{
-			setAbilities(weaponList[num]);
-		}
-
+		addCharacterNum();
 	}
 	
-	void setAbilities(string name)
+	virtual void DisplayInfo() const
 	{
-		abilities = new string(name);
-	}
-
-	virtual string DisplayInfo() const
-	{
-
-		string description;
-		description = "Human " + getCharacterName() + "\n";
-		description += "Has " + to_string(getHealthBar()) + " Health points\n";
-		
-		if (weaponNum == 0)
+		cout << "Undead " << getCharacterName() << endl;
+		cout << "Has " << to_string( getHealthBar()) << " Health points\n";
+		cout << "Uses the weapon \n";
+		for(int i=0 ;i < getNumOfWeapons();i++)
 		{
-			description += "Uses the weapon \n";
-		}
-		else if (weaponNum == 1)
-		{
-			description += "Uses the weapon \n";
-		}
-		else
-		{
-			description += "Uses the following weapons: \n";
-			for (int i = 0; i < 1; i++)
+			if (getWeaponName(i) == weaponName[i])
 			{
-				description += "\n";
+				cout << getWeapon(i) << endl;
 			}
 		}
 
-		description += "Has no abilites\n";
-
-		return description;
 	}
 	
-};
-
-class Ghost : public Character
-{
-private:
-	string* abilities;
-	int numAbilities;
-	string weapon;
-public:
-	
-	Ghost(string name,float health ,int numAbilities, string abilityList[])
-	{
-		setCharacterName(name);
-		setHealthBar(health);
-
-		for (int i = 0; i < numAbilities - 1; i++)
-		{
-			setAbilities(abilityList[numAbilities]);
-		}
-
-	}
-	
-	void setNumAbilites(int numAbilities)
-	{
-		this->numAbilities = numAbilities;
-	}
-
-	int getNumAbilites() const
-	{
-		return numAbilities;
-	}
-
-	void setAbilities(string name)
-	{
-		abilities = new string(name);
-	}
-
-	string getAbilities(int num)const
-	{
-		return abilities[num];
-	}
-
-	virtual string DisplayInfo() const
-	{
-
-		string description;
-
-		description = "Ghost " + getCharacterName() + "\n";
-		description += "Has " + to_string(getHealthBar()) + " Health points\n";
-		description += "Uses no weapon \n";
-		
-		if (numAbilities == 0)
-		{
-			description += "Has no abilites\n";
-		}
-		else if (numAbilities == 1)
-		{
-			description += "Has the ability " + abilities[0] + "\n";
-		}
-		else
-		{
-			description += "Has the following abilities: \n";
-			for (int i = 0; i < getNumAbilites(); i++)
-			{
-				description += getAbilities(i) + "\n";
-			}
-		}
-
-		return description;
-	}
-
 };
 #endif // !_CHARACTER_H_

@@ -13,7 +13,7 @@ private:
 	string* specialAbilites;
 	int abilityNum = 0;
 public:
-	Weapon(string name, string description, float damageValue, int numSpecialAbilities, string specialAbilityname[])
+	Weapon(string name, string description, float damageValue, int numSpecialAbilities, int valueStart, string specialAbilityname[])
 	{
 		setName(name);
 		cout << "pass setName\n";
@@ -23,7 +23,7 @@ public:
 		cout << "pass setDamageValue\n";
 		for (int i = 0; i < numSpecialAbilities; i++)
 		{
-			setAbilities(specialAbilityname[i]);
+			setAbilities(specialAbilityname[valueStart + i]);
 			cout << "pass setAbilitiy\n";
 		}
 	}
@@ -78,7 +78,19 @@ public:
 	{
 		return abilityNum;
 	}
-
+	
+	friend ostream& operator<<(ostream &out, Weapon a)
+	{
+		out << a.getName() << endl;
+		out << a.getDescription() << endl;
+		out << "Does " << to_string(a.getDramageValue()) << " points of Damage" << endl;
+		cout << "Has the abilities:" << endl;
+		
+		for(int i=0;i< a.getAbilitiesNum();i++)
+			out << a.getAbilities(i) << endl;
+		
+		return out;
+	}
 	~Weapon()
 	{
 		cout << "chect";
