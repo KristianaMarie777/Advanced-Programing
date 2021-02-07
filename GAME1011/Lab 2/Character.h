@@ -14,40 +14,35 @@ class Character
 private:
 	float healthBar;
 	string characterName;
-	static Weapon* weapon;
-	static int numOfWeapons;
-	static int characterNum;
+	Weapon* weapon;
+	int numOfWeapons;
+	int characterNum;
 public:
 	
 	Character()
 	{
 		setCharacterName("");
-
 	}
 
 	//for characterNum
-	static void setCharacterNumZero()
+	void setCharacterNumZero()
 	{
 		characterNum = 0;
 	}
-	static void addCharacterNum()
+	void addCharacterNum()
 	{
 		characterNum += 1;
 	}
-	static void deleteCharacterNum()
+	void deleteCharacterNum()
 	{
 		characterNum -= 1;
 	}
 
-	static void setWeaponNumZero()
+	void setWeaponNum(int num)
 	{
-		characterNum = 0;
+		numOfWeapons = num;
 	}
-	static void addWeaponNum()
-	{
-		characterNum += 1;
-	}
-	
+
 	void setHealthBar(float heathBar)
 	{
 		this->healthBar = healthBar;
@@ -58,7 +53,7 @@ public:
 		return healthBar;
 	}
 	
-	int getCharacterNum()
+	int getCharacterNum() const
 	{
 		return characterNum;
 	}
@@ -72,8 +67,7 @@ public:
 	{
 		return characterName;
 	}
-
-	int getNumOfWeapons() const
+	int getNumOfWeapons()const
 	{
 		return numOfWeapons;
 	}
@@ -96,7 +90,6 @@ public:
 	void addWeapon(string name, string description, float damageValue, int numSpecialAbilities, int startValue, string specialAbilityname[])
 	{
 		Weapon weapon(name, description, damageValue, numSpecialAbilities, startValue, specialAbilityname);
-		addWeaponNum();
 	}
 
 	Weapon getWeapon(int i) const
@@ -120,18 +113,9 @@ public:
 		string weaponListName[], string weaponListDes[], int weaponDamage[], 
 		int numAbilities[], string abilityList[])
 	{
-
+		
 		int valueStart = 0;
-		
-		if (!(getCharacterNum() >= 0))
-		{
-			setCharacterNumZero();
-		}
-		if(!(getNumOfWeapons()>=0))
-		{
-			setWeaponNumZero();
-		}
-		
+
 		setCharacterName(name);
 		
 		setHealthBar(200.0f);
@@ -155,7 +139,7 @@ public:
 				valueStart += (numAbilities[i] - 1);
 			}
 		}
-
+		setWeaponNum(numOfWeapons);
 		addCharacterNum();
 	}
 	
@@ -164,13 +148,8 @@ public:
 		cout << "Undead " << getCharacterName() << endl;
 		cout << "Has " << to_string( getHealthBar()) << " Health points\n";
 		cout << "Uses the weapon \n";
-		for(int i=0 ;i < getNumOfWeapons();i++)
-		{
-			if (getWeaponName(i) == weaponName[i])
-			{
-				cout << getWeapon(i) << endl;
-			}
-		}
+		cout << getWeapon(0) << endl;
+		
 
 	}
 	

@@ -4,6 +4,7 @@
 
 #include "Character.h"
 #include <iostream>
+
 using namespace std;
 class Weapon
 {
@@ -13,6 +14,7 @@ private:
 	string* specialAbilites;
 	int abilityNum = 0;
 public:
+
 	Weapon(string name, string description, float damageValue, int numSpecialAbilities, int valueStart, string specialAbilityname[])
 	{
 		setName(name);
@@ -26,6 +28,7 @@ public:
 			setAbilities(specialAbilityname[valueStart + i]);
 			cout << "pass setAbilitiy\n";
 		}
+		setAbilitesNum(numSpecialAbilities);
 	}
 
 	void setName(string weaponName)
@@ -46,12 +49,11 @@ public:
 	void setAbilities(string name)
 	{
 		specialAbilites = new string(name);
-		setAbilitesNum();
 	}
 
-	void setAbilitesNum()
+	void setAbilitesNum(int num)
 	{
-		abilityNum += 1;
+		abilityNum = num;
 	}
 
 	string getName() const
@@ -84,7 +86,7 @@ public:
 		out << a.getName() << endl;
 		out << a.getDescription() << endl;
 		out << "Does " << to_string(a.getDramageValue()) << " points of Damage" << endl;
-		cout << "Has the abilities:" << endl;
+		out << "Has the abilities:" << endl;
 		
 		for(int i=0;i< a.getAbilitiesNum();i++)
 			out << a.getAbilities(i) << endl;
