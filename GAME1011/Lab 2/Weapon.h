@@ -9,7 +9,7 @@ class Weapon
 {
 private:
 	string weaponName, weaponDescription;
-	float damageValue;
+	int damageValue;
 	string* specialAbilites;
 	int abilityNum = 0;
 public:
@@ -41,6 +41,7 @@ public:
 	{
 		specialAbilites = new string[num];
 	}
+
 	void setName(string weaponName)
 	{
 		this->weaponName = weaponName;
@@ -77,7 +78,7 @@ public:
 		return weaponDescription;
 	}
 
-	float getDramageValue() const
+	int getDramageValue() const
 	{
 		return damageValue;
 	}
@@ -97,11 +98,24 @@ public:
 		out << a.getName() << endl;
 		out << a.getDescription() << endl;
 		out << "Does " << to_string(a.getDramageValue()) << " points of Damage" << endl;
-		out << "Has the abilities:" << endl;
-		
-		for(int i=0;i< a.getAbilitiesNum();i++)
-			out << a.getAbilities(i) << endl;
-		
+	
+		if (a.getAbilitiesNum() == 0)
+		{
+			out << "Has no abilities:" << endl;
+		}
+		else if (a.getAbilitiesNum() == 1)
+		{
+			out << "Has the ability:" << endl;
+			for (int i = 0;i < a.getAbilitiesNum();i++)
+				out << a.getAbilities(i) << endl;
+		}
+		else
+		{
+			out << "Has the abilities:" << endl;
+			for (int i = 0;i < a.getAbilitiesNum();i++)
+				out << a.getAbilities(i) << endl;
+		}
+
 		return out;
 	}
 

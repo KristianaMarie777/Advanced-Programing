@@ -11,10 +11,10 @@ int main()
 	//string choice, innerChoice, characterName, numChoice, menuReload, title, weaponName;
 	//string* abilityList, *weaponList, * weaponSpecialAlist, *weaponDescription;
 	//int health, numcheck,numAbillites, damageValue,weaponSpecialA, numWeapon,characterNum = 0;
-	string choice, menuReload, characterName, numChoice, weaponName, weaponDescription;
+	string choice, menuReload, characterName, numChoice, weaponName, weaponDescription, abilityName;
 	int characterNum = 0, numOfWeapon, numcheck, numAbilities;
 	float healthBar;
-	Character* characters  = new Undead;
+	Character* characters[12];
 	int num;
 	bool characterExists = false;
 
@@ -42,59 +42,155 @@ int main()
 		switch (toupper(choice[0]))
 		{
 		case 'A':
+			
 			string * weaponListName, * weaponListDes, * abilityList;
 			int* weaponDamage;
 
 
 			abilityList = new string{ "No-Special-Abilities" };
-			numAbilities = new int{ 0 };
 			weaponListName = new string{"No-Name"};
 			weaponListDes = new string{ "No-Description" };
 			weaponDamage = new int{ 0 };
 			
 
-			menuReload = "What type of Character do you want to create?: \n\nA. Human\nB. Undead\nC. Ghost\n\nEnter choice here: ";
+			menuReload = "What type of Character do you want to create?: \n\nA. Human\nB. Undead\nC. Ghost";
 			cout << menuReload;
-
+			cout << endl << endl;
 			do
 			{
-
+				cout << "Enter choice here: ";
 				cin >> ws;
 				getline(cin, choice);
 
 
 				if (choice[1] != NULL)
 				{
-					cout << "Too many Characters Taking first character...\n\n";
+					cout << "\nToo many Characters Taking first character...\n\n";
 				}
 
 				if (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C')
 				{
 					system("CLS");
 					cout << menuReload;
-					cout << "That is not one of the choices. Please try again\n\n";
+					cout << "\nThat is not one of the choices. Please try again\n\n";
 				}
 				
 			} while (toupper(choice[0]) != 'A' && toupper(choice[0]) != 'B' && toupper(choice[0]) != 'C');
-
+			
+			system("CLS");
+			
 			choice[0] = toupper(choice[0]);
 
-			menuReload += choice + "\nWhat is the name of this character: ";
-			cout << "\nWhat is the name of this character: ";
+			menuReload += "\n\nEnter choice here: " + choice + "\n\nWhat is the name of this character: ";
+			cout << menuReload;
 
 			cin >> ws;
 			getline(cin, characterName);
 			
 			menuReload += characterName;
-			
+			system("CLS");
+
 			//Allows only Ghost to have modified health.
 			if (choice[0] == 'C')
 			{
+				cout << menuReload;
 				do
 				{
-					cout << "How much health will the character have: ";
+					cout << "\nHow much health will the character have: ";
 
 					//getting character's max health
+					cin >> ws;
+					getline(cin, numChoice);
+					
+					for (int i = 0; i < numChoice.size();i++)
+					{
+						numcheck = i;
+						if (!isdigit(numChoice[i]))
+						{
+							system("CLS");
+							cout << menuReload;
+							cout << "\n\nThis answer has characters other than numbers. Try again.";
+							break;
+						}
+					}
+				} while (!isdigit(numChoice[numcheck]));
+				healthBar = stoi(numChoice);
+				menuReload += "\nHow much health will the character have: " + numChoice;
+				system("CLS");
+			}
+			
+			cout << menuReload << endl;
+
+			do
+			{
+				cout << "How many Weapons can the character have (Can use ";
+				if (choice[0] == 'A')
+					cout << "an unlimited amount of weapons): ";
+				else if (choice[0] == 'B')
+					cout << "up to 2 weapons): ";
+				else if (choice[0] == 'C')
+					cout << "up to 1 weapon): ";
+				cin >> ws;
+				getline(cin, numChoice);
+
+
+				for (int i = 0; i < numChoice.size();i++)
+				{
+
+					numcheck = i;
+					if (!isdigit(numChoice[i]))
+					{
+						system("CLS");
+						cout << menuReload;
+						cout << "\n\nThis answer has characters other than numbers. Try again.\n";
+						break;
+					}
+
+				}
+				if (isdigit(numChoice[numcheck]))
+				{
+					if (stoi(numChoice) > 1 && choice[0] == 'C')
+					{
+						system("CLS");
+						cout << menuReload;
+						cout << "\n\nGhost cannot have more than 1 weapons. Try again.\n";
+					}
+					else if (stoi(numChoice) > 2 && choice[0] == 'B')
+					{
+						system("CLS");
+						cout << menuReload;
+						cout << "\n\nUndead cannot have more than 2 weapons. Try again.\n";
+					}
+				}
+
+			} while (!isdigit(numChoice[numcheck]) || ( (stoi(numChoice) > 2 && choice[0] == 'B') || (stoi(numChoice) > 1 && choice[0] == 'C')));
+			
+			system("CLS");
+
+			menuReload+="\nHow many Weapons can the character have (Can use ";
+			if (choice[0] == 'A')
+				menuReload += "an unlimited amount of weapons): ";
+			else if (choice[0] == 'B')
+				menuReload += "up to 2 weapons): ";
+			else if (choice[0] == 'C')
+				menuReload += "up to 1 weapon): ";
+
+			menuReload += numChoice;
+			numOfWeapon = stoi(numChoice);
+			if (!(choice[0] == 'A'))
+			{
+				cout << menuReload;
+				do
+				{
+
+					cout << "\nHow many special abilities each weapon have (Can have ";
+					if (choice[0] == 'A')
+						cout << "no abilities): ";
+					else if (choice[0] == 'B')
+						cout << "up to 4 abilities): ";
+					else if (choice[0] == 'C')
+						cout << "an unlimited amount of abilities): ";
+
 					cin >> ws;
 					getline(cin, numChoice);
 
@@ -106,95 +202,47 @@ int main()
 						{
 							system("CLS");
 							cout << menuReload;
-
-							cout << "This answer has characters other than numbers. Try again.\n\n";
+							cout << "\n\nThis answer has characters other than numbers. Try again.";
 							break;
 						}
 					}
 				} while (!isdigit(numChoice[numcheck]));
-				healthBar = stoi(numChoice);
+
+				system("CLS");
+
+				menuReload += "\nHow many special abilities each weapon have (Can have ";
+				if (choice[0] == 'A')
+					menuReload += "no abilities): ";
+				else if (choice[0] == 'B')
+					menuReload += "up to 4 abilities): ";
+				else if (choice[0] == 'C')
+					menuReload += "an unlimited amount of abilities): ";
+				menuReload += numChoice;
+				numAbilities = stoi(numChoice);
 			}
-
-			do
+			else
 			{
-				cout << "How many Weapons can the character have (Can use ";
-				if (choice[0] == 'A')
-					cout << "an unlimited amount of weapons): ";
-				else if (choice[0] == 'B')
-					cout << "up to 2 weapons): ";
-				else if (choice[0] == 'C')
-					cout << "up to 1 weapon): ";
-
-				cin >> ws;
-				getline(cin, numChoice);
-
-
-				for (int i = 0; i < numChoice.size();i++)
-				{
-
-					numcheck = i;
-					if (!isdigit(numChoice[i]))
-					{
-						cout << "This answer has characters other than numbers. Try again.\n\n";
-						break;
-					}
-
-				}
-
-				if (stoi(numChoice) > 1 && choice[0] == 'C')
-				{
-					cout << "Ghost cannot have more than 1 weapons. Try again.\n\n";
-				}
-				else if (stoi(numChoice) > 2 && choice[0] == 'B')
-				{
-					cout << "Undead cannot have more than 2 weapons. Try again.\n\n";
-				}
-
-			} while (!isdigit(numChoice[numcheck]) || (stoi(numChoice) > 2 && choice[0] == 'B') ||(stoi(numChoice) > 1 && choice[0] == 'C'));
-
-			numOfWeapon = stoi(numChoice);
-
-
-			do
-			{
-
-				cout << "How many special abilities each weapon have (Can have ";
-				if (choice[0] == 'A')
-					cout << "no abilities): ";
-				else if (choice[0] == 'B')
-					cout << "up to 4 abilities): ";
-				else if (choice[0] == 'C')
-					cout << "an unlimited amount of abilities): ";
-
-				cin >> ws;
-				getline(cin, numChoice);
-
-
-				for (int i = 0; i < numChoice.size();i++)
-				{
-					numcheck = i;
-					if (!isdigit(numChoice[i]))
-					{
-						cout << "This answer has characters other than numbers. Try again.\n\n";
-						break;
-					}
-				}
-			} while (!isdigit(numChoice[numcheck]));
-
-			numAbilities = stoi(numChoice);
+				numAbilities = 0;
+			}
 
 			abilityList = new string[numOfWeapon*numAbilities];
 			weaponListName = new string[numOfWeapon];
 			weaponListDes = new string[numOfWeapon];
 			weaponDamage = new int[numOfWeapon];
 
+			
 			for (int i = 0; i < numOfWeapon;i++)
 			{
-				cout << "What is the name of this weapon: ";
+				menuReload += "\nWhat is the name of this weapon: ";
+
+				cout << menuReload;
 				cin >> ws;
 				getline(cin, weaponName);
-
+				
+				menuReload += weaponName;
+				
 				weaponListName[i] = weaponName;
+
 
 				cout << "What the weapon's description: ";
 				cin >> ws;
@@ -202,12 +250,16 @@ int main()
 
 				weaponListDes[i] =weaponDescription;
 				
-
+				menuReload +="\nWhat the weapon's description: " + weaponDescription;
+				
 				do
 				{
+					
 					cout << "How much Damage does it inflict on enemies: ";
 					cin >> ws;
 					getline(cin, numChoice);
+
+					
 
 					for (int i = 0; i < numChoice.size(); i++)
 					{
@@ -215,6 +267,9 @@ int main()
 						numcheck = i;
 						if (!isdigit(numChoice[numcheck]))
 						{
+							system("CLS");
+							cout << menuReload;
+							cout << "\n\nThis answer has characters other than numbers. Try again.\n";
 							break;
 						}
 
@@ -222,19 +277,29 @@ int main()
 
 				} while (!isdigit(numChoice[numcheck]));
 
+				system("CLS");
+				menuReload += "\nHow much Damage does it inflict on enemies : ";
 				weaponDamage[i] =stoi(numChoice);
+				menuReload += numChoice;
+				cout << menuReload << endl;
 
 				//Keeps Humans from having abilities
 
-				for (int a = 0; a < numAbilities[i]; a++)
+				for (int a = 0; a < numAbilities; a++)
 				{
+
 					cout << "What is the name of ability #" << a+1 << ": ";
-					cin >> abilityName[a];
+					cin >> abilityName;
+					abilityList[(i*numAbilities) + a] = abilityName;
+					menuReload+="\nWhat is the name of ability #" + to_string(a + 1);
+					menuReload += ": " + abilityName + "\n";
 				}
 
+				system("CLS");
 			}
+			cout << menuReload << endl;
 			//abilityList = new string( "none");
-			cout << endl << sizeof(weaponListDes) << endl;
+
 			if (choice[0] == 'A')
 			{
 				cout << "Creating Undead Character ";
@@ -244,7 +309,7 @@ int main()
 					cout << ".";
 				}
 
-				characters = {new Human(characterName,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList) };
+				characters[characterNum] = new Human(characterName,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList);
 			}
 			else if (choice[0] == 'B')
 			{
@@ -254,7 +319,7 @@ int main()
 					Sleep(500);
 					cout << ".";
 				}
-				characters = {new Undead(characterName,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList) };
+				characters[characterNum] = new Undead(characterName,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList);
 				cout << "pass\n";
 			}
 			else if (choice[0] == 'C')
@@ -265,7 +330,7 @@ int main()
 					Sleep(500);
 					cout << ".";
 				}
-				characters = new Ghost(characterName,healthBar,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList);
+				characters[characterNum] = new Ghost(characterName,healthBar,numOfWeapon,weaponListName,weaponListDes,weaponDamage,numAbilities,abilityList);
 			}
 
 			system("CLS");
@@ -283,7 +348,9 @@ int main()
 
 				for (int i = 0; i < characterNum; i++)
 				{
-					characters[i].DisplayInfo();
+					cout << i << ".";
+					characters[i]->DisplayInfo();
+					cout << endl << endl;
 				}
 				cout << "\n\nPress enter to Exit\n";
 				cin.ignore();
