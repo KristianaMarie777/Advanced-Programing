@@ -13,7 +13,12 @@ private:
 	string* specialAbilites;
 	int abilityNum = 0;
 public:
-	Weapon(string name, string description, float damageValue, int numSpecialAbilities, int valueStart, string specialAbilityname[])
+	Weapon()
+	{
+		setName("");
+		setDescription("");
+	}
+	Weapon(string name, string description, int damageValue, int numSpecialAbilities, int valueStart, string specialAbilityname[])
 	{
 		setName(name);
 		cout << "pass setName\n";
@@ -21,13 +26,21 @@ public:
 		cout << "pass setDescription\n";
 		setDamageValue(damageValue);
 		cout << "pass setDamageValue\n";
+
+		setNumSpecialA(numSpecialAbilities);
+		cout << "Created spaces\n";
+
 		for (int i = 0; i < numSpecialAbilities; i++)
 		{
-			setAbilities(specialAbilityname[valueStart + i]);
+			setAbilities(specialAbilityname[valueStart], i);
 			cout << "pass setAbilitiy\n";
 		}
+		cout << "DOne\n";
 	}
-
+	void setNumSpecialA(int num)
+	{
+		specialAbilites = new string[num];
+	}
 	void setName(string weaponName)
 	{
 		this->weaponName = weaponName;
@@ -43,9 +56,9 @@ public:
 		this->damageValue = damageValue;
 	}
 
-	void setAbilities(string name)
+	void setAbilities(string name, int i)
 	{
-		specialAbilites = new string(name);
+		specialAbilites[i] = name;
 		setAbilitesNum();
 	}
 

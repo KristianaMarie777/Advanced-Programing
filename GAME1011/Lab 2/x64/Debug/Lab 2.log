@@ -1,4 +1,1 @@
-﻿  Lab 2.cpp
-C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Character.h(141,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Lab 2.cpp(113,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Lab 2.vcxproj -> C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\x64\Debug\Lab 2.exe
+﻿  Lab 2.vcxproj -> C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\x64\Debug\Lab 2.exe
