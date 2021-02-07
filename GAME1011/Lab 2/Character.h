@@ -14,11 +14,11 @@ class Character
 private:
 	float healthBar;
 	string characterName;
-	static Weapon* weapon;
-	static int numOfWeapons;
-	static int characterNum;
+
+	int numOfWeapons;
+	int characterNum;
 public:
-	
+	Weapon* weapon;
 	Character()
 	{
 		setCharacterName("");
@@ -26,24 +26,24 @@ public:
 	}
 
 	//for characterNum
-	static void setCharacterNumZero()
+	void setCharacterNumZero()
 	{
 		characterNum = 0;
 	}
-	static void addCharacterNum()
+	void addCharacterNum()
 	{
 		characterNum += 1;
 	}
-	static void deleteCharacterNum()
+	void deleteCharacterNum()
 	{
 		characterNum -= 1;
 	}
 
-	static void setWeaponNumZero()
+	void setWeaponNumZero()
 	{
 		characterNum = 0;
 	}
-	static void addWeaponNum()
+	void addWeaponNum()
 	{
 		characterNum += 1;
 	}
@@ -95,7 +95,7 @@ public:
 	
 	void addWeapon(string name, string description, float damageValue, int numSpecialAbilities, int startValue, string specialAbilityname[])
 	{
-		Weapon weapon(name, description, damageValue, numSpecialAbilities, startValue, specialAbilityname);
+		weapon = new Weapon(name, description, damageValue, numSpecialAbilities, startValue, specialAbilityname);
 		addWeaponNum();
 	}
 
@@ -110,69 +110,147 @@ public:
 class Undead : public Character
 {
 
-private:
-	string* abilities;
-	string weaponName[2];
-	bool exsists;
 public:
-
+	Undead()
+	{
+		setCharacterNumZero();
+		setWeaponNumZero();
+	}
 	Undead(string name,/*float heathBar, */ int numOfWeapons,
-		string weaponListName[], string weaponListDes[], int weaponDamage[], 
+		string weaponListName[], string weaponListDes[], int weaponDamage[],
 		int numAbilities[], string abilityList[])
 	{
 
 		int valueStart = 0;
-		
+
 		if (!(getCharacterNum() >= 0))
 		{
 			setCharacterNumZero();
 		}
-		if(!(getNumOfWeapons()>=0))
+		if (!(getNumOfWeapons() >= 0))
 		{
 			setWeaponNumZero();
 		}
-		
+
 		setCharacterName(name);
-		
+
 		setHealthBar(200.0f);
 
-		for (int i=0;i< numOfWeapons;i++)
+		for (int i = 0;i < numOfWeapons;i++)
 		{
-			exsists = false;
-			weaponName[i] = weaponListName[i];
-			
-			for(int a=0;a < getNumOfWeapons();a++)
-			{
-				if (weaponName[i] == getWeaponName(a))
-				{
-					exsists = true;
-				}
-			}
-
-			if (!exsists)
-			{
-				addWeapon(weaponListName[i],weaponListDes[i],weaponDamage[i],numAbilities[i],valueStart,abilityList);
-				valueStart += (numAbilities[i] - 1);
-			}
+			addWeapon(weaponListName[i], weaponListDes[i], weaponDamage[i], numAbilities[i], valueStart, abilityList);
 		}
 
 		addCharacterNum();
 	}
-	
+
 	virtual void DisplayInfo() const
 	{
 		cout << "Undead " << getCharacterName() << endl;
-		cout << "Has " << to_string( getHealthBar()) << " Health points\n";
+		cout << "Has " << to_string(getHealthBar()) << " Health points\n";
 		cout << "Uses the weapon \n";
-		for(int i=0 ;i < getNumOfWeapons();i++)
-		{
-			if (getWeaponName(i) == weaponName[i])
-			{
-				cout << getWeapon(i) << endl;
-			}
-		}
+
+		cout << *weapon;
 
 	}
-	
+
+	class Undead : public Character
+	{
+
+	public:
+		Undead()
+		{
+			setCharacterNumZero();
+			setWeaponNumZero();
+		}
+		Undead(string name,/*float heathBar, */ int numOfWeapons,
+			string weaponListName[], string weaponListDes[], int weaponDamage[],
+			int numAbilities[], string abilityList[])
+		{
+
+			int valueStart = 0;
+
+			if (!(getCharacterNum() >= 0))
+			{
+				setCharacterNumZero();
+			}
+			if (!(getNumOfWeapons() >= 0))
+			{
+				setWeaponNumZero();
+			}
+
+			setCharacterName(name);
+
+			setHealthBar(200.0f);
+
+			for (int i = 0;i < numOfWeapons;i++)
+			{
+				addWeapon(weaponListName[i], weaponListDes[i], weaponDamage[i], numAbilities[i], valueStart, abilityList);
+			}
+
+			addCharacterNum();
+		}
+
+		virtual void DisplayInfo() const
+		{
+			cout << "Undead " << getCharacterName() << endl;
+			cout << "Has " << to_string(getHealthBar()) << " Health points\n";
+			cout << "Uses the weapon \n";
+
+			cout << *weapon;
+
+		}
+
+
+	};
+
+	class Undead : public Character
+	{
+
+	public:
+		Undead()
+		{
+			setCharacterNumZero();
+			setWeaponNumZero();
+		}
+		Undead(string name,/*float heathBar, */ int numOfWeapons,
+			string weaponListName[], string weaponListDes[], int weaponDamage[],
+			int numAbilities[], string abilityList[])
+		{
+
+			int valueStart = 0;
+
+			if (!(getCharacterNum() >= 0))
+			{
+				setCharacterNumZero();
+			}
+			if (!(getNumOfWeapons() >= 0))
+			{
+				setWeaponNumZero();
+			}
+
+			setCharacterName(name);
+
+			setHealthBar(200.0f);
+
+			for (int i = 0;i < numOfWeapons;i++)
+			{
+				addWeapon(weaponListName[i], weaponListDes[i], weaponDamage[i], numAbilities[i], valueStart, abilityList);
+			}
+
+			addCharacterNum();
+		}
+
+		virtual void DisplayInfo() const
+		{
+			cout << "Undead " << getCharacterName() << endl;
+			cout << "Has " << to_string(getHealthBar()) << " Health points\n";
+			cout << "Uses the weapon \n";
+
+			cout << *weapon;
+
+		}
+	}
 };
+
 #endif // !_CHARACTER_H_

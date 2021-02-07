@@ -79,21 +79,22 @@ public:
 		return abilityNum;
 	}
 	
-	friend ostream& operator<<(ostream &out, Weapon a)
+	friend ostream& operator<<(ostream &out, const Weapon& a)
 	{
 		out << a.getName() << endl;
 		out << a.getDescription() << endl;
 		out << "Does " << to_string(a.getDramageValue()) << " points of Damage" << endl;
-		cout << "Has the abilities:" << endl;
+		out << "Has the abilities:" << endl;
 		
 		for(int i=0;i< a.getAbilitiesNum();i++)
 			out << a.getAbilities(i) << endl;
 		
 		return out;
 	}
+
 	~Weapon()
 	{
-		cout << "chect";
+		cout << "destroy weapon";
 	}
 
 
