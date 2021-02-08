@@ -1,6 +1,6 @@
 ﻿  Lab 2.cpp
 C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Weapon.h(27,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Weapon.h(57,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Lab 2.cpp(118,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Lab 2.cpp(334,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Lab 2.cpp(115,22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 2\Lab 2.cpp(338,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Lab 2.vcxproj -> C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\x64\Debug\Lab 2.exe
