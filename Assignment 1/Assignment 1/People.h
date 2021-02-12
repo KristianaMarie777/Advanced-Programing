@@ -26,26 +26,10 @@ public:
 		setAge(age);
 	}
 
-	string getName() const
-	{
-		return name;
-	}
-
-	int getAge() const
-	{
-		return age;
-	}
-
-	void setName(string name)
-	{
-		this->name = name;
-	}
-
-	void setAge(int age)
-	{
-		this->age = age;
-	}
-
+	string getName() const { return name; }
+	int getAge() const { return age; }
+	void setName(string name) { this->name = name; }
+	void setAge(int age) { this->age = age; }
 	virtual string DisplayInfo() = 0;
 };
 
@@ -54,57 +38,21 @@ class Student : public Person
 private:
 	string college, program;
 	int semester;
-	bool gamer = false;
 public:
 	
-	Student(string name, string college, string program, int semester, int age, bool gamer) : Person(name,age)
+	Student(string name, string college, string program, int semester, int age) : Person(name,age)
 	{
 		setCollege(college);
 		setProgram(program);
 		setSemester(semester);
-		setGamer(gamer);
 	}
 
-	string getCollege() const
-	{
-		return college;
-	}
-
-	int getSemester() const
-	{
-		return semester;
-	}
-
-	string getProgram() const
-	{
-		return program;
-	}
-
-	bool getGamer()
-	{
-		return gamer;
-	}
-
-	void setGamer(bool gamer)
-	{
-		this->gamer = gamer;
-	}
-
-	void setCollege(string college)
-	{
-		this->college = college;
-	}
-
-	void setSemester(int semester)
-	{
-		this->semester = semester;
-	}
-
-	void setProgram(string program)
-	{
-		this->program = program;
-	}
-
+	string getCollege() const { return college; }
+	int getSemester() const { return semester; }
+	string getProgram() const { return program; }
+	void setCollege(string college) { this->college = college; }
+	void setSemester(int semester) { this->semester = semester; }
+	void setProgram(string program) { this->program = program; }
 	virtual string DisplayInfo() = 0;
 };
 
@@ -115,31 +63,16 @@ private:
 	float hours;
 public:
 	
-	NonGamingStudent(string name, string college, string program,string streamService, int semester, int age, float hours) : Student(name,college,program,semester,age,false)
+	NonGamingStudent(string name, string college, string program,string streamService, int semester, int age, float hours) : Student(name,college,program,semester,age)
 	{
 		setHours(hours);
 		setStreamService(streamService);
 	}
 
-	float getHours() const
-	{
-		return hours;
-	}
-
-	string  getStreamService() const
-	{
-		return streamService;
-	}
-
-	void setStreamService(string streamService)
-	{
-		this->streamService = streamService;
-	}
-
-	void setHours(float hours)
-	{
-		this->hours = hours;
-	}
+	float getHours() const { return hours; }
+	string  getStreamService() const { return streamService; }
+	void setStreamService(string streamService) { this->streamService = streamService; }
+	void setHours(float hours) { this->hours = hours; }
 
 	virtual string DisplayInfo()
 	{
@@ -155,7 +88,7 @@ public:
 		else
 			info += "th Semester\n";
 
-		info += "likes to use " + getStreamService() + " stream service for " + to_string(getHours()) + "\b\b\b hours";
+		info += "likes to use " + getStreamService() + " for " + to_string(getHours()) + "\b\b\b\b hours a day";
 		return info;
 	}
 };
@@ -166,31 +99,17 @@ private:
 	string gamingDevice;
 	float hours;
 public:
-	GamingStudent(string name, string college, string program, string gamingDevice, int semester, int age, float hours) : Student(name, college, program, semester, age,true)
+	GamingStudent(string name, string college, string program, string gamingDevice, int semester, int age, float hours) : Student(name, college, program, semester, age)
 	{
 		setHours(hours);
 		setGamingDevice(gamingDevice);
 	}
 
-	float getHours() const
-	{
-		return hours;
-	}
-
-	string  getGamingDevice() const
-	{
-		return gamingDevice;
-	}
-
-	void setGamingDevice(string gamingDevice)
-	{
-		this->gamingDevice = gamingDevice;
-	}
-
-	void setHours(float hours)
-	{
-		this->hours = hours;
-	}
+	float getHours() const { return hours; }
+	string  getGamingDevice() const { return gamingDevice; }
+	void setGamingDevice(string gamingDevice) { this->gamingDevice = gamingDevice; }
+	void setHours(float hours) { this->hours = hours; }
+	
 	virtual string DisplayInfo()
 	{
 		string info = "Gaming student " + getName() + "\n";
@@ -205,7 +124,7 @@ public:
 		else
 			info += "th Semester\n";
 
-		info += "likes to use " + getGamingDevice() + " for " + to_string(getHours()) + "\b\b\b hours";
+		info += "likes to use " + getGamingDevice() + " for " + to_string(getHours()) + "\b\b\b\b hours a day";
 	
 		return info;
 	}

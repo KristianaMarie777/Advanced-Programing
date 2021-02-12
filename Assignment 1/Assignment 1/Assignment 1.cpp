@@ -5,6 +5,7 @@
 #include <iomanip>
 #include "Survey.h"
 #include <ctime>
+#include <Windows.h>
 
 int main()
 {
@@ -13,18 +14,46 @@ int main()
 	string nameProgram[] = { "Animation","Game Programming", "Game Art", "Photography","Film","Game Design","Nursing", "Computer Sience","Health Informatics","Cyber Security" };
 	string streamService[] = { "Netflix","Amazon Prime", "hulu","Disney+", "Crunchyroll","Funimation" };
 	string gameDevice[] = { "Wii","Nintendo Switch","PS5","PS4","Xbox", "Xbox 360" };
-	int numOfPeople, college, program,stream,device;
+	int numOfPeople = 0, college, program,stream,device, leave;
 	Survey survey;
 	NonGamingStudent* notGaming;
 	GamingStudent* Gaming;
 	srand(time(NULL));
+	do
+	{
+		cout << "Welcome to the Survey Program\n\n\n";
 
-	cout << "Welcome to the Survey Program\n\n\n";
+		if (numOfPeople > 500)
+		{
+			cout << "Too many people. You can only put a max of 500 people into the survey.\nTry again.\n\n";
+		}
+		else
+		{
+			cout << "\n\n\n";
+		}
 
-	cout << "How many people are participating(500 max): ";
-	cin >> numOfPeople;
+
+		cout << "How many people are participating(500 max): ";
+		cin >> numOfPeople;
+
+		system("CLS");
+
+	} while (numOfPeople > 500);
+
+	cout << "Are you Ready to process the result? If so then type any character to proceed: ";
+	cin >> leave;
+
+	cout << endl << endl << "Loading";
+	for (int i = 0; i < 3; i++)
+	{
+		Sleep(500);
+		cout << ".";
+	}
+	system("CLS");
 
 	survey.setTotalPeople(numOfPeople);
+	survey.setDevicesNames(gameDevice);
+	survey.setStreamNames(streamService);
 
 	for (int i = 0;i < numOfPeople;i++)
 	{
@@ -32,7 +61,7 @@ int main()
 		int gamer = rand() % 2;
 		int age = rand() % 33 + 18;
 		int semester = rand() % 10 + 1;
-		float hours = rand() % 201;
+		float hours = rand() % 24 + 1;
 
 		for (int a = 0; a < 2;a++)
 		{
@@ -58,6 +87,5 @@ int main()
 
 	cout << survey.process();
 
-	survey.finalCheck();
 }
 
