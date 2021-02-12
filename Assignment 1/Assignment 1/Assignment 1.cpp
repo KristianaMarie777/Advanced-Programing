@@ -1,20 +1,63 @@
-// Assignment 1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
+#include "People.h"
+#include <string>
+#include <iomanip>
+#include "Survey.h"
+#include <ctime>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	string namePerson[] = { "Marie","Desiree", "Elo", "John", "Alex", "Alexander","Chris","Joey","Jen","Theo","Noir","Aya", "Mia", "Jill", "Jack", "George","Jasper","Joe","Charlottie","Lloyd" };
+	string nameCollage[] = { "Seneca", "Sheridan","George Brown","Evergreen","Olds","Red Deer", "Lakeland","Reeves","Robertson","MaKami" };
+	string nameProgram[] = { "Animation","Game Programming", "Game Art", "Photography","Film","Game Design","Nursing", "Computer Sience","Health Informatics","Cyber Security" };
+	string streamService[] = { "Netflix","Amazon Prime", "hulu","Disney+", "Crunchyroll","Funimation" };
+	string gameDevice[] = { "Wii","Nintendo Switch","PS5","PS4","Xbox", "Xbox 360" };
+	int numOfPeople, college, program,stream,device;
+	Survey survey;
+	NonGamingStudent* notGaming;
+	GamingStudent* Gaming;
+	srand(time(NULL));
+
+	cout << "Welcome to the Survey Program\n\n\n";
+
+	cout << "How many people are participating(500 max): ";
+	cin >> numOfPeople;
+
+	survey.setTotalPeople(numOfPeople);
+
+	for (int i = 0;i < numOfPeople;i++)
+	{
+		string name = "";
+		int gamer = rand() % 2;
+		int age = rand() % 33 + 18;
+		int semester = rand() % 10 + 1;
+		float hours = rand() % 201;
+
+		for (int a = 0; a < 2;a++)
+		{
+			int random = rand() % 20;
+			name += namePerson[random] + " ";
+		}
+		college = rand() % 10;
+		program = rand() % 10;
+
+		if (gamer == 0)
+		{
+			stream = rand() % 6;
+			notGaming = new NonGamingStudent(name,nameCollage[college],nameProgram[program],streamService[stream],semester,age,hours);
+			survey.setNonGamers(*notGaming);
+		}
+		else
+		{
+			device = rand() % 6;
+			Gaming = new GamingStudent(name, nameCollage[college], nameProgram[program], gameDevice[device], semester, age, hours);
+			survey.setGamers(*Gaming);
+		}
+	}
+
+	cout << survey.process();
+
+	survey.finalCheck();
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
