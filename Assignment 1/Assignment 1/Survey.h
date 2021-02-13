@@ -4,7 +4,7 @@
 
 #include "People.h"
 #include <string>
-
+//1
 class Survey
 {
 private:
@@ -19,6 +19,7 @@ public:
 	int getTotalPeople() const { return totalPeople; }
 	int getGamerNum() const { return totalGamer; }
 	int getNonGamerNum() const { return totalNotGamer; }
+
 	int getAveageGamerAge() const { return (ageAvrGamer / totalGamer); }
 	float getAvrHourGamer() const { return (hoursAvrGamer / totalGamer); }
 	float getAvrHourNonGamer() const { return (hoursAvrNotGamer / totalNotGamer); }

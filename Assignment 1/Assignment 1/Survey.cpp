@@ -92,18 +92,50 @@ string Survey::process() const
 	info += "\n________________________________________________________________________________________________\n";
 	info += "Total number of        |   " + to_string(getGamerNum()) + "\t\t\t|   " + to_string(getNonGamerNum());
 	info += "\n________________________________________________________________________________________________\n";
-	info += "Average age            |   " + to_string(getAveageGamerAge()) + "\t\t\t|   " + to_string(getAveageNonGamerAge());
-	info += "\n________________________________________________________________________________________________\n";
-	info += "Device/stream service  |   " + getAvrDevice() + "\t";
+	info += "Average age            |   ";
+	if (getGamerNum() == 0)
+		info += "-\t\t\t|   ";
+	else
+		info += to_string(getAveageGamerAge()) + "\t\t\t|   ";
 	
-	if (getAvrDevice().size() <= 4)
-		info += "\t\t";
-	else if (getAvrDevice().size() > 4 && getAvrDevice().size() <= 8)
-		info += "\t";
-
-	info += "|   " + getAvrStream();
+	if(getNonGamerNum()==0)
+		info += "-";
+	else
+		info += to_string(getAveageNonGamerAge());
+	
 	info += "\n________________________________________________________________________________________________\n";
-	info += "Average Hours(per day) |   " + to_string(getAvrHourGamer()) + "\t\t|   " + to_string(getAvrHourNonGamer());
+	info += "Device/stream service  |   ";
+	
+	if (getGamerNum() == 0)
+		info += "-\t\t\t";
+	else
+	{
+		info += getAvrDevice() + "\t";
+
+		if (getAvrDevice().size() <= 4)
+			info += "\t\t";
+		else if (getAvrDevice().size() > 4 && getAvrDevice().size() <= 8)
+			info += "\t";
+
+	}
+	
+	if (getNonGamerNum() == 0)
+		info += "|   -";
+	else
+		info += "|   " + getAvrStream();
+
+
+	info += "\n________________________________________________________________________________________________\n";
+	info += "Average Hours(per day) |   ";
+	if (getGamerNum() == 0)
+		info += "-\t\t\t|   ";
+	else
+		info += to_string(getAvrHourGamer()) + "\t\t|   ";
+
+	if (getNonGamerNum() == 0)
+		info += "-";
+	else
+		info += to_string(getAvrHourNonGamer());
 
 	return info;
 }

@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assignment 1.cpp" />
-    <ClCompile Include="People.cpp" />
     <ClCompile Include="Survey.cpp" />
   </ItemGroup>
   <ItemGroup>

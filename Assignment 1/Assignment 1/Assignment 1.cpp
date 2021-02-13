@@ -10,14 +10,14 @@
 int main()
 {
 	string namePerson[] = { "Marie","Desiree", "Elo", "John", "Alex", "Alexander","Chris","Joey","Jen","Theo","Noir","Aya", "Mia", "Jill", "Jack", "George","Jasper","Joe","Charlottie","Lloyd" };
-	string nameCollage[] = { "Seneca", "Sheridan","George Brown","Evergreen","Olds","Red Deer", "Lakeland","Reeves","Robertson","MaKami" };
+	string nameCollege[] = { "Seneca", "Sheridan","George Brown","Evergreen","Olds","Red Deer", "Lakeland","Reeves","Robertson","MaKami" };
 	string nameProgram[] = { "Animation","Game Programming", "Game Art", "Photography","Film","Game Design","Nursing", "Computer Sience","Health Informatics","Cyber Security" };
 	string streamService[] = { "Netflix","Amazon Prime", "hulu","Disney+", "Crunchyroll","Funimation" };
 	string gameDevice[] = { "Wii","Nintendo Switch","PS5","PS4","Xbox", "Xbox 360" };
 	int numOfPeople = 0, college, program,stream,device, leave;
 	Survey survey;
 	NonGamingStudent* notGaming;
-	GamingStudent* Gaming;
+	GamingStudent* gaming;
 	srand(time(NULL));
 	do
 	{
@@ -74,18 +74,20 @@ int main()
 		if (gamer == 0)
 		{
 			stream = rand() % 6;
-			notGaming = new NonGamingStudent(name,nameCollage[college],nameProgram[program],streamService[stream],semester,age,hours);
+			notGaming = new NonGamingStudent(name,nameCollege[college],nameProgram[program],streamService[stream],semester,age,hours);
 			survey.setNonGamers(*notGaming);
 		}
 		else
 		{
 			device = rand() % 6;
-			Gaming = new GamingStudent(name, nameCollage[college], nameProgram[program], gameDevice[device], semester, age, hours);
-			survey.setGamers(*Gaming);
+			gaming = new GamingStudent(name, nameCollege[college], nameProgram[program], gameDevice[device], semester, age, hours);
+			survey.setGamers(*gaming);
 		}
 	}
 
 	cout << survey.process();
+
+	return 0;
 
 }
 
