@@ -8,10 +8,6 @@ using namespace std;
 
 int main()
 {
-	
-	//string choice, innerChoice, characterName, numChoice, menuReload, title, weaponName;
-	//string* abilityList, *weaponList, * weaponSpecialAlist, *weaponDescription;
-	//int health, numcheck,numAbillites, damageValue,weaponSpecialA, numWeapon,characterNum = 0;
 	string choice, menuReload, characterName, numChoice, weaponName, weaponDescription, abilityName;
 	string *weaponListName, * weaponListDes,* abilityList;
 	int characterNum = 0, numOfWeapon, numcheck;
