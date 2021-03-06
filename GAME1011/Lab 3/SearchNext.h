@@ -4,6 +4,7 @@
 
 #include "SimpleVector.h"
 #include "SortVector.h"
+#include <string>
 
 template <class T>
 class SearchAbleVector : public SimpleVector<T>
@@ -25,31 +26,61 @@ SearchAbleVector<T>::SearchAbleVector(SearchAbleVector& obj) : SimpleVector<T>(o
 template<class T>
 int SearchAbleVector<T>::findItem(T item)
 {
-	int num = ((this->size() - 1) / 2), num2 = ((this->size() - 1) / 2)/2, previousNum = 0;
+	int numOfEmpty = 0;
 
-
-	while (num != previousNum)
+	for (int i = 0; i < this->size(); i++)
 	{
+		if (!this->isFilled(i))
+		{
+			//cout << "true";
+			numOfEmpty += 1;
+		}
+	}
+
+	int num = ((this->size()-numOfEmpty)/2) + numOfEmpty, check = this->size() - numOfEmpty, wait = 0, numTimes;
+
+	int check2 = this->size(), check3 = this->size();
+	for (numTimes = 0; check3 > 0; numTimes++)
+	{
+		check2 /= 2;
+		if (check2 == 0)
+			check2 = 1;
+		//cout << check3 << " " << check2 << " | ";
+		check3 -= check2;
+	}
+
+	for (int i = 0; i < numTimes + 1; i++)
+	{
+
+		check /= 2;
+		if (i != 0)
+		{
+			if (check == 0)
+			{
+				check = 1;
+			}
+
+			if (this->operator[](num) < item)
+			{
+				num += check;
+				
+			}
+			else if (this->operator[](num) > item)
+			{
+				num -= check;
+			}
+		}
+
 		
+		//cout << this->operator[](num) <<" == " << item << " ";
 		if (this->operator[](num) == item)
 		{
 			return num;
 		}
-
-		previousNum = num;
-
-		if (this->operator[](num) < item)
-		{
-			num += num2;
-			num2 /= 2;
-		}
-		else if (this->operator[](num) > item)
-		{
-			num -= num2;
-			num2 /= 2;
-		}
 		
 	}
+
+
 
 	return -1;
 }

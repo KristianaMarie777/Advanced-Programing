@@ -3,6 +3,8 @@
 #define _SIMPLEVECTOR_H_
 
 #include <iostream>
+#include <string>
+#include <typeinfo>
 using namespace std;
 
 template <class T>
@@ -24,6 +26,7 @@ public:
 	}
 	T& operator[](int);
 	void print() const;
+	string sprint(bool chars = false)const;
 	void push_back(T, bool increaseSize = true);
 	void last_element(T, bool increaseSize = true);
 	void pop_back();
@@ -95,9 +98,36 @@ void SimpleVector<T>::print() const
 		if(!filledElement[i])
 			cout << "--Empty-- ";
 		else
+		{
 			cout << aptr[i] << " ";
+			
+		}
 	}
 	cout << endl;
+}
+
+template<class T>
+string SimpleVector<T>::sprint(bool chars) const
+{
+	string info = "";
+	for (int i = 0; i < arraySize; i++)
+	{
+
+		if (!filledElement[i])
+			info += "--Empty--";
+		else
+		{
+			if (chars)
+				info += aptr[i];
+			else
+				info += to_string(aptr[i]);
+			
+		}
+
+		info += " ";
+	}
+	info += "\n";
+	return info;
 }
 
 template<class T>
