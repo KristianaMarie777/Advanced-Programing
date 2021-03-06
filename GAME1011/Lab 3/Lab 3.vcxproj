@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClCompile Include="Lab 3.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SearchNext.h" />
+    <ClInclude Include="SimpleVector.h" />
+    <ClInclude Include="SortVector.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
