@@ -1,7 +1,7 @@
 ﻿  Lab 3.cpp
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(248,23): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(368,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\SimpleVector.h(121,19): warning C4244: 'argument': conversion from 'T' to '_Elem', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(248,23): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(368,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\SimpleVector.h(121,19): warning C4244: 'argument': conversion from 'T' to '_Elem', possible loss of data
           with
           [
               T=double
@@ -10,70 +10,70 @@ C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\SimpleV
           [
               _Elem=char
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\SimpleVector.h(111): message : while compiling class template member function 'std::string SimpleVector<T>::sprint(bool) const'
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\SimpleVector.h(111): message : while compiling class template member function 'std::string SimpleVector<T>::sprint(bool) const'
           with
           [
               T=double
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(198): message : see reference to function template instantiation 'std::string SimpleVector<T>::sprint(bool) const' being compiled
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(198): message : see reference to function template instantiation 'std::string SimpleVector<T>::sprint(bool) const' being compiled
           with
           [
               T=double
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\SearchNext.h(11): message : see reference to class template instantiation 'SimpleVector<T>' being compiled
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\SearchNext.h(11): message : see reference to class template instantiation 'SimpleVector<T>' being compiled
           with
           [
               T=double
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(191): message : see reference to class template instantiation 'SearchAbleVector<double>' being compiled
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(100,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(191): message : see reference to class template instantiation 'SearchAbleVector<double>' being compiled
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(100,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(467): message : see reference to function template instantiation 'void OptionA<T>(SimpleVector<T> *,bool,bool)' being compiled
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(466): message : see reference to function template instantiation 'void OptionA<T>(SimpleVector<T> *,bool,bool)' being compiled
           with
           [
               T=int
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(120,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(120,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(141,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(141,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(162,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(162,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(100,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(100,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=char
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(477): message : see reference to function template instantiation 'void OptionA<T>(SimpleVector<T> *,bool,bool)' being compiled
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(476): message : see reference to function template instantiation 'void OptionA<T>(SimpleVector<T> *,bool,bool)' being compiled
           with
           [
               T=char
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(120,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(120,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=char
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(141,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(141,26): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=char
           ]
-C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(162,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\Lab 3\Lab 3.cpp(162,29): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=char
           ]
-  Lab 3.vcxproj -> C:\Users\krist\OneDrive\Desktop\Repos\Advanced-Programing\GAME1011\x64\Debug\Lab 3.exe
+  Lab 3.vcxproj -> C:\Users\mydel\source\repos\sem2\Advanced-Programing\GAME1011\x64\Debug\Lab 3.exe

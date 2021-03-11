@@ -374,25 +374,24 @@ int main()
 	SimpleVector<double> doubleTable(SIZE);
 	SimpleVector<char> charTable(SIZE);
 
+	for (int i = 0; i < SIZE; i++)
+	{
+
+		int intrand = rand() % 100 + 1, doublerand = rand() % 200 + 1, charrand = rand() % 52,
+			intempty = rand() % 10 + 1, doubleempty = rand() % 10 + 1, charempty = rand() % 10 + 1;
+		if (intempty != 1)
+			intTable[i] = (i * intrand);
+		if (doubleempty != 1)
+			doubleTable[i] = (i * 0.14 * doublerand);
+
+		if (charempty != 1)
+			charTable[i] = option[charrand];
+	}
+
 	do
 	{
 		cout << "The max size is " << SIZE << endl << endl;
-
-
-		for (int i = 0; i < SIZE; i++)
-		{
-
-			int intrand = rand() % 100 + 1, doublerand = rand() % 200 + 1, charrand = rand() % 52,
-				intempty = rand() % 10 + 1, doubleempty = rand() % 10 + 1, charempty = rand() % 10 + 1;
-			if (intempty != 1)
-				intTable[i] = (i * intrand);
-			if (doubleempty != 1)
-				doubleTable[i] = (i * 0.14 * doublerand);
-
-			if (charempty != 1)
-				charTable[i] = option[charrand];
-		}
-
+			
 		SortVector<int> sortIntTable(intTable);
 		SortVector<double> sortDoubleTable(doubleTable);
 		SortVector<char> sortCharTable(charTable);
