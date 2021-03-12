@@ -187,9 +187,12 @@ void OptionA(SimpleVector<T>* Item, bool isInt = true, bool hasLetters = false)
 
 }
 
-void optionB(SearchAbleVector<int> intItem, SearchAbleVector<double> doubleItem, SearchAbleVector<char> charItem)
+template <class T1, class T2, class T3>
+void OptionB(SortVector<T1> intTable, SortVector<T2> doubleTable, SortVector<T3> charTable)
 {
-
+	SearchAbleVector<T1> intItem(intTable);
+	SearchAbleVector<T2> doubleItem(doubleTable);
+	SearchAbleVector<T3> charItem(charTable);
 	string optionB, menu, getout;
 	bool redooptionB = false, redoDeppOptionB = false, activateB = true;
 
@@ -512,7 +515,7 @@ int main()
 			}
 			system("CLS");
 
-			optionB(sortIntTable, sortDoubleTable, sortCharTable);
+			OptionB(sortIntTable, sortDoubleTable, sortCharTable);
 
 			if (redochoice)
 				redochoice = false;
