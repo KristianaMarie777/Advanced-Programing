@@ -2,19 +2,78 @@
 //
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
-int main()
+using namespace std;
+
+bool palindrome(string word, int currentletter, int lettercheck)
 {
-    std::cout << "Hello World!\n";
+
+    if (currentletter < 0 && lettercheck > word.size() - 1)
+    {
+        return true;
+    }
+
+    if (word[currentletter] != word[lettercheck])
+    {
+        return false;
+    }
+    else if (word[currentletter] == word[lettercheck])
+    {
+        return palindrome(word, currentletter - 1, lettercheck + 1);
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int sort(int* numArray, int currectSpace, int total, bool reset)
+{
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    if (currectSpace + 2 == total && !reset)
+    {
+        return 1;
+    }
+
+    if (numArray[currectSpace % (total - 1)] > numArray[currectSpace % total])
+    {
+        int currentNum = numArray[currectSpace % (total - 1)], nextNum = numArray[currectSpace % total];
+
+        numArray[currectSpace % (total - 1)] = nextNum;
+        numArray[currectSpace % total] = currentNum;
+        if (currectSpace + 2 == total)
+        {
+            return sort(numArray, currectSpace + 1, total, false);
+        }
+        else
+        {
+            return sort(numArray, currectSpace + 1, total, true);
+        }
+    }
+    else
+    {
+        return sort(numArray, currectSpace + 1, total, reset);
+    }
+
+
+
+}
+int main()
+{
+    srand(time(NULL));
+
+    int numArray[20];
+
+    for (int i = 0; i < 20; i++)
+    {
+        numArray[i] = rand() % 30 + 5;
+    }
+
+    cout << "Numbers in array are :\n";
+    for (int i = 0; i < 20; i++)
+    {
+        cout << numArray[i] <<" ";
+    }
+
+    sort( numArray, 0, 20, false);
+
+
+}
