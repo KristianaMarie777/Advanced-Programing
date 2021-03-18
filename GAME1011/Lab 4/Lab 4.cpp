@@ -8,14 +8,25 @@
 
 using namespace std;
 
-bool palindrome(string word, int currentletter, bool includeSpaces = false,int lettercheck = 0)
+bool palindrome(string word, int currentletter, bool includeSpaces,int lettercheck = 0)
 {
 
     if (currentletter < 0 && lettercheck > word.size() - 1)
     {
         return true;
     }
-
+    
+    if (!includeSpaces)
+    {
+        if (word[currentletter] == ' ')
+        {
+            return palindrome(word, currentletter - 1, includeSpaces, lettercheck);
+        }
+        if (word[lettercheck] == ' ')
+        {
+            return palindrome(word, currentletter, includeSpaces, lettercheck + 1);
+        }
+    }
     if (word[currentletter] != word[lettercheck])
     {
         return false;
@@ -30,7 +41,7 @@ bool palindrome(string word, int currentletter, bool includeSpaces = false,int l
 void sort(int* numArray, int start, int end)
 {
     int mid = end;
-
+    /*
     cout << "start value is " << start << " end value is " << end << endl;
 
     for (int i = 0; i < 20; i++)
@@ -39,7 +50,7 @@ void sort(int* numArray, int start, int end)
     }
     
     cout << endl<< endl;
-    
+    */
     if (start < end)
     {
         for(int begin = start + 1; begin <= mid;)
@@ -71,9 +82,9 @@ void sort(int* numArray, int start, int end)
 
         }
 
-        cout << "\n\nsort(numArray, start = " << start << ", mid - 1 = " << mid - 1 << " );\n\n";
+        //cout << "\n\nsort(numArray, start = " << start << ", mid - 1 = " << mid - 1 << " );\n\n";
         sort(numArray, start, mid - 1);
-        cout << "\n\nsort(numArray, mid + 1 = " << mid + 1 << ", end = " << end << ");\n\n";
+        //cout << "\n\nsort(numArray, mid + 1 = " << mid + 1 << ", end = " << end << ");\n\n";
         sort(numArray, mid + 1, end);
         
     }
@@ -111,10 +122,10 @@ int main()
 
     int numArray[20];
     string choice, word, insideChoice;
-    bool reset = false;
+    bool reset = false, includeSpaces;
     do
     {
-        cout << "Which function do you want to try out?\n\n\nA. Palindrome\nB. QuickSort\nC. Reverse\nD. None, Exist game\n\nEnter choice here: ";
+        cout << "Which function do you want to try out?\n\n\nA. Palindrome\nB. QuickSort\nC. Reverse\nD. None, Exit game\n\nEnter choice here: ";
 
         getline(cin, choice);
         
@@ -147,15 +158,24 @@ int main()
                     
                     }
 
-                } while (toupper(insideChoice[0]) != 'A' || toupper(insideChoice[0]) != 'B' );
+                } while (toupper(insideChoice[0]) != 'A' && toupper(insideChoice[0]) != 'B' );
 
                 if (reset)
                 {
                     reset = false;
                 }
                 
+                if (toupper(insideChoice[0]) == 'A')
+                {
+                    includeSpaces = true;
+                }
+                else
+                {
+                    includeSpaces = false;
+                }
+
                 cout << "\n\nThe Word \"" << word << "\" is ";
-                if (!(palindrome(word, word.size() - 1)))
+                if (!(palindrome(word, word.size() - 1, includeSpaces)))
                 {
                     cout << "not ";
                 }
@@ -202,12 +222,12 @@ int main()
                 cout << "Enter word here: ";
                 getline(cin, word);
                 
-                cout << endl << endl << reverseWordS(word,word.size()-1) << endl << endl;
+                cout << endl << "Reverse of " << word << " is " << reverseWordS(word,word.size()-1) << "." << endl << endl;
 
                 system("pause");
 
                 system("CLS");
-
+                break;
             case 'D':
                 cout << "Goodbye.\n\n";
                 break;
