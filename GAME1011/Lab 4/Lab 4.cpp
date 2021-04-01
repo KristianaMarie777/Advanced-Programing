@@ -119,7 +119,7 @@ int main()
 {
     
     srand(time(NULL));
-
+    
     int numArray[20];
     string choice, word, insideChoice;
     bool reset = false, includeSpaces;
