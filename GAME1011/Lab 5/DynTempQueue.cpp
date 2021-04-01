@@ -1,9 +1,10 @@
-#include "DynIntQueue.h"
+#include "DynTempQueue.h"
 #include <iostream>
 
 using namespace std;
 
-void DynIntQueue::enqueue(int num)
+template <class T>
+void DynTempQueue<T>::enqueue(T num)
 {
 	if (isEmpty())
 	{
@@ -17,7 +18,8 @@ void DynIntQueue::enqueue(int num)
 	}
 }
 
-void DynIntQueue::dequeue(int& num)
+template <class T>
+void DynTempQueue<T>::dequeue(T& num)
 {
 	QueueNode* temp;
 
@@ -36,7 +38,8 @@ void DynIntQueue::dequeue(int& num)
 	}
 }
 
-bool DynIntQueue::isEmpty() const
+template <class T>
+bool DynTempQueue<T>::isEmpty() const
 {
 	if (front == nullptr)
 	{
@@ -48,9 +51,10 @@ bool DynIntQueue::isEmpty() const
 	}
 }
 
-void DynIntQueue::clear()
+template <class T>
+void DynTempQueue<T>::clear()
 {
-	int value;
+	T value;
 
 	while (!isEmpty())
 	{

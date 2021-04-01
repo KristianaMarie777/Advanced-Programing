@@ -2,14 +2,14 @@
 #include <iostream>
 //#include "DynIntStack.h"
 //#include "IntQueue.h"
-#include "DynIntQueue.h"
+#include "DynTempQueue.h"
 
 using namespace std;
 
 int main()
 {
 
-    DynIntQueue iQueue;
+    DynTempQueue<int> iQueue;
 
     cout << "Enqueue 5 items...\n";
 

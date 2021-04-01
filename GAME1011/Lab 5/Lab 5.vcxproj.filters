@@ -18,7 +18,7 @@
     <ClCompile Include="Lab 5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynIntStack.cpp">
+    <ClCompile Include="DynTempStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IntStack.cpp">
@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DynIntStack.h">
+    <ClInclude Include="DynTempStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IntStack.h">

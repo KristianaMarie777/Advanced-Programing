@@ -1,16 +1,18 @@
-#include "DynIntStack.h"
+#include "DynTempStack.h"
 #include <iostream>
 #include <cstdlib>
 
 using namespace std;
 
-void DynIntStack::push(int num)
+template <class T>
+void DynTempStack<T>::push(T num)
 {
 	top = new StackNode(num, top);
 
 }
 
-void DynIntStack::pop(int& num)
+template <class T>
+void DynTempStack<T>::pop(T& num)
 {
 	StackNode* temp;
 	if (isEmpty())
@@ -32,7 +34,8 @@ void DynIntStack::pop(int& num)
 
 }
 
-bool DynIntStack::isEmpty() const
+template <class T>
+bool DynTempStack<T>::isEmpty() const
 {
 	if (!top)
 	{

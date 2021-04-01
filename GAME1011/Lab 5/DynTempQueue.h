@@ -1,14 +1,16 @@
 #pragma once
-class DynIntQueue
+
+template <class T>
+class DynTempQueue
 {
 private:
 	class QueueNode
 	{
-		friend class DynIntQueue;
-		int value;
+		friend class DynTempQueue;
+		T value;
 		QueueNode* next;
 
-		QueueNode(int value1, QueueNode* next1 = nullptr)
+		QueueNode(T value1, QueueNode* next1 = nullptr)
 		{
 			value = value1;
 			next = next1;
@@ -19,20 +21,19 @@ private:
 	QueueNode* rear;
 
 public:
-	DynIntQueue()
+	DynTempQueue()
 	{
 		front = nullptr;
 		rear = nullptr;
 	}
 
-	~DynIntQueue()
+	~DynTempQueue()
 	{
 		clear();
 	}
 
-	void enqueue(int);
-	void dequeue(int&);
+	void enqueue(T);
+	void dequeue(T&);
 	bool isEmpty() const;
 	void clear();
 };
-

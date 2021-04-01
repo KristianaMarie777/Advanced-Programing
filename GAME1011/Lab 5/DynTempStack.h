@@ -2,16 +2,17 @@
 #ifndef _DYN_INT_STACK_H
 #define _DYN_INT_STACK_H
 
-class DynIntStack
+template <class T>
+class DynTempStack
 {
 private:
 	class StackNode
 	{
-		friend class DynIntStack;
-		int value;
+		friend class DynTempStack;
+		T value;
 		StackNode* next;
 
-		StackNode(int value1, StackNode* next1 = nullptr)
+		StackNode(T value1, StackNode* next1 = nullptr)
 		{
 			value = value1;
 			next = next1;
@@ -19,12 +20,12 @@ private:
 	};
 	StackNode* top;
 public:
-	DynIntStack()
+	DynTempStack()
 	{
 		top = nullptr;
 	}
-	void push(int);
-	void pop(int&);
+	void push(T);
+	void pop(T&);
 	bool isEmpty() const;
 };
 
