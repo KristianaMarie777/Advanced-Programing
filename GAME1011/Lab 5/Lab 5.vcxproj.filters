@@ -18,16 +18,10 @@
     <ClCompile Include="Lab 5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynTempStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IntStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IntQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DynTempQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

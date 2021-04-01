@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DynTempQueue.cpp" />
-    <ClCompile Include="DynTempStack.cpp" />
     <ClCompile Include="IntQueue.cpp" />
     <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="Lab 5.cpp" />
