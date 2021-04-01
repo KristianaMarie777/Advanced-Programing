@@ -18,5 +18,31 @@
     <ClCompile Include="Lab 5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DynIntStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DynTempQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynIntStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IntStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IntQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DynTempQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DynTempQueue.cpp" />
+    <ClCompile Include="DynIntStack.cpp" />
+    <ClCompile Include="IntQueue.cpp" />
+    <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="Lab 5.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynTempQueue.h" />
+    <ClInclude Include="DynIntStack.h" />
+    <ClInclude Include="IntQueue.h" />
+    <ClInclude Include="IntStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
