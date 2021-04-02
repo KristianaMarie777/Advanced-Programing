@@ -20,7 +20,7 @@ int main()
     {
         cout << "Chooses one of the following 4 options:\n\nA. Use DynTempQueue<char>\nB. Use DynTempQueue<Character*>\nC. Use DynTempStack<char>\nD. Use DynTempStack<Character*>\nE. Exit\n\nEnter choice here: ";
 
-        cin >> choice1;
+        getline(cin, choice1);
 
         if (toupper(choice1[0]) == 'A' || toupper(choice1[0]) == 'C')
         {
@@ -43,17 +43,21 @@ int main()
                     reset = false;
                     cout << "How many iteams do you want to create? (the max is 10): ";
 
-                    cin >> numChoice;
+                    getline(cin, numChoice);
 
                     for (numcheck = 0; numcheck < numChoice.size(); numcheck++)
                     {
-                        if (!isdigit(numChoice[numcheck]))
+                        if (!isdigit(numChoice[numcheck]) && numChoice[numcheck] != ' ')
                         {
                             system("CLS");
                             reset = true;
                             cout << "Has letters in it. Try again.\n";
 
                             break;
+                        }
+                        if (numChoice[numcheck] == ' ')
+                        {
+                            numChoice[numcheck] = '-';
                         }
                     }
 
@@ -100,7 +104,7 @@ int main()
                     {
                         cout << "Choose what type of character.\n\nA. Human\nB. Undaed\nC. Ghost\n\nEnter choice here: ";
 
-                        cin >> choice2;
+                        getline(cin, choice2);
 
                         if (choice2.size() > 1)
                         {
@@ -111,22 +115,27 @@ int main()
                         {
                             cout << "\n\nType in a name for this character: ";
 
-                            cin >> characterName;
+                            getline(cin, characterName);
                             if (toupper(choice2[0]) == 'C')
                                 do
                                 {
                                     reset = false;
                                     cout << "\n\nEnter amount of Health: ";
 
-                                    cin >> health;
+                                    getline(cin, health);
 
                                     for (numcheck = 0; numcheck < health.size(); numcheck++)
                                     {
-                                        if (!isdigit(health[numcheck]))
+                                        if (!isdigit(health[numcheck]) && health[numcheck] != ' ')
                                         {
                                             cout << "Not a number. Try again.\n";
                                             reset = true;
                                             break;
+                                        }
+
+                                        if (health[numcheck] == ' ')
+                                        {
+                                            health[numcheck] = '-';
                                         }
                                     }
 
@@ -203,17 +212,22 @@ int main()
                     reset = false;
                     cout << "How many iteams do you want to create? (the max is 10): ";
 
-                    cin >> numChoice;
+                    getline(cin, numChoice);
 
                     for (numcheck = 0; numcheck < numChoice.size(); numcheck++)
                     {
-                        if (!isdigit(numChoice[numcheck]))
+                        if (!isdigit(numChoice[numcheck]) && numChoice[numcheck] != ' ')
                         {
                             system("CLS");
                             reset = true;
                             cout << "Has letters in it. Try again.\n";
 
                             break;
+                        }
+
+                        if (numChoice[numcheck] == ' ')
+                        {
+                            numChoice[numcheck] = '-';
                         }
                     }
 
@@ -260,7 +274,7 @@ int main()
                     {
                         cout << "Choose what type of character.\n\nA. Human\nB. Undaed\nC. Ghost\n\nEnter choice here: ";
 
-                        cin >> choice2;
+                        getline(cin, choice2);
 
                         if (choice2.size() > 1)
                         {
@@ -271,23 +285,29 @@ int main()
                         {
                             cout << "\n\nType in a name for this character: ";
 
-                            cin >> characterName;
+                            getline(cin, characterName);
                             if (toupper(choice2[0]) == 'C')
                                 do
                                 {
                                     reset = false;
                                     cout << "\n\nEnter amount of Health: ";
 
-                                    cin >> health;
+                                    getline(cin, health);
 
                                     for (numcheck = 0; numcheck < health.size(); numcheck++)
                                     {
-                                        if (!isdigit(health[numcheck]))
+                                        if (!isdigit(health[numcheck]) && health[numcheck] != ' ')
                                         {
                                             cout << "Not a number. Try again.\n";
                                             reset = true;
                                             break;
                                         }
+
+                                        if (health[numcheck] == ' ')
+                                        {
+                                            health[numcheck] = '-';
+                                        }
+
                                     }
 
                                 } while (reset);
