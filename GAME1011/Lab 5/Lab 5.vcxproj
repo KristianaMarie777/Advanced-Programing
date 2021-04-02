@@ -144,10 +144,12 @@
     <ClCompile Include="Lab 5.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="DynTempQueue.h" />
     <ClInclude Include="DynTempStack.h" />
     <ClInclude Include="IntQueue.h" />
     <ClInclude Include="IntStack.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

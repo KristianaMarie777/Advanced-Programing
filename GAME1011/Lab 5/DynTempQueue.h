@@ -3,6 +3,7 @@
 #define _DYN_TEMP_QUEUE_H
 
 #include <iostream>
+#include "Character.h"
 
 using namespace std;
 

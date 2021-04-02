@@ -2,6 +2,9 @@
 #ifndef _DYN_TEMP_STACK_H
 #define _DYN_TEMP_STACK_H
 
+#include <iostream>
+#include "Character.h"
+
 template <class T>
 class DynTempStack
 {
