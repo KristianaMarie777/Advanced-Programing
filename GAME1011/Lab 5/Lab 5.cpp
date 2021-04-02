@@ -365,16 +365,3 @@ int main()
 
     return 0;
 }
-/* else if (toupper(choice1[0]) == 'C' || toupper(choice1[0]) == 'D')
-        {
-
-        }
-        else if (toupper(choice1[0]) == 'E')
-        {
-            exit(1);
-        }
-        else
-        {
-            system("CLS");
-            cout << "Not one of the choices. Try again. \n\n";
-        }*/
