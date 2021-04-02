@@ -55,10 +55,6 @@ int main()
 
                             break;
                         }
-                        if (numChoice[numcheck] == ' ')
-                        {
-                            numChoice[numcheck] = '-';
-                        }
                     }
 
                 } while (reset);
@@ -131,11 +127,6 @@ int main()
                                             cout << "Not a number. Try again.\n";
                                             reset = true;
                                             break;
-                                        }
-
-                                        if (health[numcheck] == ' ')
-                                        {
-                                            health[numcheck] = '-';
                                         }
                                     }
 
@@ -225,10 +216,6 @@ int main()
                             break;
                         }
 
-                        if (numChoice[numcheck] == ' ')
-                        {
-                            numChoice[numcheck] = '-';
-                        }
                     }
 
                 } while (reset);
@@ -302,12 +289,6 @@ int main()
                                             reset = true;
                                             break;
                                         }
-
-                                        if (health[numcheck] == ' ')
-                                        {
-                                            health[numcheck] = '-';
-                                        }
-
                                     }
 
                                 } while (reset);
