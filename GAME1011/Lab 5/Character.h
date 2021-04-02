@@ -84,9 +84,7 @@ public:
 	{
 
 	}
-	Human(string name, int numOfWeapons,
-		string weaponListName[], string weaponListDes[], int weaponDamage[],
-		int numAbilities, string abilityList[])
+	Human(string name, int numOfWeapons = 0, string weaponListName[] = { new string("") }, string weaponListDes[] = { new string("") }, int weaponDamage[] = { 0 }, int numAbilities = 0, string abilityList[] = { new string("") })
 	{
 
 		int valueStart = 0;
@@ -133,9 +131,7 @@ public:
 	Undead()
 	{
 	}
-	Undead(string name, int numOfWeapons,
-		string weaponListName[], string weaponListDes[], int weaponDamage[],
-		int numAbilities, string abilityList[])
+	Undead(string name, int numOfWeapons = 0, string weaponListName[] = { new string("") }, string weaponListDes[] = { new string("") }, int weaponDamage[] = { 0 }, int numAbilities = 0, string abilityList[] = { new string("") })
 	{
 
 		int valueStart = 0;
@@ -188,9 +184,7 @@ public:
 	Ghost()
 	{
 	}
-	Ghost(string name,int heathBar, int numOfWeapons,
-		string weaponListName[], string weaponListDes[], int weaponDamage[],
-		int numAbilities, string abilityList[])
+	Ghost(string name, int heathBar, int numOfWeapons = 0, string weaponListName[] = { new string("") }, string weaponListDes[] = { new string("") }, int weaponDamage[] = { 0 }, int numAbilities = 0, string abilityList[] = { new string("") })
 	{
 
 		int valueStart = 0;
