@@ -1,0 +1,11 @@
+#pragma once
+enum SceneState
+{
+	NO_SCENE,
+	START_SCENE,
+	PLAY_SCENE,
+	ESCAPE_SCENE,
+	INVENTROY_SCENE,
+	DEATH_SCENE,
+	NUM_OF_SCENE
+};

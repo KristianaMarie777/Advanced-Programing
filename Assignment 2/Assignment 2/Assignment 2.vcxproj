@@ -140,16 +140,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assignment 2.cpp" />
+    <ClCompile Include="DeathScene.cpp" />
+    <ClCompile Include="EscapeScene.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InventoryScene.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="NumberList.cpp" />
-    <ClCompile Include="Room.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SortNumberList.cpp" />
+    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DeathScene.h" />
+    <ClInclude Include="EscapeScene.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NumberList.h" />
-    <ClInclude Include="Room.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneState.h" />
     <ClInclude Include="SortNumberList.h" />
+    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,8 @@
 #ifndef _LINKED_LIST_H_
 #define _LINKED_LIST_H_
 
+#include <iostream>
+
 using namespace std;
 
 template <class T>
@@ -13,7 +15,7 @@ protected:
 		T value;
 		ListNode* next;
 
-		ListNode(T valuse1, ListNode* next1 = nullptr)
+		ListNode(T value1, ListNode* next1 = nullptr)
 		{
 			value = value1;
 			next = next1;
