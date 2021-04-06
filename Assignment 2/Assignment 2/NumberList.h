@@ -30,9 +30,9 @@ public:
 		head = nullptr;
 	}
 	
-	~NumberList()
-	{
-	}
+	~NumberList();
+	void add(double num);
+	void displayList() const;
 };
 
 #endif

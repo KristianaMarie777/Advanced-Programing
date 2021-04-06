@@ -140,12 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assignment 2.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="SortNumberList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NumberList.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="SortNumberList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
