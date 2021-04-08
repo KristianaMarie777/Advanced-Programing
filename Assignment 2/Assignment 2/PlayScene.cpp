@@ -4,10 +4,6 @@ PlayScene::PlayScene()
 {
 }
 
-PlayScene::~PlayScene()
-{
-}
-
 void PlayScene::output()
 {
 

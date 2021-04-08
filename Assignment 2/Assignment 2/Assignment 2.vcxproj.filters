@@ -13,84 +13,111 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Scenes">
+    <Filter Include="Scenes">
       <UniqueIdentifier>{c8609761-bf12-43be-8423-3e80f7d8d2bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2b69e9fb-bae6-4b31-a9ac-a71a4d6fcab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Week 11">
+      <UniqueIdentifier>{025c005d-d7dc-483b-97b3-ebd8e448b074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enum">
+      <UniqueIdentifier>{7e1e7ab4-11ae-499b-a888-aa20517ea5e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Week 12">
+      <UniqueIdentifier>{f361d4e2-f8af-4c2b-969b-27a9cb227c74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Assignment 2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NumberList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SortNumberList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayScene.cpp">
-      <Filter>Header Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>Header Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="DeathScene.cpp">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="EscapeScene.cpp">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="InventoryScene.cpp">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Assignment 2.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SortNumberList.cpp">
+      <Filter>Core\Week 11</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberList.cpp">
+      <Filter>Core\Week 11</Filter>
+    </ClCompile>
+    <ClCompile Include="IntQueue.cpp">
+      <Filter>Core\Week 12</Filter>
+    </ClCompile>
+    <ClCompile Include="IntStack.cpp">
+      <Filter>Core\Week 12</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NumberList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SortNumberList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="DeathScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="EscapeScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="InventoryScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SortNumberList.h">
+      <Filter>Core\Week 11</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberList.h">
+      <Filter>Core\Week 11</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Core\Week 11</Filter>
     </ClInclude>
     <ClInclude Include="SceneState.h">
-      <Filter>Header Files</Filter>
+      <Filter>enum</Filter>
+    </ClInclude>
+    <ClInclude Include="DynTempQueue.h">
+      <Filter>Core\Week 12</Filter>
+    </ClInclude>
+    <ClInclude Include="DynTempStack.h">
+      <Filter>Core\Week 12</Filter>
+    </ClInclude>
+    <ClInclude Include="IntQueue.h">
+      <Filter>Core\Week 12</Filter>
+    </ClInclude>
+    <ClInclude Include="IntStack.h">
+      <Filter>Core\Week 12</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

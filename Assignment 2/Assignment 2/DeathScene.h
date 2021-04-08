@@ -7,7 +7,7 @@ class DeathScene : public Scene
 {
 public:
 	DeathScene();
-	~DeathScene();
+	~DeathScene() = default;
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;

@@ -5,8 +5,8 @@
 class Scene
 {
 public:
-	Scene();
-	virtual ~Scene() = 0;
+	Scene() = default;
+	virtual ~Scene() = default;
 	virtual void output() = 0;
 	virtual void update() = 0;
 	virtual void input() = 0;

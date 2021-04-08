@@ -143,8 +143,9 @@
     <ClCompile Include="DeathScene.cpp" />
     <ClCompile Include="EscapeScene.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IntQueue.cpp" />
+    <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="InventoryScene.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -154,8 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeathScene.h" />
+    <ClInclude Include="DynTempQueue.h" />
+    <ClInclude Include="DynTempStack.h" />
     <ClInclude Include="EscapeScene.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IntQueue.h" />
+    <ClInclude Include="IntStack.h" />
     <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NumberList.h" />

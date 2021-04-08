@@ -4,10 +4,6 @@ DeathScene::DeathScene()
 {
 }
 
-DeathScene::~DeathScene()
-{
-}
-
 void DeathScene::output()
 {
 }

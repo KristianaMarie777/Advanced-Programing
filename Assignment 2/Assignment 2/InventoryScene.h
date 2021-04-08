@@ -4,7 +4,7 @@ class InventoryScene : public Scene
 {
 public:
 	InventoryScene();
-	~InventoryScene();
+	~InventoryScene() = default;
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;

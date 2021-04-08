@@ -4,10 +4,6 @@ EscapeScene::EscapeScene()
 {
 }
 
-EscapeScene::~EscapeScene()
-{
-}
-
 void EscapeScene::output()
 {
 }

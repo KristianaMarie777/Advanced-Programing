@@ -4,10 +4,6 @@ InventoryScene::InventoryScene()
 {
 }
 
-InventoryScene::~InventoryScene()
-{
-}
-
 void InventoryScene::output()
 {
 }

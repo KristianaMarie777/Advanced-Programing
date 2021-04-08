@@ -7,6 +7,7 @@
 #include "EscapeScene.h"
 #include "InventoryScene.h"
 #include "DeathScene.h"
+#include "User.h"
 
 #include "SceneState.h"
 
@@ -38,6 +39,8 @@ public:
 	bool isRunning() const;
 	void changeSceneState(SceneState new_state);
 
+	void setPlayer() { player = new User(); }
+
 private:
 	Game();
 	~Game();
@@ -48,9 +51,13 @@ private:
 	// scene variables
 	Scene* m_currentScene;
 	SceneState m_currentSceneState;
-
+	
 	// storage structures
 	static Game* s_pInstance;
+
+
+	User* player;
+
 };
 
 

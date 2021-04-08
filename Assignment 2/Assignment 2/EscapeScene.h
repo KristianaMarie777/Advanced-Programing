@@ -7,7 +7,7 @@ class EscapeScene : public Scene
 {
 public:
 	EscapeScene();
-	~EscapeScene();
+	~EscapeScene() = default;
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;

@@ -8,7 +8,7 @@ class PlayScene : public Scene
 {
 public:
 	PlayScene();
-	~PlayScene();
+	~PlayScene() = default;
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;

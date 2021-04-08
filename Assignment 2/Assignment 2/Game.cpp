@@ -1,5 +1,13 @@
 #include "Game.h"
 
+Game* Game::s_pInstance = nullptr;
+
+Game::Game() : 
+	m_bRunning(true),m_currentScene(nullptr), m_currentSceneState(NO_SCENE)
+{
+	srand(unsigned(time(nullptr)));  // random seed
+}
+
 Game::~Game()
 = default;
 
