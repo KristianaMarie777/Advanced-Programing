@@ -11,6 +11,7 @@ public:
 	virtual void update() = 0;
 	virtual void input() = 0;
 	virtual void save() = 0;
+	//virtual void start() = 0;
 private:
 
 };

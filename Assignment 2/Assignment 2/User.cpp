@@ -72,10 +72,16 @@ User::User(string player)
 
 					users.push(newName);
 
-					const char* name = &newName[0];
-					_mkdir(name);
+					const char* nameChar = &newName[0];
+					_mkdir(nameChar);
 
-					setName(name);
+					setName(nameChar);
+
+					NewGame();
+
+					setNewUser(true);
+					//fstream saveFile(name + "\\getNumSaves.txt", ios::in);
+
 
 				}
 				else if (stoi(numChoice) == nameList)
@@ -117,5 +123,29 @@ User::User(string player)
 	}
 
 	outfile.close();
+}
 
+void User::Loadsave()
+{
+	fstream saveFile(name + "\\" + name + to_string(loadSave), ios::in);
+	string startName;
+
+	saveFile >> startName;
+	saveFile >> passStoryScene;
+	
+	saveFile.close();
+
+}
+
+void User::NewGame()
+{
+
+	passStoryScene = false;
+	direction = 0;
+
+	fstream saveFile(name + "\\" + name + to_string(loadSave), ios::out);
+
+	saveFile << "passStoryScene " << 0 << endl;
+
+	saveFile.close();
 }

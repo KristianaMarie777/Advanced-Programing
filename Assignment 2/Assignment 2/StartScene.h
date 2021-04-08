@@ -18,6 +18,8 @@ public:
 	void user();
 private:
 	DynTempQueue<string> userNames;
+	string choice;
+	bool notAChar = false, notChoices = false;
 };
 
 #endif // !_START_SCENE_H_

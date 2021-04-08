@@ -56,7 +56,6 @@ int main()
 		Game::Instance()->output();
 		Game::Instance()->input();
 		Game::Instance()->update();
-
 	}
 	return 0;
 }

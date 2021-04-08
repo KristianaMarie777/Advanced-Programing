@@ -39,7 +39,8 @@ public:
 	bool isRunning() const;
 	void changeSceneState(SceneState new_state);
 
-	void setPlayer() { player = new User(); }
+	void setPlayer(string name = "") { player = new User(name); }
+	User* getPlayer() { return player; }
 
 private:
 	Game();

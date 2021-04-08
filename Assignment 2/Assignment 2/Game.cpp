@@ -38,12 +38,13 @@ void Game::start()
 	m_currentSceneState = NO_SCENE;
 
 	//changeSceneState(m_currentSceneState);
-	changeSceneState(START_SCENE);
+	changeSceneState(PLAY_SCENE);
 }
 
 void Game::quit()
 {
-	m_currentScene->save();
+	m_bRunning = false;
+	//m_currentScene->save();
 }
 
 bool Game::isRunning() const

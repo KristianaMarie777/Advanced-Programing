@@ -69,6 +69,9 @@
     <ClCompile Include="IntStack.cpp">
       <Filter>Core\Week 12</Filter>
     </ClCompile>
+    <ClCompile Include="StoryScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeathScene.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="IntStack.h">
       <Filter>Core\Week 12</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
