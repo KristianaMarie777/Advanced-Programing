@@ -6,7 +6,6 @@
 #include <string>
 #include <fstream>
 #include "SearchNext.h"
-#include "LivingRoom.h"
 
 using namespace std;
 
@@ -23,11 +22,12 @@ public:
 
 	//void setValues();
 private:
-	bool livingRoom, kitchen, washRoomMid, workRoom, hallWay, bedRoom, washRoomTop, storageRoom, basement;
+	bool livingRoom, kitchen, washRoomMid, workRoom, hallWay, bedRoom, washRoomTop, storageRoom, basement,seenComputer = false,seenPassword = false;
 	int direction;
 	string directionName[4], type, action;
-	Room* currentRoom;
 	ifstream gameText;
+	string roomName;
+	SearchAbleVector<string> interactableItems;
 };
 #endif // !_PLAY_SCENE_H_
 

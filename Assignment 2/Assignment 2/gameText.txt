@@ -1,54 +1,104 @@
 Living Room
 N
+
 You can see the door to the KITCHEN, the door to the FIRST_FLOOR_BATHROOM and a bunch of PHOTOs on the wall.
+
 END
 E
+
 You can see the door to the BASEMENT, STAIRS to the top floor and door to the WORKROOM.
+
 END
 S
+
 You can see a huge WINDOW looking towards the street, a COUCH, a BROKEN_TV, a bunch of SHELVES, and a bunch of DRAWERS.
+
 END
 W
+
 You see the ENTRANCE.
+
 END
 LOOKAT
 KITCHEN
-Why would you look at the Kitchen Entrance?
-FIRST_FLOOR_BATHROOM 
-Why would you look at the washroom Entrance?
+
+Why would you look at the workroom Entrance?
+Just go in!
+
+END
+FIRST_FLOOR_BATHROOM
+
+Why would you look at the workroom Entrance?
+Just go in!
+
+END
 PHOTO
+
 Looking at the photos on the wall you get the sudden feeling to check the backs of the photos.
 Behind one of the photos you find a note.
+-
 It reads "password is CATTHEYISHERE".
-Where would I need a password?
+-
+-
+"Where would I need a password?"
+
 END
 BASEMENT
-The door is locked. There might be a key somewhere.
+
+The door is locked...
+-
+"There might be a key somewhere. Why would the owner not have a key basement?...
+-
+I guess if they lost it....
+-
+Let's hope that's not the case."
+
 END
 STAIRS
+
 These stairs lead to the first floor... Or was it third....
-Top floor sounds nicer easier.
+-
+I'll call it first. Sounds nicer easier. <inner conscious confused>
+
 END
 WORKROOM
+
 Why would you look at the workroom Entrance?
+Just go in!
+
 END
 WINDOW
+
 This window is really easy to break. But, breaking it will alert the neighbours.
 Going to jail is not my priority right now.
+
 END
 COUCH
+
 There are usually treasures on the couch...
 When I say treasures I mean Trash.
+
 END
 BROKEN_TV
+
 This tv is very heavy. But I can handle it.
 Just don't take it with me to another room.
+
 END
 SHELVES
-There is nothing there.
+
+There is nothing there. Except for a lonely red cup.
+
 END
 DRAWERS
-There is nothing there.
+
+There is nothing there. Except for a bunch of trash.
+
+END
+ENTRANCE
+
+The door is locked.
+
 END
 ITEMS
 KITCHEN
@@ -62,105 +112,271 @@ COUCH
 BROKEN_TV
 SHELVES
 DRAWERS
+ENTRANCE
 END
 Kitchen
 N
+
 There is a huge WINDOW along with all kitchen necessities.
 The only thing I should note are these CABINETs.
+
 END
 E
-There is the door to the FIRST_FLOOR_BATHROOM .
+
+There is the door to the FIRST_FLOOR_BATHROOM.
+
 END
 S
+
 There is the door to the LIVING_ROOM.
+
 END
 W
+
 Just a Large wall.
+
+END
+LOOKAT
+END
+WINDOW
+END
+CABINET
+END
+FIRST_FLOOR_BATHROOM
+END
+LIVING_ROOM
+END
+ITEMS
+WINDOW
+CABINET
+FIRST_FLOOR_BATHROOM
+LIVING_ROOM
 END
 First Floor Washroom
 N
-There is nothing really to note inside the washroom besides the fact all doors have Locks.
-What is with the design of this washroom!
-Why does it have three doors that go into it?
-Terrible design.
+
+There is a SINK, and toilet, and some soap.
+
 END
 E
-There is nothing really to note inside the washroom besides the fact all doors have Locks.
-What is with the design of this washroom!
-Why does it have three doors that go into it?
-terrible design.
+
+There is the DOOR to the LIVINGROOM.
+This DOOR has a LOCK.
+
 END
 S
-There is nothing really to note inside the washroom besides the fact all doors have Locks.
-What is with the design of this washroom!
-Why does it have three doors that go into it?
-terrible design.
+
+There is the DOOR to the WORKROOM.
+This DOOR has a LOCK.
+
 END
 W
-There is nothing really to note inside the washroom besides the fact all doors have Locks.
-What is with the design of this washroom!
-Why does it have three doors that go into it?
-terrible design.
+
+There is the DOOR to the KITCHEN.
+This DOOR has a LOCK.
+
+END
+ITEMS
+SINK
+DOOR
+LOCK
+LIVINGROOM
+KITCHEN
+WORKROOM
 END
 Work Room
 N
+
 There is a desk with a COMPUTER on it.
+
 END
 E
+
 The wall is nicely decorated. I guess it’s because there are no windows in here.
 Without any windows it kinda makes it look like a storage room.
 Nothing much to note.
+
 END
 S
+
 Just a wall. Nothing much to note.
+
 END
 W
+
 Just the door to the LIVINGROOM and FIRST_FLOOR_BATHROOM.
+
 END
 LOOKAT
 COMPUTER
+0
+
+There seems to be a password protecting this computer.
+We have to TYPE it down.
+"The owner most likey would have wrote down the password somewhere
+just look at the most unlikley places"
+
+END
+1
+
+There seems to be a password protecting this computer.
+We have to TYPE it down.
+"The owner most likey would have wrote down the password somewhere
+just look at the most unlikley places"
+
+END
+2
+
+There seems to be a password protecting this computer.
+We have to TYPE it down.
+"The owner most likey would have wrote down the password somewhere
+just look at the most unlikley places"
+...
+-
+"Wait a minute! could it be CATTHEYISHERE!?!?"
+
+END
+3
+
+"I am pretty sure that the password is CATTHEYISHERE"
+
+END
+TYPE
+CATTHEYISHERE
+
+The computer opened up.
+After reading for a while you find some very important information.
+You find out that the key to the basement is in the SAFE in the BEDROOM.
+"Why place it in there? There could be something valuable in the BASEMENT."
+-
+You continue to read...
+-
+The code to the SAFE is the colours of the cups in the house.
+There is not specific order just PRESS the coloured buttons.
+
+END
+ITEMS
+COMPUTER
+LIVINGROOM
+FIRST_FLOOR_BATHROOM
+END
 hallway
 N
+
+
+
 END
 E
+
+
+
 END
 S
+
+
+
 END
 W
+
+
+
+END
+ITEMS
+
 END
 Bedroom
 N
+
+
+
 END
 E
+
+
+
 END
 S
+
+
+
 END
 W
+
+
+
+END
+ITEMS
+
 END
 Second Floor Washroom
 N
+
+
+
 END
 E
+
+
+
 END
 S
+
+
+
 END
 W
+
+
+
+END
+ITEMS
+
 END
 Storage Room
 N
+
+
+
 END
 E
+
+
+
 END
 S
+
+
+
 END
 W
+
+
+
+END
+ITEMS
+
 END
 Basement
 N
+
+
+
 END
 E
+
+
+
 END
 S
+
+
+
 END
 W
+
+
+
+END
+ITEMS
+
 END

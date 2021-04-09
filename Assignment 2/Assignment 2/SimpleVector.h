@@ -30,6 +30,7 @@ public:
 	void push_back(T, bool increaseSize = true);
 	void last_element(T, bool increaseSize = true);
 	void pop_back();
+	void clear();
 	bool& isFilled(const int a) const { return filledElement[a]; }
 };
 
@@ -65,8 +66,10 @@ SimpleVector<T>::~SimpleVector()
 {
 	if (arraySize > 0)
 	{
+		//arraysize = 0;
 		delete[] aptr;
 		delete[] filledElement;
+
 	}
 }
 
@@ -152,11 +155,11 @@ void SimpleVector<T>::push_back(T item, bool increaseSize)
 	if (!emptyspaces)
 	{
 
-		cout << "Array is full.";
+		//cout << "Array is full.";
 
 		if (increaseSize)
 		{
-			cout << " Increasing arraySize to " << arraySize + 1;
+			//cout << " Increasing arraySize to " << arraySize + 1;
 			T* aptrItems = new T[arraySize];
 			bool* trueOrFalse = new bool[arraySize];
 
@@ -196,7 +199,7 @@ void SimpleVector<T>::push_back(T item, bool increaseSize)
 
 			}
 		}
-		cout << endl;
+		//cout << endl;
 	}
 	else
 	{
@@ -249,6 +252,16 @@ void SimpleVector<T>::pop_back()
 
 	}
 
+}
+
+template<class T>
+void SimpleVector<T>::clear()
+{
+	if (arraySize > 0)
+	{
+		pop_back();
+		clear();
+	}
 }
 
 template<class T>

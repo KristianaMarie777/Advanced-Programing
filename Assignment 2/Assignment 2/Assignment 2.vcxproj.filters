@@ -75,12 +75,6 @@
     <ClCompile Include="StoryScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LivingRoom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeathScene.h">
@@ -142,12 +136,6 @@
     </ClInclude>
     <ClInclude Include="SortVector.h">
       <Filter>Core\Lab 3</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LivingRoom.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

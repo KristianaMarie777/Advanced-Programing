@@ -15,7 +15,9 @@ public:
 	//SearchAbleVector(SortVector& obj) : SimpleVector<T>(obj) {};
 	SearchAbleVector(SimpleVector<T>& obj) : SimpleVector<T>(obj){}
 	int findItem(T);
+	bool searchItem(T);
 private:
+	void SearchingItem(bool& check,T item,int start,int end);
 };
 
 /*
@@ -81,6 +83,36 @@ int SearchAbleVector<T>::findItem(T item)
 	}
 
 	return -1;
+}
+
+template<class T>
+bool SearchAbleVector<T>::searchItem(T item)
+{
+	bool itemcheck = false;
+
+	SearchingItem(itemcheck, item, 0, this->size() - 1);
+
+	return itemcheck;
+}
+
+template<class T>
+void SearchAbleVector<T>::SearchingItem(bool& check,T item, int start, int end)
+{
+	int mid = (end - start)/2 + start;
+	
+	if (start < end)
+	{
+		if (this->operator[](mid) == item)
+		{
+			check = true;
+		}
+
+		if (!check)
+		{
+			SearchingItem(check,item, start, mid-1);
+			SearchingItem(check,item, mid+1, end);
+		}
+	}
 }
 
 #endif // !_SEARCHNEXT_H_

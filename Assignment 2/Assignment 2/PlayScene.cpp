@@ -11,8 +11,30 @@ PlayScene::PlayScene()
 	directionName[1] = "E";
 	directionName[2] = "S";
 	directionName[3] = "W";
-	
-	currentRoom = new LivingRoom();
+	roomName = "Living Room";
+	ifstream openFile("gameText.txt");
+	string getItems;
+
+	while (getItems != roomName)
+	{
+		getline(openFile, getItems);
+	}
+
+	while (getItems != "ITEMS")
+	{
+		getline(openFile, getItems);
+	}
+
+	while (getItems != "END")
+	{
+		getline(openFile, getItems);
+		if (getItems != "END")
+		{
+			interactableItems.push_back(getItems);
+		}
+		cout << getItems << "    ";
+	}
+	openFile.close();
 
 	direction = 0;//Game::Instance()->getPlayer()->getDirection();
 }
@@ -27,7 +49,7 @@ void PlayScene::output()
 
 	string getText;
 
-	while (getText != currentRoom->getName())
+	while (getText != roomName)
 	{
 		getline(gameText, getText);
 	}
@@ -71,182 +93,115 @@ void PlayScene::update()
 
 		}
 	}
-	else if (type == "GO" || type == "GO_TO")
+	else if (type == "WALKTO" || type == "WALK_TO")
 	{
-		if (action == "LIVINGROOM" || action == "LIVING_ROOM")
+
+		if (interactableItems.searchItem(action))
 		{
-			if (!livingRoom) 
-			{ 
-				livingRoom = true; 
-
-				if (workRoom) { direction = 3; }
-				else { direction = 2; }
-			}
-
-			if (kitchen) { kitchen = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (workRoom) { workRoom = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-		}
-		else if (action == "KITCHEN")
-		{
-			if (!kitchen) 
-			{ 
-				kitchen = true; 
-
-				if (livingRoom) { direction = 0; }
-				else { direction = 3; }
-			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (workRoom) { workRoom = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-
-		}
-		else if (action == "FIRST_FLOOR_WASHROOM" || action == "FIRST_FLOOR_BATHROOM")
-		{
-
-			if (!washRoomMid) { washRoomMid = true; }
-
-			if (livingRoom) { livingRoom = false; }
-			if (kitchen) { kitchen = false; }
-			if (workRoom) { workRoom = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-
-		}
-		else if (action == "WORKROOM" || action == "WORK_ROOM")
-		{
-
-			if (!workRoom)
+			//cout << "here";
+			if (action == "LIVINGROOM" || action == "KITCHEN" || action == "FIRST_FLOOR_BATHROOM" || action == "WORKROOM" || action == "HALLWAY" || action == "BEDROOM" || action == "STORAGEROOM" 
+				|| action == "BASEMENT" ||  action == "SECOND_FLOOR_BATHROOM")
 			{
-				workRoom = true;
-				direction = 1;
-			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-
-		}
-		else if (action == "HALLWAY")
-		{
-
-			if (!hallWay)
-			{
-				hallWay = true;
-				if (washRoomTop) { direction = 2; }
-				else 
+				cout << "\n\n";
+				if (action == "LIVINGROOM") 
 				{ 
-					if (bedRoom) { direction = 1; }
+					if (roomName == "Work Room") { direction = 3; }
+					else { direction = 2; }
+					roomName = "Living Room"; 
+				}
+				else if (action == "KITCHEN") 
+				{ 
+					if (roomName == "Living Room") { direction = 0; }
+					else { direction = 3; }
+					roomName = "Kitchen"; 
+				}
+				else if (action == "FIRST_FLOOR_BATHROOM") 
+				{ 
+					if (roomName == "Living Room") { direction = 0; }
+					else if (roomName == "Kitchen") { direction = 1; }
+					else { direction = 3; }
+					roomName = "First Floor Washroom"; 
+				}
+				else if (action == "WORKROOM") 
+				{ 
+					roomName = "Work Room"; 
+					direction = 1;
+				}
+				else if (action == "HALLWAY") 
+				{ 
+					if (roomName == "BEDROOM") { direction = 1; }
 					else { direction = 0; }
+					roomName = "hallway"; 
+				}
+				else if (action == "BEDROOM") 
+				{ 
+					roomName = "Bedroom"; 
+					direction = 3;
+				}
+				else if (action == "STORAGEROOM") 
+				{ 
+					roomName = "Storage Room"; 
+					direction = 2;
+				}
+				else if (action == "BASEMENT") 
+				{ 
+					roomName = "Basement"; 
+					direction = 2;
+				}
+				else if (action == "SECOND_FLOOR_BATHROOM") 
+				{ 
+					roomName = "Second Floor Washroom"; 
+					direction = 2;
+				}
+
+
+				interactableItems.clear();
+				ifstream openFile("gameText.txt");
+				string getItems;
+
+				while (getItems != roomName)
+				{
+					getline(openFile, getItems);
+				}
+				//cout << "here";
+				while (getItems != "ITEMS")
+				{
+					getline(openFile, getItems);
+				}
+				//cout << "here";
+				while (getItems != "END")
+				{
+					getline(openFile, getItems);
+					if (getItems != "END")
+					{
+						interactableItems.push_back(getItems);
+					}
+					//cout << getItems << "    ";
+				}
+				openFile.close();
+			}
+			else
+			{
+				string word = "That isn't even a room!\n\n";
+				for (int i = 0; i < word.size(); i++)
+				{
+					cout << word[i];
+					Sleep(15);
 				}
 			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (workRoom) { workRoom = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-
 		}
-		else if (action == "BEDROOM")
+		else
 		{
-
-			if (!bedRoom)
+			string word = "You can't walk there.\n\n";
+			for (int i = 0; i < word.size(); i++)
 			{
-				bedRoom = true;
-				direction = 3;
+				cout << word[i];
+				Sleep(15);
 			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (hallWay) { hallWay = false; }
-			if (workRoom) { workRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (basement) { basement = false; }
-
-		}
-		else if (action == "STORAGEROOM" || action == "STORAGE_ROOM")
-		{
-
-			if (!storageRoom)
-			{
-				storageRoom = true;
-				direction = 2;
-			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (workRoom) { workRoom = false; }
-			if (basement) { basement = false; }
-
-		}
-		else if (action == "BASEMENT")
-		{
-
-			if (!basement)
-			{
-				basement = true;
-				direction = 2;
-			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (washRoomTop) { washRoomTop = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (workRoom) { workRoom = false; }
-
-		}
-		else if (action == "WASHROOM_TOP_FLOOR" || action == "BATHROOM_TOP_FLOOR")
-		{
-
-			if (!washRoomTop)
-			{
-				washRoomTop = true;
-				direction = 2;
-			}
-
-			if (livingRoom) { livingRoom = false; }
-			if (washRoomMid) { washRoomMid = false; }
-			if (kitchen) { kitchen = false; }
-			if (hallWay) { hallWay = false; }
-			if (bedRoom) { bedRoom = false; }
-			if (basement) { basement = false; }
-			if (storageRoom) { storageRoom = false; }
-			if (workRoom) { workRoom = false; }
-
 		}
 
+		system("pause");
+	
 	}
 	else if (type == "GET")
 	{
@@ -263,11 +218,10 @@ void PlayScene::update()
 	}
 	else if (type == "LOOK_AT" || type == "LOOKAT")
 	{
-	
-		std::cout << action << "     ";
+		type = "LOOKAT";
 
 
-		if (currentRoom->getInteractableItems().findItem(action) < 0)
+		if (!interactableItems.searchItem(action))
 		{
 			string word = "There is not a item like in here.\n\n";
 			for (int i = 0; i < word.size(); i++)
@@ -282,7 +236,12 @@ void PlayScene::update()
 
 			string getText;
 
-			while (getText != currentRoom->getName())
+			while (getText != roomName)
+			{
+				getline(gameText, getText);
+			}
+
+			while (getText != type)
 			{
 				getline(gameText, getText);
 			}
@@ -292,22 +251,113 @@ void PlayScene::update()
 				getline(gameText, getText);
 			}
 
-			while (getText != "END")
+			if (action == "COMPUTER")
 			{
-				getline(gameText, getText);
-				if (getText != "END")
+				if (!seenComputer)
 				{
-					for (int i = 0; i < getText.size(); i++)
+					if (seenPassword)
 					{
-						cout << getText[i];
-						Sleep(15);
+						getline(gameText, getText);
+						while (getText != "END")
+						{
+							getline(gameText, getText);
+							if (getText != "END")
+							{
+								for (int i = 0; i < getText.size(); i++)
+								{
+									cout << getText[i];
+									Sleep(15);
+								}
+								Sleep(150);
+							}
+							cout << endl;
+						}
 					}
-					Sleep(150);
+					else
+					{
+						while (getText != "2")
+						{
+							getline(gameText, getText);
+						}
+
+						while (getText != "END")
+						{
+							getline(gameText, getText);
+							if (getText != "END")
+							{
+								for (int i = 0; i < getText.size(); i++)
+								{
+									cout << getText[i];
+									Sleep(15);
+								}
+								Sleep(150);
+							}
+							cout << endl;
+						}
+					}
+					
+					
 				}
-				cout << endl;
+				else
+				{
+					if (seenPassword)
+					{
+						while (getText != "3")
+						{
+							getline(gameText, getText);
+						}
+					}
+					else
+					{
+						while (getText != "1")
+						{
+							getline(gameText, getText);
+						}
+					}
+
+					while (getText != "END")
+					{
+						getline(gameText, getText);
+						if (getText != "END")
+						{
+							for (int i = 0; i < getText.size(); i++)
+							{
+								cout << getText[i];
+								Sleep(15);
+							}
+							Sleep(150);
+						}
+						cout << endl;
+					}
+				}
+
+
+
 			}
-			gameText.close();
+			else
+			{
+				while (getText != "END")
+				{
+					getline(gameText, getText);
+					if (getText != "END")
+					{
+						for (int i = 0; i < getText.size(); i++)
+						{
+							cout << getText[i];
+							Sleep(15);
+						}
+						Sleep(150);
+					}
+					cout << endl;
+				}
+			}
+			gameText.close(); 
+
 		}
+
+
+		cout << endl << endl;
+		system("pause");
 	}
 }
 
