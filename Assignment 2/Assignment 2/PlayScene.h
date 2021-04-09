@@ -22,7 +22,7 @@ public:
 
 	//void setValues();
 private:
-	bool livingRoom, kitchen, washRoomMid, workRoom, hallWay, bedRoom, washRoomTop, storageRoom, basement,seenComputer = false,seenPassword = false;
+	bool livingRoom, kitchen, washRoomMid, workRoom, hallWay, bedRoom, washRoomTop, storageRoom, basement,seenComputer = false,seenPassword = false, gotCode = false;
 	int direction;
 	string directionName[4], type, action;
 	ifstream gameText;

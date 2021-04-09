@@ -100,12 +100,15 @@ void SearchAbleVector<T>::SearchingItem(bool& check,T item, int start, int end)
 {
 	int mid = (end - start)/2 + start;
 	
+	//cout << this->operator[](mid) << "\n";
+	
+	if (this->operator[](mid) == item)
+	{
+		check = true;
+	}
+
 	if (start < end)
 	{
-		if (this->operator[](mid) == item)
-		{
-			check = true;
-		}
 
 		if (!check)
 		{

@@ -3,7 +3,11 @@
 #include "Game.h"
 #include <Windows.h>
 
+#define NUMLONGSEC 500
+
 using namespace std;
+
+string nameshere[9] = { "Living Room" , "Kitchen", "First Floor Washroom", "Work Room", "hallway", "Bedroom", "Storage Room", "Basement", "Second Floor Washroom"};
 
 PlayScene::PlayScene()
 {
@@ -11,7 +15,7 @@ PlayScene::PlayScene()
 	directionName[1] = "E";
 	directionName[2] = "S";
 	directionName[3] = "W";
-	roomName = "Living Room";
+	roomName = nameshere[3];
 	ifstream openFile("gameText.txt");
 	string getItems;
 
@@ -62,14 +66,22 @@ void PlayScene::output()
 	while (getText != "END")
 	{
 		getline(gameText, getText);
-		if (getText != "END")
+		if (getText != "-")
 		{
-			for (int i = 0; i < getText.size(); i++)
+
+			if (getText != "END")
 			{
-				cout << getText[i];
-				Sleep(15);
+				for (int i = 0; i < getText.size(); i++)
+				{
+					cout << getText[i];
+					Sleep(15);
+				}
 			}
-			Sleep(150);
+			
+		}
+		else
+		{
+			Sleep(NUMLONGSEC);
 		}
 		cout << endl;
 	}
@@ -203,23 +215,109 @@ void PlayScene::update()
 		system("pause");
 	
 	}
-	else if (type == "GET")
+	else if (type == "TYPE")
 	{
-		if (action == "RIGHT")
+		if (roomName == nameshere[3])
 		{
-			direction = ++direction % 4;
+			gameText.open("gameText.txt");
+
+			string getText;
+
+			while (getText != roomName)
+			{
+				getline(gameText, getText);
+			}
+
+			while (getText != type)
+			{
+				getline(gameText, getText);
+			}
+
+
+			if (action == "CATTHEYISHERE")
+			{
+				while (getText != action)
+				{
+					getline(gameText, getText);
+				}
+				while (getText != to_string(gotCode))
+				{
+					getline(gameText, getText);
+				}
+				while (getText != "END")
+				{
+					getline(gameText, getText);
+					if (getText != "-")
+					{
+
+						if (getText != "END")
+						{
+							for (int i = 0; i < getText.size(); i++)
+							{
+								cout << getText[i];
+								Sleep(15);
+							}
+						}
+
+					}
+					else
+					{
+						Sleep(NUMLONGSEC);
+					}
+					cout << endl;
+				}
+				gotCode = true;
+			}
+			else
+			{
+				while (getText != "ELSE")
+				{
+					getline(gameText, getText);
+				}
+				while (getText != "END")
+				{
+					getline(gameText, getText);
+					if (getText != "-")
+					{
+
+						if (getText != "END")
+						{
+							for (int i = 0; i < getText.size(); i++)
+							{
+								cout << getText[i];
+								Sleep(15);
+							}
+						}
+
+					}
+					else
+					{
+						Sleep(NUMLONGSEC);
+					}
+					cout << endl;
+				}
+
+
+			}
+			gameText.close();
+
 		}
-		else if (action == "LEFT")
+		else
 		{
-
-			direction = (((direction - 1) % 4) < 0) ? 3 : ((--direction) % 4);
+			string word = "There is no where to type in this room.\n\n";
+			for (int i = 0; i < word.size(); i++)
+			{
+				cout << word[i];
+				Sleep(15);
+			}
 
 		}
+
+		system("pause");
 	}
 	else if (type == "LOOK_AT" || type == "LOOKAT")
 	{
 		type = "LOOKAT";
-
 
 		if (!interactableItems.searchItem(action))
 		{
@@ -250,6 +348,7 @@ void PlayScene::update()
 			{
 				getline(gameText, getText);
 			}
+			//cout << action << "    " << getText;
 
 			if (action == "COMPUTER")
 			{
@@ -261,14 +360,22 @@ void PlayScene::update()
 						while (getText != "END")
 						{
 							getline(gameText, getText);
-							if (getText != "END")
+							if (getText != "-")
 							{
-								for (int i = 0; i < getText.size(); i++)
+
+								if (getText != "END")
 								{
-									cout << getText[i];
-									Sleep(15);
+									for (int i = 0; i < getText.size(); i++)
+									{
+										cout << getText[i];
+										Sleep(15);
+									}
 								}
-								Sleep(150);
+
+							}
+							else
+							{
+								Sleep(NUMLONGSEC);
 							}
 							cout << endl;
 						}
@@ -283,6 +390,62 @@ void PlayScene::update()
 						while (getText != "END")
 						{
 							getline(gameText, getText);
+							if (getText != "-")
+							{
+
+								if (getText != "END")
+								{
+									for (int i = 0; i < getText.size(); i++)
+									{
+										cout << getText[i];
+										Sleep(15);
+									}
+								}
+
+							}
+							else
+							{
+								Sleep(NUMLONGSEC);
+							}
+							cout << endl;
+						}
+					}
+					
+					seenComputer = true;
+				}
+				else
+				{
+					if (gotCode)
+					{
+						while (getText != "4")
+						{
+							getline(gameText, getText);
+						}
+
+					}
+					else
+					{
+						if (seenPassword)
+						{
+							while (getText != "3")
+							{
+								getline(gameText, getText);
+							}
+						}
+						else
+						{
+							while (getText != "1")
+							{
+								getline(gameText, getText);
+							}
+						}
+					}
+					while (getText != "END")
+					{
+						getline(gameText, getText);
+						if (getText != "-")
+						{
+
 							if (getText != "END")
 							{
 								for (int i = 0; i < getText.size(); i++)
@@ -290,42 +453,12 @@ void PlayScene::update()
 									cout << getText[i];
 									Sleep(15);
 								}
-								Sleep(150);
 							}
-							cout << endl;
-						}
-					}
-					
-					
-				}
-				else
-				{
-					if (seenPassword)
-					{
-						while (getText != "3")
-						{
-							getline(gameText, getText);
-						}
-					}
-					else
-					{
-						while (getText != "1")
-						{
-							getline(gameText, getText);
-						}
-					}
 
-					while (getText != "END")
-					{
-						getline(gameText, getText);
-						if (getText != "END")
+						}
+						else
 						{
-							for (int i = 0; i < getText.size(); i++)
-							{
-								cout << getText[i];
-								Sleep(15);
-							}
-							Sleep(150);
+							Sleep(NUMLONGSEC);
 						}
 						cout << endl;
 					}
@@ -334,19 +467,60 @@ void PlayScene::update()
 
 
 			}
+			else if (action == "PHOTO")
+			{
+			//cout << seenComputer + gotCode + (seenPassword * seenComputer);
+				while (getText != to_string(seenComputer + gotCode + (seenPassword * seenComputer)))
+				{
+					getline(gameText, getText);
+				}
+				while (getText != "END")
+				{
+					getline(gameText, getText);
+					if (getText != "-")
+					{
+
+						if (getText != "END")
+						{
+							for (int i = 0; i < getText.size(); i++)
+							{
+								cout << getText[i];
+								Sleep(15);
+							}
+						}
+
+					}
+					else
+					{
+						Sleep(NUMLONGSEC);
+					}
+					cout << endl;
+				}
+
+				seenPassword = true;
+
+			}
 			else
 			{
 				while (getText != "END")
 				{
 					getline(gameText, getText);
-					if (getText != "END")
+					if (getText != "-")
 					{
-						for (int i = 0; i < getText.size(); i++)
+
+						if (getText != "END")
 						{
-							cout << getText[i];
-							Sleep(15);
+							for (int i = 0; i < getText.size(); i++)
+							{
+								cout << getText[i];
+								Sleep(15);
+							}
 						}
-						Sleep(150);
+
+					}
+					else
+					{
+						Sleep(NUMLONGSEC);
 					}
 					cout << endl;
 				}

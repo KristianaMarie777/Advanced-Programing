@@ -33,6 +33,7 @@ Just go in!
 
 END
 PHOTO
+0
 
 Looking at the photos on the wall you get the sudden feeling to check the backs of the photos.
 Behind one of the photos you find a note.
@@ -41,6 +42,31 @@ It reads "password is CATTHEYISHERE".
 -
 -
 "Where would I need a password?"
+
+END
+1
+
+Looking at the photos on the wall you get the sudden feeling to check the backs of the photos.
+Behind one of the photos you find a note.
+-
+It reads "password is CATTHEYISHERE".
+-
+-
+"This could be the password to the computer!"
+
+END
+2
+
+Looking at the photos on the wall you get the sudden feeling to check the backs of the photos.
+Behind one of the photos you find a note.
+-
+It reads "password is CATTHEYISHERE".
+"Already got that."
+
+END
+3
+
+No need to look at this again.
 
 END
 BASEMENT
@@ -137,14 +163,30 @@ Just a Large wall.
 
 END
 LOOKAT
-END
 WINDOW
+
+This window is really easy to break.
+"I'm not planning to crawl out a window today. I might get hurt.
+I'm not that desperate"
+
 END
 CABINET
+
+The cabinet is almost empty.
+The only items inside were a bunch of cups. A red one, 2 blacks, one yellow.
+
 END
 FIRST_FLOOR_BATHROOM
+
+Why would you look at the bathroom Entrance?
+Just go in!
+
 END
 LIVING_ROOM
+
+Why would you look at the living room Entrance?
+Just go in!
+
 END
 ITEMS
 WINDOW
@@ -172,8 +214,32 @@ This DOOR has a LOCK.
 END
 W
 
-There is the DOOR to the KITCHEN.
-This DOOR has a LOCK.
+There is the door to the KITCHEN.
+This door has a LOCK.
+
+END
+LOOKAT
+SINK
+
+On the sink there is a purple cup.
+
+END
+LIVINGROOM
+
+It seems you can LOCK this door.
+<Game> LOCK LIVINGROOM
+
+END
+KITCHEN
+
+It seems you can LOCK this door.
+<Game> LOCK KITCHEN
+
+END
+WORKROOM
+
+It seems you can LOCK this door.
+<Game> LOCK WORKROOM
 
 END
 ITEMS
@@ -192,7 +258,7 @@ There is a desk with a COMPUTER on it.
 END
 E
 
-The wall is nicely decorated. I guess it’s because there are no windows in here.
+The wall is nicely decorated. I guess it's because there are no windows in here.
 Without any windows it kinda makes it look like a storage room.
 Nothing much to note.
 
@@ -241,18 +307,41 @@ END
 "I am pretty sure that the password is CATTHEYISHERE"
 
 END
+4
+
+We already got the code.
+It's the colours of the cups in this house.
+
+END
 TYPE
 CATTHEYISHERE
+0
 
 The computer opened up.
+-
+-
 After reading for a while you find some very important information.
+-
 You find out that the key to the basement is in the SAFE in the BEDROOM.
-"Why place it in there? There could be something valuable in the BASEMENT."
+"Why place it in there?
+-
+There could be something valuable in the BASEMENT."
 -
 You continue to read...
 -
 The code to the SAFE is the colours of the cups in the house.
 There is not specific order just PRESS the coloured buttons.
+
+END
+1
+
+We already got the code.
+It's the colours of the cups in this house.
+
+END
+ELSE
+
+Password did not work.
 
 END
 ITEMS
