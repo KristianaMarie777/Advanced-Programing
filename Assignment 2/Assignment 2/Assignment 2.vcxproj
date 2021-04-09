@@ -146,8 +146,10 @@
     <ClCompile Include="IntQueue.cpp" />
     <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="InventoryScene.cpp" />
+    <ClCompile Include="LivingRoom.cpp" />
     <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SortNumberList.cpp" />
     <ClCompile Include="StartScene.cpp" />
@@ -164,11 +166,16 @@
     <ClInclude Include="IntStack.h" />
     <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="LivingRoom.h" />
     <ClInclude Include="NumberList.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneState.h" />
+    <ClInclude Include="SearchNext.h" />
+    <ClInclude Include="SimpleVector.h" />
     <ClInclude Include="SortNumberList.h" />
+    <ClInclude Include="SortVector.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="StoryScene.h" />
     <ClInclude Include="User.h" />

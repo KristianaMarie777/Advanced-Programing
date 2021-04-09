@@ -20,6 +20,7 @@ void Game::init()
 
 void Game::output() const
 {
+	system("CLS");
 	m_currentScene->output();
 }
 

@@ -1,0 +1,166 @@
+Living Room
+N
+You can see the door to the KITCHEN, the door to the FIRST_FLOOR_BATHROOM and a bunch of PHOTOs on the wall.
+END
+E
+You can see the door to the BASEMENT, STAIRS to the top floor and door to the WORKROOM.
+END
+S
+You can see a huge WINDOW looking towards the street, a COUCH, a BROKEN_TV, a bunch of SHELVES, and a bunch of DRAWERS.
+END
+W
+You see the ENTRANCE.
+END
+LOOKAT
+KITCHEN
+Why would you look at the Kitchen Entrance?
+FIRST_FLOOR_BATHROOM 
+Why would you look at the washroom Entrance?
+PHOTO
+Looking at the photos on the wall you get the sudden feeling to check the backs of the photos.
+Behind one of the photos you find a note.
+It reads "password is CATTHEYISHERE".
+Where would I need a password?
+END
+BASEMENT
+The door is locked. There might be a key somewhere.
+END
+STAIRS
+These stairs lead to the first floor... Or was it third....
+Top floor sounds nicer easier.
+END
+WORKROOM
+Why would you look at the workroom Entrance?
+END
+WINDOW
+This window is really easy to break. But, breaking it will alert the neighbours.
+Going to jail is not my priority right now.
+END
+COUCH
+There are usually treasures on the couch...
+When I say treasures I mean Trash.
+END
+BROKEN_TV
+This tv is very heavy. But I can handle it.
+Just don't take it with me to another room.
+END
+SHELVES
+There is nothing there.
+END
+DRAWERS
+There is nothing there.
+END
+ITEMS
+KITCHEN
+FIRST_FLOOR_BATHROOM
+PHOTO
+BASEMENT
+STAIRS
+WORKROOM
+WINDOW
+COUCH
+BROKEN_TV
+SHELVES
+DRAWERS
+END
+Kitchen
+N
+There is a huge WINDOW along with all kitchen necessities.
+The only thing I should note are these CABINETs.
+END
+E
+There is the door to the FIRST_FLOOR_BATHROOM .
+END
+S
+There is the door to the LIVING_ROOM.
+END
+W
+Just a Large wall.
+END
+First Floor Washroom
+N
+There is nothing really to note inside the washroom besides the fact all doors have Locks.
+What is with the design of this washroom!
+Why does it have three doors that go into it?
+Terrible design.
+END
+E
+There is nothing really to note inside the washroom besides the fact all doors have Locks.
+What is with the design of this washroom!
+Why does it have three doors that go into it?
+terrible design.
+END
+S
+There is nothing really to note inside the washroom besides the fact all doors have Locks.
+What is with the design of this washroom!
+Why does it have three doors that go into it?
+terrible design.
+END
+W
+There is nothing really to note inside the washroom besides the fact all doors have Locks.
+What is with the design of this washroom!
+Why does it have three doors that go into it?
+terrible design.
+END
+Work Room
+N
+There is a desk with a COMPUTER on it.
+END
+E
+The wall is nicely decorated. I guess it’s because there are no windows in here.
+Without any windows it kinda makes it look like a storage room.
+Nothing much to note.
+END
+S
+Just a wall. Nothing much to note.
+END
+W
+Just the door to the LIVINGROOM and FIRST_FLOOR_BATHROOM.
+END
+LOOKAT
+COMPUTER
+hallway
+N
+END
+E
+END
+S
+END
+W
+END
+Bedroom
+N
+END
+E
+END
+S
+END
+W
+END
+Second Floor Washroom
+N
+END
+E
+END
+S
+END
+W
+END
+Storage Room
+N
+END
+E
+END
+S
+END
+W
+END
+Basement
+N
+END
+E
+END
+S
+END
+W
+END

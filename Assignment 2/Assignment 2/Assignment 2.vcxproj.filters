@@ -28,6 +28,9 @@
     <Filter Include="Core\Week 12">
       <UniqueIdentifier>{f361d4e2-f8af-4c2b-969b-27a9cb227c74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Lab 3">
+      <UniqueIdentifier>{68ba2df3-56c6-45f6-8b86-5cefc5505f90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DeathScene.cpp">
@@ -71,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="StoryScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LivingRoom.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +133,21 @@
     </ClInclude>
     <ClInclude Include="StoryScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleVector.h">
+      <Filter>Core\Lab 3</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchNext.h">
+      <Filter>Core\Lab 3</Filter>
+    </ClInclude>
+    <ClInclude Include="SortVector.h">
+      <Filter>Core\Lab 3</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingRoom.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
