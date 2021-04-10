@@ -45,6 +45,7 @@ PlayScene::PlayScene()
 
 void PlayScene::output()
 {
+	cout << "\n" << roomName << endl << endl;
 	cout << "       " << directionName[direction] << "\n       T\n       |\n";
 	cout << directionName[(((direction - 1) % 4) < 0) ? 3 : ((direction - 1) % 4)] << " <----+----> " << directionName[(1 + direction) % 4] << "\n       |\n       v\n";
 	cout << "       " << directionName[(2 + direction) % 4] << endl;
@@ -81,23 +82,15 @@ void PlayScene::update()
 			getline(gameText, getText);
 		}
 
-		if (action == "RIGHT")
-		{
-			direction = ++direction % 4;
-		}
-		else if (action == "LEFT")
-		{
-
-			direction = (((direction - 1) % 4) < 0) ? 3 : ((--direction) % 4);
-
-		}
-		else
-		{
+		if (action == "RIGHT") { direction = ++direction % 4; }
+		else if (action == "LEFT") { direction = (((direction - 1) % 4) < 0) ? 3 : ((--direction) % 4); }
+		else 
+		{ 
 			txtOutput();
+			cout << endl << endl;
+			system("pause");
 		}
 		gameText.close();
-		cout << endl << endl;
-		system("pause");
 	}
 	else if (type == "LOCK")
 	{
@@ -115,8 +108,6 @@ void PlayScene::update()
 			if (roomName == "First Floor Washroom")
 			{
 
-
-
 				if (action == "KITCHEN")
 				{
 
@@ -133,18 +124,13 @@ void PlayScene::update()
 				{
 
 				}
-				else
-				{
-
-				}
 			}
 			else if (roomName == "Second Floor Washroom")
 			{
+				if (action == "HALLWAY" || action == "SECOND_FLOOR_BATHROOM")
+				{
 
-			}
-			else
-			{
-
+				}
 			}
 		}
 
@@ -178,19 +164,11 @@ void PlayScene::update()
 					{
 
 					}
-					else
-					{
-
-					}
 
 				}
 				else if (roomName == "Kitchen")
 				{
 					if (action == "CHAIR_ON_WINDOW")
-					{
-
-					}
-					else
 					{
 
 					}
@@ -201,18 +179,10 @@ void PlayScene::update()
 					{
 
 					}
-					else
-					{
-
-					}
 				}
 				else if (roomName == "Second Floor Washroom")
 				{
 					if (action == "CRANK_ON_WINDOW")
-					{
-
-					}
-					else
 					{
 
 					}
@@ -248,10 +218,6 @@ void PlayScene::update()
 				{
 
 				}
-				else
-				{
-
-				}
 
 			}
 			else if (action == "CRANK")
@@ -260,14 +226,6 @@ void PlayScene::update()
 				{
 
 				}
-				else
-				{
-
-				}
-			}
-			else
-			{
-
 			}
 		}
 		txtOutput();
@@ -379,9 +337,11 @@ void PlayScene::update()
 				{
 					getline(gameText, getText);
 				}
+				txtOutput();
+				system("pause");
 			}
 
-
+			
 			
 		}
 		else
@@ -390,13 +350,14 @@ void PlayScene::update()
 			{
 				getline(gameText, getText);
 			}
-			
+			txtOutput();
+			system("pause");
 		}
 
-		txtOutput();
+		
 		gameText.close();
 		cout << endl << endl;
-		system("pause");
+		
 	}
 	else if (type == "TYPE")
 	{
