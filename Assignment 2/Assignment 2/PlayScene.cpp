@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string nameshere[9] = { "Living Room" , "Kitchen", "First Floor Washroom", "Work Room", "hallway", "Bedroom", "Storage Room", "Basement", "Second Floor Washroom"};
+string nameshere[] = { "Living Room" , "Kitchen", "First Floor Washroom", "Work Room", "hallway", "Bedroom", "Storage Room", "Basement", "Second Floor Washroom"};
 
 PlayScene::PlayScene()
 {
@@ -62,38 +62,25 @@ void PlayScene::output()
 	{
 		getline(gameText, getText);
 	}
-
-	while (getText != "END")
-	{
-		getline(gameText, getText);
-		if (getText != "-")
-		{
-
-			if (getText != "END")
-			{
-				for (int i = 0; i < getText.size(); i++)
-				{
-					cout << getText[i];
-					Sleep(15);
-				}
-			}
-			
-		}
-		else
-		{
-			Sleep(NUMLONGSEC);
-		}
-		cout << endl;
-	}
+	txtOutput();
+	
 	gameText.close();
 }
 
 void PlayScene::update()
 {
-	//system("pause");
 
 	if (type == "TURN")
 	{
+		gameText.open("gameText.txt");
+
+		string getText;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
+
 		if (action == "RIGHT")
 		{
 			direction = ++direction % 4;
@@ -104,13 +91,209 @@ void PlayScene::update()
 			direction = (((direction - 1) % 4) < 0) ? 3 : ((--direction) % 4);
 
 		}
+		else
+		{
+			txtOutput();
+		}
+		gameText.close();
+		cout << endl << endl;
+		system("pause");
 	}
-	else if (type == "WALKTO" || type == "WALK_TO")
+	else if (type == "LOCK")
 	{
+		gameText.open("gameText.txt");
+
+		string getText;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
 
 		if (interactableItems.searchItem(action))
 		{
-			//cout << "here";
+			if (roomName == "First Floor Washroom")
+			{
+
+
+
+				if (action == "KITCHEN")
+				{
+
+				}
+				else if (action == "FIRST_FLOOR_BATHROOM")
+				{
+
+				}
+				else if (action == "WORKROOM")
+				{
+
+				}
+				else if (action == "LIVINGROOM")
+				{
+
+				}
+				else
+				{
+
+				}
+			}
+			else if (roomName == "Second Floor Washroom")
+			{
+
+			}
+			else
+			{
+
+			}
+		}
+
+		txtOutput();
+		gameText.close();
+		cout << endl << endl;
+		system("pause");
+	}
+	else if (type == "USE")
+	{
+		gameText.open("gameText.txt");
+
+		string getText;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
+
+		if (interactableItems.searchItem(action))
+		{
+			if (roomName == "Living Room" || roomName == "Kitchen" || roomName == "First Floor Washroom" || roomName == "Second Floor Washroom")
+			{
+				if (roomName == "Living Room")
+				{
+					if (action == "KEY_ON_BASEMENT")
+					{
+
+					}
+					else if (action == "BROKEN_TV_ON_BASEMENT")
+					{
+
+					}
+					else
+					{
+
+					}
+
+				}
+				else if (roomName == "Kitchen")
+				{
+					if (action == "CHAIR_ON_WINDOW")
+					{
+
+					}
+					else
+					{
+
+					}
+				}
+				else if (roomName == "First Floor Washroom")
+				{
+					if (action == "CRANK_ON_WINDOW")
+					{
+
+					}
+					else
+					{
+
+					}
+				}
+				else if (roomName == "Second Floor Washroom")
+				{
+					if (action == "CRANK_ON_WINDOW")
+					{
+
+					}
+					else
+					{
+
+					}
+				}
+			}
+			else
+			{
+
+			}
+		}
+
+		txtOutput();
+		gameText.close();
+		cout << endl << endl;
+		system("pause");
+	}
+	else if (type == "GET")
+	{
+		gameText.open("gameText.txt");
+
+		string getText;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
+
+		if (interactableItems.searchItem(action))
+		{
+			if (action == "KEY")
+			{
+				if (roomName == "Bedroom")
+				{
+
+				}
+				else
+				{
+
+				}
+
+			}
+			else if (action == "CRANK")
+			{
+				if (roomName == "Storage Room")
+				{
+
+				}
+				else
+				{
+
+				}
+			}
+			else
+			{
+
+			}
+		}
+		txtOutput();
+		gameText.close();
+		cout << endl << endl;
+		system("pause");
+	}
+	else if (type == "WALKTO" || type == "WALK_TO")
+	{
+		gameText.open("gameText.txt");
+
+		string getText;
+		bool passIf = false;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
+
+		if (action == "STAIRS")
+		{
+			action = "HALLWAY";
+		}
+		if (interactableItems.searchItem(action))
+		{
+			
 			if (action == "LIVINGROOM" || action == "KITCHEN" || action == "FIRST_FLOOR_BATHROOM" || action == "WORKROOM" || action == "HALLWAY" || action == "BEDROOM" || action == "STORAGEROOM" 
 				|| action == "BASEMENT" ||  action == "SECOND_FLOOR_BATHROOM")
 			{
@@ -168,60 +351,70 @@ void PlayScene::update()
 
 
 				interactableItems.clear();
-				ifstream openFile("gameText.txt");
-				string getItems;
 
-				while (getItems != roomName)
+				while (getText != roomName)
 				{
-					getline(openFile, getItems);
+					getline(gameText, getText);
 				}
 				//cout << "here";
-				while (getItems != "ITEMS")
+				while (getText != "ITEMS")
 				{
-					getline(openFile, getItems);
+					getline(gameText, getText);
 				}
 				//cout << "here";
-				while (getItems != "END")
+				while (getText != "END")
 				{
-					getline(openFile, getItems);
-					if (getItems != "END")
+					getline(gameText, getText);
+					if (getText != "END")
 					{
-						interactableItems.push_back(getItems);
+						interactableItems.push_back(getText);
 					}
 					//cout << getItems << "    ";
 				}
-				openFile.close();
 			}
 			else
 			{
-				string word = "That isn't even a room!\n\n";
-				for (int i = 0; i < word.size(); i++)
+				passIf = true;
+				while (getText != to_string(passIf))
 				{
-					cout << word[i];
-					Sleep(15);
+					getline(gameText, getText);
 				}
 			}
+
+
+			
 		}
 		else
 		{
-			string word = "You can't walk there.\n\n";
-			for (int i = 0; i < word.size(); i++)
+			while (getText != to_string(passIf))
 			{
-				cout << word[i];
-				Sleep(15);
+				getline(gameText, getText);
 			}
+			
 		}
 
+		txtOutput();
+		gameText.close();
+		cout << endl << endl;
 		system("pause");
-	
 	}
 	else if (type == "TYPE")
 	{
+
+		gameText.open("gameText.txt");
+
+		string getText;
+
+		while (getText != type)
+		{
+			getline(gameText, getText);
+		}
+
 		if (roomName == nameshere[3])
 		{
-			gameText.open("gameText.txt");
-
-			string getText;
+			if(!seenComputer)
+				seenComputer = true;
+			
 
 			while (getText != roomName)
 			{
@@ -240,32 +433,12 @@ void PlayScene::update()
 				{
 					getline(gameText, getText);
 				}
+
 				while (getText != to_string(gotCode))
 				{
 					getline(gameText, getText);
 				}
-				while (getText != "END")
-				{
-					getline(gameText, getText);
-					if (getText != "-")
-					{
 
-						if (getText != "END")
-						{
-							for (int i = 0; i < getText.size(); i++)
-							{
-								cout << getText[i];
-								Sleep(15);
-							}
-						}
-
-					}
-					else
-					{
-						Sleep(NUMLONGSEC);
-					}
-					cout << endl;
-				}
 				gotCode = true;
 			}
 			else
@@ -274,65 +447,31 @@ void PlayScene::update()
 				{
 					getline(gameText, getText);
 				}
-				while (getText != "END")
-				{
-					getline(gameText, getText);
-					if (getText != "-")
-					{
-
-						if (getText != "END")
-						{
-							for (int i = 0; i < getText.size(); i++)
-							{
-								cout << getText[i];
-								Sleep(15);
-							}
-						}
-
-					}
-					else
-					{
-						Sleep(NUMLONGSEC);
-					}
-					cout << endl;
-				}
-
+				
 
 			}
-			gameText.close();
-
-		}
-		else
-		{
-			string word = "There is no where to type in this room.\n\n";
-			for (int i = 0; i < word.size(); i++)
-			{
-				cout << word[i];
-				Sleep(15);
-			}
+			
 
 		}
 
+		txtOutput();
+		gameText.close();
+		cout << endl << endl;
 		system("pause");
 	}
 	else if (type == "LOOK_AT" || type == "LOOKAT")
 	{
-		type = "LOOKAT";
+		gameText.open("gameText.txt");
 
-		if (!interactableItems.searchItem(action))
+		string getText;
+
+		while (getText != type)
 		{
-			string word = "There is not a item like in here.\n\n";
-			for (int i = 0; i < word.size(); i++)
-			{
-				cout << word[i];
-				Sleep(15);
-			}
+			getline(gameText, getText);
 		}
-		else
-		{
-			gameText.open("gameText.txt");
 
-			string getText;
+		if (interactableItems.searchItem(action))
+		{
 
 			while (getText != roomName)
 			{
@@ -348,188 +487,30 @@ void PlayScene::update()
 			{
 				getline(gameText, getText);
 			}
-			//cout << action << "    " << getText;
-
 			if (action == "COMPUTER")
 			{
-				if (!seenComputer)
+				while (getText != to_string((seenPassword * seenComputer) + gotCode + seenPassword))
 				{
-					if (seenPassword)
-					{
-						getline(gameText, getText);
-						while (getText != "END")
-						{
-							getline(gameText, getText);
-							if (getText != "-")
-							{
-
-								if (getText != "END")
-								{
-									for (int i = 0; i < getText.size(); i++)
-									{
-										cout << getText[i];
-										Sleep(15);
-									}
-								}
-
-							}
-							else
-							{
-								Sleep(NUMLONGSEC);
-							}
-							cout << endl;
-						}
-					}
-					else
-					{
-						while (getText != "2")
-						{
-							getline(gameText, getText);
-						}
-
-						while (getText != "END")
-						{
-							getline(gameText, getText);
-							if (getText != "-")
-							{
-
-								if (getText != "END")
-								{
-									for (int i = 0; i < getText.size(); i++)
-									{
-										cout << getText[i];
-										Sleep(15);
-									}
-								}
-
-							}
-							else
-							{
-								Sleep(NUMLONGSEC);
-							}
-							cout << endl;
-						}
-					}
-					
-					seenComputer = true;
+					getline(gameText, getText);
 				}
-				else
-				{
-					if (gotCode)
-					{
-						while (getText != "4")
-						{
-							getline(gameText, getText);
-						}
-
-					}
-					else
-					{
-						if (seenPassword)
-						{
-							while (getText != "3")
-							{
-								getline(gameText, getText);
-							}
-						}
-						else
-						{
-							while (getText != "1")
-							{
-								getline(gameText, getText);
-							}
-						}
-					}
-					while (getText != "END")
-					{
-						getline(gameText, getText);
-						if (getText != "-")
-						{
-
-							if (getText != "END")
-							{
-								for (int i = 0; i < getText.size(); i++)
-								{
-									cout << getText[i];
-									Sleep(15);
-								}
-							}
-
-						}
-						else
-						{
-							Sleep(NUMLONGSEC);
-						}
-						cout << endl;
-					}
-				}
-
+				seenComputer = true;
 
 
 			}
 			else if (action == "PHOTO")
 			{
-			//cout << seenComputer + gotCode + (seenPassword * seenComputer);
 				while (getText != to_string(seenComputer + gotCode + (seenPassword * seenComputer)))
 				{
 					getline(gameText, getText);
 				}
-				while (getText != "END")
-				{
-					getline(gameText, getText);
-					if (getText != "-")
-					{
-
-						if (getText != "END")
-						{
-							for (int i = 0; i < getText.size(); i++)
-							{
-								cout << getText[i];
-								Sleep(15);
-							}
-						}
-
-					}
-					else
-					{
-						Sleep(NUMLONGSEC);
-					}
-					cout << endl;
-				}
-
 				seenPassword = true;
 
 			}
-			else
-			{
-				while (getText != "END")
-				{
-					getline(gameText, getText);
-					if (getText != "-")
-					{
-
-						if (getText != "END")
-						{
-							for (int i = 0; i < getText.size(); i++)
-							{
-								cout << getText[i];
-								Sleep(15);
-							}
-						}
-
-					}
-					else
-					{
-						Sleep(NUMLONGSEC);
-					}
-					cout << endl;
-				}
-			}
-			gameText.close(); 
+			
 
 		}
-
-
+		txtOutput();
+		gameText.close();
 		cout << endl << endl;
 		system("pause");
 	}
@@ -561,4 +542,31 @@ void PlayScene::input()
 
 void PlayScene::save()
 {
+}
+
+void PlayScene::txtOutput()
+{
+	string text;
+	while (text != "END")
+	{
+		getline(gameText, text);
+		if (text != "-")
+		{
+
+			if (text != "END")
+			{
+				for (int i = 0; i < text.size(); i++)
+				{
+					cout << text[i];
+					Sleep(15);
+				}
+			}
+
+		}
+		else
+		{
+			Sleep(NUMLONGSEC);
+		}
+		cout << endl;
+	}
 }

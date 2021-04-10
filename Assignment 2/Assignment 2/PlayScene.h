@@ -20,9 +20,10 @@ public:
 	virtual void input() override;
 	virtual void save() override;
 
+	void txtOutput();
 	//void setValues();
 private:
-	bool livingRoom, kitchen, washRoomMid, workRoom, hallWay, bedRoom, washRoomTop, storageRoom, basement,seenComputer = false,seenPassword = false, gotCode = false;
+	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = false;
 	int direction;
 	string directionName[4], type, action;
 	ifstream gameText;

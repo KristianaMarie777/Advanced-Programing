@@ -1,3 +1,44 @@
+TURN
+
+"Turn where?"
+
+END
+LOCK
+
+
+
+END
+USE
+
+
+
+END
+GET
+
+
+
+END
+WALKTO
+0
+
+That isn't even a room!
+
+END
+1
+
+You can't walk there.
+
+END
+TYPE
+
+There is no where to type in this room.
+
+END
+LOOKAT
+
+"I don't see that item."
+
+END
 Living Room
 N
 
@@ -126,12 +167,23 @@ ENTRANCE
 The door is locked.
 
 END
+GET
+ELSE
+
+"There is nothing I find useful here."
+
+END
+USE
+
+
+
+END
 ITEMS
 KITCHEN
 FIRST_FLOOR_BATHROOM
 PHOTO
 BASEMENT
-STAIRS
+HALLWAY
 WORKROOM
 WINDOW
 COUCH
@@ -149,7 +201,7 @@ The only thing I should note are these CABINETs.
 END
 E
 
-There is the door to the FIRST_FLOOR_BATHROOM.
+There is the door to the FIRST_FLOOR_BATHROOM and also a dining table with 4 CHAIRS around it.
 
 END
 S
@@ -188,11 +240,28 @@ Why would you look at the living room Entrance?
 Just go in!
 
 END
+CHAIRS
+
+This chair is light. but, I don't need it right now.
+
+END
+GET
+ELSE
+
+
+
+END
+USE
+
+
+
+END
 ITEMS
 WINDOW
 CABINET
 FIRST_FLOOR_BATHROOM
 LIVING_ROOM
+CHAIRS
 END
 First Floor Washroom
 N
@@ -242,6 +311,17 @@ It seems you can LOCK this door.
 <Game> LOCK WORKROOM
 
 END
+GET
+ELSE
+
+
+
+END
+USE
+
+
+
+END
 ITEMS
 SINK
 DOOR
@@ -289,25 +369,17 @@ There seems to be a password protecting this computer.
 We have to TYPE it down.
 "The owner most likey would have wrote down the password somewhere
 just look at the most unlikley places"
-
-END
-2
-
-There seems to be a password protecting this computer.
-We have to TYPE it down.
-"The owner most likey would have wrote down the password somewhere
-just look at the most unlikley places"
 ...
 -
 "Wait a minute! could it be CATTHEYISHERE!?!?"
 
 END
-3
+2
 
 "I am pretty sure that the password is CATTHEYISHERE"
 
 END
-4
+3
 
 We already got the code.
 It's the colours of the cups in this house.
@@ -344,6 +416,17 @@ ELSE
 Password did not work.
 
 END
+GET
+ELSE
+
+
+
+END
+USE
+
+
+
+END
 ITEMS
 COMPUTER
 LIVINGROOM
@@ -366,6 +449,17 @@ S
 
 END
 W
+
+
+
+END
+GET
+ELSE
+
+
+
+END
+USE
 
 
 
@@ -394,6 +488,17 @@ W
 
 
 END
+GET
+ELSE
+
+
+
+END
+USE
+
+
+
+END
 ITEMS
 
 END
@@ -414,6 +519,17 @@ S
 
 END
 W
+
+
+
+END
+GET
+ELSE
+
+
+
+END
+USE
 
 
 
@@ -442,6 +558,17 @@ W
 
 
 END
+GET
+ELSE
+
+
+
+END
+USE
+
+
+
+END
 ITEMS
 
 END
@@ -462,6 +589,17 @@ S
 
 END
 W
+
+
+
+END
+GET
+ELSE
+
+
+
+END
+USE
 
 
 
