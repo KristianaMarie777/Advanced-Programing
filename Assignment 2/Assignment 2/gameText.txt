@@ -1,3 +1,4 @@
+H
 TURN
 
 "Turn where?"
@@ -5,17 +6,17 @@ TURN
 END
 LOCK
 
-
+You can't lock that.
 
 END
 USE
 
-
+I can’t use that.
 
 END
 GET
 
-
+You can't get that.
 
 END
 WALKTO
@@ -27,6 +28,11 @@ END
 1
 
 You can't walk there.
+
+END
+2
+
+Door is locked.
 
 END
 TYPE
@@ -121,11 +127,11 @@ I guess if they lost it....
 Let's hope that's not the case."
 
 END
-STAIRS
+HALLWAY
 
 These stairs lead to the first floor... Or was it third....
 -
-I'll call it first. Sounds nicer easier. <inner conscious confused>
+I'll call it first. Sounds nicer and easier. <inner conscious confused>
 
 END
 WORKROOM
@@ -167,20 +173,30 @@ ENTRANCE
 The door is locked.
 
 END
-GET
-ELSE
+USE
+BROKEN_TV_ON_WINDOW
 
-"There is nothing I find useful here."
+I’m not going to break that window.
+I’ll do it as a last resort, but not now.
 
 END
 USE
+KEY_ON_BASEMENT
+0
 
+I don't have a KEY.
 
+END
+1
+
+The door is opened.
 
 END
 ITEMS
 KITCHEN
 FIRST_FLOOR_BATHROOM
+KEY_ON_BASEMENT
+BROKEN_TV_ON_WINDOW
 PHOTO
 BASEMENT
 HALLWAY
@@ -201,7 +217,7 @@ The only thing I should note are these CABINETs.
 END
 E
 
-There is the door to the FIRST_FLOOR_BATHROOM and also a dining table with 4 CHAIRS around it.
+There is the door to the FIRST_FLOOR_BATHROOM and also a dining table with 4 CHAIR around it.
 
 END
 S
@@ -240,20 +256,16 @@ Why would you look at the living room Entrance?
 Just go in!
 
 END
-CHAIRS
+CHAIR
 
 This chair is light. but, I don't need it right now.
 
 END
-GET
-ELSE
-
-
-
-END
 USE
+CHAIR_ON_WINDOW
 
-
+I’m not going to break that window.
+I’ll do it as a last resort, but not now.
 
 END
 ITEMS
@@ -261,30 +273,27 @@ WINDOW
 CABINET
 FIRST_FLOOR_BATHROOM
 LIVING_ROOM
-CHAIRS
+CHAIR
 END
 First Floor Washroom
 N
 
-There is a SINK, and toilet, and some soap.
+There is a SINK, toilet, and some soap.
 
 END
 E
 
-There is the DOOR to the LIVINGROOM.
-This DOOR has a LOCK.
+You can see the door to the LIVINGROOM
 
 END
 S
 
-There is the DOOR to the WORKROOM.
-This DOOR has a LOCK.
+You can see the door to the WORKROOM
 
 END
 W
 
-There is the door to the KITCHEN.
-This door has a LOCK.
+You can see the door to the KITCHEN
 
 END
 LOOKAT
@@ -295,40 +304,34 @@ On the sink there is a purple cup.
 END
 LIVINGROOM
 
-It seems you can LOCK this door.
-<Game> LOCK LIVINGROOM
+Why would you look at the living room entrance?
+Just go in!
 
 END
 KITCHEN
 
-It seems you can LOCK this door.
-<Game> LOCK KITCHEN
+Why would you look at the kitchen entrance?
+Just go in!
 
 END
 WORKROOM
 
-It seems you can LOCK this door.
-<Game> LOCK WORKROOM
+Why would you look at the workroom entrance?
+Just go in!
 
 END
-GET
-ELSE
+WINDOW
 
-
-
-END
-USE
-
-
+It's small enough for me to go through. But, it's closed.
+It seems like it's missing something too...
 
 END
 ITEMS
 SINK
-DOOR
-LOCK
 LIVINGROOM
 KITCHEN
 WORKROOM
+WINDOW
 END
 Work Room
 N
@@ -359,16 +362,16 @@ COMPUTER
 
 There seems to be a password protecting this computer.
 We have to TYPE it down.
-"The owner most likey would have wrote down the password somewhere
-just look at the most unlikley places"
+"The owner most likely would have wrote down the password somewhere
+just look at the most unlikely places"
 
 END
 1
 
 There seems to be a password protecting this computer.
 We have to TYPE it down.
-"The owner most likey would have wrote down the password somewhere
-just look at the most unlikley places"
+"The owner most likely would have wrote down the password somewhere
+just look at the most unlikely places"
 ...
 -
 "Wait a minute! could it be CATTHEYISHERE!?!?"
@@ -383,6 +386,18 @@ END
 
 We already got the code.
 It's the colours of the cups in this house.
+
+END
+LIVINGROOM
+
+Why would you look at the living room entrance?
+Just go in!
+
+END
+FIRST_FLOOR_BATHROOM
+
+Why would you look at the first floor bathroom entrance?
+Just go in!
 
 END
 TYPE
@@ -402,7 +417,7 @@ There could be something valuable in the BASEMENT."
 You continue to read...
 -
 The code to the SAFE is the colours of the cups in the house.
-There is not specific order just PRESS the coloured buttons.
+There is no specific order, just PRESS the coloured buttons.
 
 END
 1
@@ -411,199 +426,346 @@ We already got the code.
 It's the colours of the cups in this house.
 
 END
-ELSE
-
-Password did not work.
-
-END
-GET
-ELSE
-
-
-
-END
-USE
-
-
-
-END
 ITEMS
 COMPUTER
 LIVINGROOM
 FIRST_FLOOR_BATHROOM
 END
-hallway
+Hallway
 N
 
-
+You see the SECOND_FLOOR_BATHROOM.
 
 END
 E
 
-
+Just a wall.
 
 END
 S
 
-
+You see the STORAGEROOM.
 
 END
 W
 
-
-
-END
-GET
-ELSE
-
-
+You see the BEDROOM.
 
 END
-USE
+LOOKAT
+BEDROOM
 
+Why would you look at the bedroom entrance?
+Just go in!
 
+END
+SECOND_FLOOR_BATHROOM
+
+Why would you look at the second floor bathroom entrance?
+Just go in!
+
+END
+STORAGEROOM
+
+Why would you look at the storage room entrance?
+Just go in!
+
+END
+STAIRS
+
+They lead down to the LIVINGROOM.
+
+END
+LIVINGROOM
+
+It's down STAIRS.
 
 END
 ITEMS
-
+BEDROOM
+SECOND_FLOOR_BATHROOM
+STORAGEROOM
+LIVINGROOM
+STAIRS
 END
 Bedroom
 N
 
-
+Just a wall.
 
 END
 E
 
-
+Door to HALLWAY.
 
 END
 S
 
-
+You see a bed.
+Next to it you see a SAFE.
 
 END
 W
 
-
-
-END
-GET
-ELSE
-
-
+Just a wall.
 
 END
-USE
+OPEN
 
+You did not press anything.
 
+END
+0
+
+The safe seems to have locked itself.
+
+END
+2
+
+Nothing happened. It seems to have worked.
+
+END
+1
+
+The safe opened.
+-
+-
+Inside you see a KEY.
+
+END
+3
+
+There is nothing inside
+
+END
+LOOKAT
+KEY
+
+What KEY?
+
+END
+0
+
+The Key is inside this SAFE
+
+END
+1
+
+The SAFE is open.
+GET the KEY.
+
+END
+2
+
+The SAFE is empty.
+
+END
+SAFE
+0
+
+There seems to be a lot of buttons on the SAFE.
+-
+You see the colours RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, PURPLE, BLACK and WHILE.
+You can PRESS these buttons.
+-
+-
+There is also a white cup on top of it.
+-
+"I wonder what the code is."
+
+END
+1
+
+Ok I got the code to the SAFE. 
+-
+It's just the colours of the cups scattered around the house.
+
+END
+2
+
+The SAFE is open.
+GET the KEY.
+
+END
+3
+
+There is no need to look at the SAFE any more.
+We got the KEY!
+USE it on the BASEMENT.
+
+END
+HALLWAY
+
+Why would you look at the hallway entrance?
+Just go in!
 
 END
 ITEMS
-
+SAFE
+HALLWAY
+KEY
 END
 Second Floor Washroom
 N
 
-
+You see a toilet, and bathtub.
+There is also a WINDOW.
 
 END
 E
 
-
+Just a wall.
 
 END
 S
 
-
+You see the HALLWAY
 
 END
 W
 
-
-
-END
-GET
-ELSE
-
-
+You see a SINK.
 
 END
-USE
+LOOKAT
+HALLWAY
 
+Why would you look at the hallway entrance?
+Just go in!
 
+END
+WINDOW
+
+It's small enough for me to go through. But, it's closed.
+It seems like it's missing something too...
+
+END
+SINK
+
+On the sink you see a purple cup and a green cup.
 
 END
 ITEMS
-
+HALLWAY
+WINDOW
+SINK
 END
 Storage Room
 N
 
-
+You see the HALLWAY.
 
 END
 E
 
-
+Just a wall.
 
 END
 S
 
-
+There is a SHELF.
 
 END
 W
 
-
-
-END
-GET
-ELSE
-
-
+Just a wall.
 
 END
-USE
+LOOKAT
+SHELF
 
+You see a black cup and a CRANK.
 
+END
+HALLWAY
+
+Why would you look at the hallway entrance?
+Just go in!
 
 END
 ITEMS
-
+CRANK
+HALLWAY
 END
 Basement
-N
+ITEMS
+LIVINGROOM
+STAIRS
+END
+FIGHT
+TYPE
 
-
+What are you doing trying to type something now.
 
 END
-E
+TYPE
 
-
-
-END
-S
-
-
+What are you doing trying to press something now.
 
 END
-W
+LOOKAT
 
-
-
-END
-GET
-ELSE
-
-
+What are you looking at?
+RUN!
 
 END
 USE
 
+Whatever you did. It did nothing.
+
+END
+ENDING
+DEATH
+0
+
+After opening the window you jumped out.
+Sadly you landed the wrong way.
+-
+-
+You are dead
+
+END
+1
+
+After failing to dodge the attack the monster eats you.
+You failed to escape.
+-
+-
+You are dead
 
 
 END
-ITEMS
+2
+
+After run away monster eats you.
+You fail the escape.
+-
+-
+You are dead
+
+
+END
+SURVIVED
+0
+
+After destroying the window you were able to escape. Alerting the neighbours in the process.
+Long story short, the monster was kill by police.
+-
+-
+You survived
+
+END
+1
+
+After opening the window you were able to escape.
+You are traumatized by what you saw.
+-
+Still having nightmares of the beast coming after you.
+-
+-
+After all, the beast was never killed.
+-
+-
+You survived
 
 END

@@ -39,7 +39,7 @@ void Game::start()
 	m_currentSceneState = NO_SCENE;
 
 	//changeSceneState(m_currentSceneState);
-	changeSceneState(PLAY_SCENE);
+	changeSceneState(START_SCENE);
 }
 
 void Game::quit()
@@ -74,13 +74,25 @@ void Game::changeSceneState(SceneState new_state)
 			m_currentScene = new PlayScene();
 			std::cout << "play scene activated" << std::endl;
 			break;
+		case PLAY_SCENE_0:
+			m_currentScene = new PlayScene(true);
+			std::cout << "play scene activated" << std::endl;
+			break;
 		case ESCAPE_SCENE:
 			m_currentScene = new EscapeScene();
 			std::cout << "escape scene activated" << std::endl;
 			break;
-		case DEATH_SCENE:
-			m_currentScene = new DeathScene();
-			std::cout << "death scene activated" << std::endl;
+		case DEATH_SCENE_VER1:
+			m_currentScene = new DeathScene(0);
+			std::cout << "death scene ver1 activated" << std::endl;
+			break;
+		case DEATH_SCENE_VER2:
+			m_currentScene = new DeathScene(1);
+			std::cout << "death scene ver2 activated" << std::endl;
+			break;
+		case DEATH_SCENE_VER3:
+			m_currentScene = new DeathScene(2);
+			std::cout << "death scene ver3 activated" << std::endl;
 			break;
 		case INVENTROY_SCENE:
 			m_currentScene = new InventoryScene();

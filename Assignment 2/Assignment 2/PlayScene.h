@@ -6,13 +6,16 @@
 #include <string>
 #include <fstream>
 #include "SearchNext.h"
+#include <stack>
+#include <list>
+#include <queue>
 
 using namespace std;
 
 class PlayScene : public Scene
 {
 public:
-	PlayScene();
+	PlayScene(bool newGame = false);
 
 	~PlayScene() = default;
 	virtual void output() override;
@@ -21,13 +24,18 @@ public:
 	virtual void save() override;
 
 	void txtOutput();
+	void bossFight();
 	//void setValues();
 private:
-	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = false;
-	int direction;
-	string directionName[4], type, action;
+	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = false, secondwindow = false, firstwindow = false,
+		red = false,yellow = false, purple = false,black = false, white = false, green = false, opensafe = false, gotKey = true,
+		doorIsOpen = false, endingStart = false, outOfBasement = false, lockedagain = false;
+	int direction/*, distance*/;
+	string directionName[4], type, action, roomName, finalGame = "H", bossRoom = " ", attack;
 	ifstream gameText;
-	string roomName;
+	stack<string> enemy;
+	queue<string> follow;
+	list<string> items;
 	SearchAbleVector<string> interactableItems;
 };
 #endif // !_PLAY_SCENE_H_
