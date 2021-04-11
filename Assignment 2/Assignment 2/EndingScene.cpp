@@ -72,7 +72,3 @@ void EndingScene::input()
 
 	choice[0] = toupper(choice[0]);
 }
-
-void EndingScene::save()
-{
-}

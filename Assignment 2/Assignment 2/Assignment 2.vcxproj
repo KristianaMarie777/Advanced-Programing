@@ -146,7 +146,6 @@
     <ClCompile Include="IntStack.cpp" />
     <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="PlayScene.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SortNumberList.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="StoryScene.cpp" />

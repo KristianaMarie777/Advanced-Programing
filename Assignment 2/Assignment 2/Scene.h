@@ -5,12 +5,13 @@
 class Scene
 {
 public:
+
+	//setting scene base class
 	Scene() = default;
 	virtual ~Scene() = default;
 	virtual void output() = 0;
 	virtual void update() = 0;
 	virtual void input() = 0;
-	virtual void save() = 0;
 	//virtual void start() = 0;
 private:
 

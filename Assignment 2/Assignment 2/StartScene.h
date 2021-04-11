@@ -14,8 +14,6 @@ public:
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;
-	virtual void save() override;
-	void user();
 private:
 	DynTempQueue<string> userNames;
 	string choice;

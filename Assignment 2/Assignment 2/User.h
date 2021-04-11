@@ -15,9 +15,10 @@ class User
 {
 public:
 	User(string player = "");
+	// if destroyed then it sould save <Doesn't work>
 	~User();
-	//void update();
-
+	
+	//finds and into file items into User
 	void Loadsave();
 
 	string getName() const { return name; }
@@ -26,8 +27,14 @@ public:
 	int getDirection() const { return direction; }
 	void setDirection(const int direction) { this->direction = direction; }
 
+	//creates a new file within folder of the same name as the user
+	//also creates sets everthing to the beginning of the game
 	void NewGame();
+
+	//inputs User items into the file of the same name as user
 	void save();
+	
+	//for setting values of both play scene and user
 	void setSeenCom(bool seenComputer) { this->seenComputer = seenComputer; }
 	bool getSeenCom() const { return seenComputer; }
 

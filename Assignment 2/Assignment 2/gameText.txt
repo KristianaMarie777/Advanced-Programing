@@ -11,7 +11,12 @@ You can't lock that.
 END
 USE
 
-I can’t use that.
+I can't use that.
+
+END
+0
+
+Using Item.
 
 END
 GET
@@ -250,7 +255,7 @@ Why would you look at the bathroom Entrance?
 Just go in!
 
 END
-LIVING_ROOM
+LIVINGROOM
 
 Why would you look at the living room Entrance?
 Just go in!
@@ -272,7 +277,7 @@ ITEMS
 WINDOW
 CABINET
 FIRST_FLOOR_BATHROOM
-LIVING_ROOM
+LIVINGROOM
 CHAIR
 END
 First Floor Washroom
@@ -460,7 +465,7 @@ Why would you look at the bedroom entrance?
 Just go in!
 
 END
-SECOND_FLOOR_BATHROOM
+FIRST_FLOOR_BATHROOM
 
 Why would you look at the second floor bathroom entrance?
 Just go in!
@@ -484,7 +489,7 @@ It's down STAIRS.
 END
 ITEMS
 BEDROOM
-SECOND_FLOOR_BATHROOM
+FIRST_FLOOR_BATHROOM
 STORAGEROOM
 LIVINGROOM
 STAIRS
@@ -687,6 +692,7 @@ Just go in!
 END
 ITEMS
 CRANK
+SHELF
 HALLWAY
 END
 Basement

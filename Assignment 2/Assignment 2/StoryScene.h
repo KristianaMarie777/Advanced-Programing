@@ -11,7 +11,6 @@ public:
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;
-	virtual void save() override;
 private:
 
 };

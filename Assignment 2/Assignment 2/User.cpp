@@ -14,11 +14,11 @@ User::User(string player)
 	string cat;
 	int nameList = 0, numchoice;
 
-	bool itemsExist = false, notANum = false;
+	bool itemsExist = false, notANum = false, notinrange = false;
 	DynTempStack<string> users;
 
 	outfile.open("User.txt", ios::in);
-
+	// gest users
 	while (getline(outfile, names))
 	{
 		nameList++;
@@ -29,17 +29,26 @@ User::User(string player)
 	outfile.close();
 
 	//output menu
+	//loops if not one of the options
 	do
 	{
+		//clears screen
+		system("CLS");
+
+		//outputs list
 		users.displayList_Num();
-
 		nameList = users.size();
+		cout << nameList++ << ". New User\n" << nameList << ". Quit";
 
-		cout << nameList++ << ". New User\n" << nameList << ". Quit\n\n\nEnter choice here: ";
+		//if any bool returns true the folloring will be outputed
+		if (notinrange) { cout << "\n\nNot in range"; }
+		if (notANum) { cout << "\n\nNot a number"; }
+
+		cout << "\n\n\nEnter choice here: ";
 
 		getline(cin, numChoice);
 
-
+		//checks if it is a number
 		for (numchoice = 0; numchoice < numChoice.size(); numchoice++)
 		{
 
@@ -50,14 +59,18 @@ User::User(string player)
 			}
 		}
 
+		//if it is a number the the following will be outputed
 		if (!notANum)
 		{
+			//if the number in the range
 			if (stoi(numChoice) > nameList && stoi(numChoice) < 0)
 			{
-
+				notANum = false;
+				notinrange = true;
 			}
 			else
 			{
+				//checks which answer it was and outputs responce
 				if (stoi(numChoice) == nameList - 1)
 				{
 					string newName;
@@ -67,27 +80,33 @@ User::User(string player)
 					cout << "Enter new user name here: ";
 					getline(cin, newName);
 
+					//adds new player to end
 					users.push(newName);
 
+					//creates a folder for player
 					const char* nameChar = &newName[0];
 					_mkdir(nameChar);
 
+					//sets player name
 					setName(nameChar);
 
+					//creates a new game
 					NewGame();
-					//fstream saveFile(name + "\\getNumSaves.txt", ios::in);
 
 
 				}
 				else if (stoi(numChoice) == nameList)
 				{
-					setName(player);
+					//exit game
+					exit(1);
 				}
 				else
 				{
+					//finds name in stack, takes it out and puts it at the top. also sets the name
 					string name;
+
 					users.find(stoi(numChoice), name);
-					cout << name << endl << endl;
+					//cout << name << endl << endl;
 					users.push(name);
 					setName(name);
 				}
@@ -97,6 +116,7 @@ User::User(string player)
 
 	DynTempStack<string> switchuser;
 
+	//flips names in stack by order
 	while (!users.isEmpty())
 	{
 		string namehere;
@@ -108,7 +128,7 @@ User::User(string player)
 
 	outfile.open("User.txt", ios::out);
 
-
+	//inputs fliped items into text file for later use
 	while (!switchuser.isEmpty())
 	{
 		string namehere;
@@ -118,8 +138,11 @@ User::User(string player)
 	}
 
 	outfile.close();
+
+	//loads save
 	Loadsave();
 }
+
 
 User::~User()
 {
@@ -128,6 +151,7 @@ User::~User()
 
 void User::Loadsave()
 {
+	
 	ifstream saveFile(name + "\\" + name + ".txt");
 	string startName;
 

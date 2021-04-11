@@ -9,6 +9,8 @@ StartScene::StartScene()
 
 void StartScene::output()
 {
+	//outputs choices
+
 	cout << "Welcome To My Game\n\n\n";
 	cout << "A. Start game\nB. Change User/Add User\nC. Quit game\n\n";
 
@@ -18,12 +20,14 @@ void StartScene::output()
 
 void StartScene::update()
 {
+	// checks if input was a letter and outputs response
 	if (!isalpha(choice[0])) { notAChar = true; }
 	else
 	{
 		if (notAChar) { notAChar = false; }
 		if (notChoices) { notChoices = false; }
 
+		//checks the choice
 		if (toupper(choice[0]) == 'A')
 		{
 			//if there a no current user
@@ -45,13 +49,4 @@ void StartScene::input()
 {
 	cout << "Enter choice here: ";
 	getline(cin, choice);
-}
-
-void StartScene::save()
-{
-}
-
-void StartScene::user()
-{
-
 }

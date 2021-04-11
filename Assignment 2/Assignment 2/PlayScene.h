@@ -21,17 +21,18 @@ public:
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;
-	virtual void save() override;
 
+	//outputs text until it reachs to the word END
 	void txtOutput();
+	//sets boss's fight and follow abilites
 	void bossFight();
+	//auto saves the game
 	void autoSave();
-	//void setValues();
 private:
 	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = true, secondwindow = false, firstwindow = false,
 		red = false,yellow = false, purple = false,black = false, white = false, green = false, opensafe = false, gotKey = true,
 		doorIsOpen = true, endingStart = false, outOfBasement = false, lockedagain = false, textOnce = false;
-	int direction, counter = 5;
+	int direction, counter = 0;
 	string type, action, roomName, finalGame = "H", bossRoom = " ", attack;
 	ifstream gameText;
 	stack<string> enemy;

@@ -14,12 +14,17 @@ void StoryScene::output()
 
 	string text;
 	ifstream gameText("gameText.txt");
+
+	//looks for STORY in text file
 	while (text != "STORY") { getline(gameText, text); }
 
+	//loop will end when text is STOP
 	while (text != "STOP")
 	{
+		//loop will end when text is END
 		while (text != "END")
 		{
+			//outputs info
 			getline(gameText, text);
 			if (text == "STOP") { break; }
 			if (text != "-")
@@ -50,14 +55,11 @@ void StoryScene::output()
 
 void StoryScene::update()
 {
+	//after output is done it goes into the game
 	Game::Instance()->getPlayer()->setSeenStoryScene(true);
 	Game::Instance()->changeSceneState(PLAY_SCENE);
 }
 
 void StoryScene::input()
-{
-}
-
-void StoryScene::save()
 {
 }
