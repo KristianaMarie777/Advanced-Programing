@@ -4,9 +4,8 @@
 
 #include "StartScene.h"
 #include "PlayScene.h"
-#include "EscapeScene.h"
 #include "InventoryScene.h"
-#include "DeathScene.h"
+#include "EndingScene.h"
 #include "User.h"
 
 #include "SceneState.h"

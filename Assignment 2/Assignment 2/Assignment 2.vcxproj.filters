@@ -33,10 +33,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DeathScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="EscapeScene.cpp">
+    <ClCompile Include="EndingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="InventoryScene.cpp">
@@ -77,10 +74,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeathScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="EscapeScene.h">
+    <ClInclude Include="EndingScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="InventoryScene.h">

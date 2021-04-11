@@ -176,8 +176,8 @@ END
 USE
 BROKEN_TV_ON_WINDOW
 
-I’m not going to break that window.
-I’ll do it as a last resort, but not now.
+I'm not going to break that window.
+I'll do it as a last resort, but not now.
 
 END
 USE
@@ -278,7 +278,7 @@ END
 First Floor Washroom
 N
 
-There is a SINK, toilet, and some soap.
+There is a SINK, toilet, WINDOW, and some soap.
 
 END
 E
@@ -328,6 +328,7 @@ It seems like it's missing something too...
 END
 ITEMS
 SINK
+CRANK_ON_WINDOW
 LIVINGROOM
 KITCHEN
 WORKROOM
@@ -648,6 +649,7 @@ END
 ITEMS
 HALLWAY
 WINDOW
+CRANK_ON_WINDOW
 SINK
 END
 Storage Room
@@ -688,6 +690,22 @@ CRANK
 HALLWAY
 END
 Basement
+
+You walk down and see a terrifying monster.
+It's attacking!
+-
+-
+DODGE RIGHT if it tries to attack from the LEFT.
+-
+DODGE LEFT if it tries to attack from the RIGHT.
+-
+DODGE UP if it tries to attack your legs.
+-
+DODGE DOWN if it tries to pounce.
+-
+-
+
+END
 ITEMS
 LIVINGROOM
 STAIRS
@@ -696,11 +714,6 @@ FIGHT
 TYPE
 
 What are you doing trying to type something now.
-
-END
-TYPE
-
-What are you doing trying to press something now.
 
 END
 LOOKAT
@@ -714,8 +727,18 @@ USE
 Whatever you did. It did nothing.
 
 END
+RUNAWAY
+CHAIR_ON_WINDOW
+
+"This situation fits the last resort criteria!"
+
+END
+BROKEN_TV_ON_WINDOW
+
+"This situation fits the last resort criteria!"
+
+END
 ENDING
-DEATH
 0
 
 After opening the window you jumped out.
@@ -737,7 +760,7 @@ You are dead
 END
 2
 
-After run away monster eats you.
+After failing to run away the monster eats you.
 You fail the escape.
 -
 -
@@ -746,7 +769,7 @@ You are dead
 
 END
 SURVIVED
-0
+3
 
 After destroying the window you were able to escape. Alerting the neighbours in the process.
 Long story short, the monster was kill by police.
@@ -755,7 +778,7 @@ Long story short, the monster was kill by police.
 You survived
 
 END
-1
+4
 
 After opening the window you were able to escape.
 You are traumatized by what you saw.
@@ -764,6 +787,15 @@ Still having nightmares of the beast coming after you.
 -
 -
 After all, the beast was never killed.
+-
+-
+You survived
+
+END
+5
+
+After opening the window you were able to escape.
+You go home but, you wonder what was in that basement.
 -
 -
 You survived

@@ -6,8 +6,34 @@
 #define NUMLONGSEC 500
 
 using namespace std;
-//"Living Room" (0), "Kitchen" (1), "First Floor Washroom" (2), "Work Room" (3), "Hallway" (4), "Bedroom" (5), "Storage Room" (6), "Basement" (7), "Second Floor Washroom" (8)
+
+//Names of the rooms
+//0. Living Room
+//1. Kitchen
+//2. First Floor Washroom
+//3. Work Room
+//4. Hallway
+//5. Bedroom
+//6. Storage Room
+//7. Basement
+//8. Second Floor Washroom
 string nameshere[] = { "Living Room" , "Kitchen", "First Floor Washroom", "Work Room", "Hallway", "Bedroom", "Storage Room", "Basement", "Second Floor Washroom"};
+
+//Objectives in game
+//0. Get the Key.
+//1. Find SAFE code.
+//2. Find where this password has to go.
+//3. Use type CATTHEYISHERE into the computer
+//4. Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs.
+//5. Find the password for the computer.
+//6. Look for missing SECOND_FLOOR_BATHROOM item.
+//7. Look for missing FIRST_FLOOR_BATHROOM item.
+//8. Use KEY on the BASEMENT
+//
+string objectives[] = { "Get the Key.", "Find SAFE code.", "Find where this password has to go.", "Use type CATTHEYISHERE into the computer",
+		"Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs.",
+		"Find the password for the computer.","Look for missing SECOND_FLOOR_BATHROOM item.", "Look for missing FIRST_FLOOR_BATHROOM item.",
+		"Use KEY on the BASEMENT"};
 
 PlayScene::PlayScene(bool newGame)
 {
@@ -15,48 +41,71 @@ PlayScene::PlayScene(bool newGame)
 	directionName[1] = "E";
 	directionName[2] = "S";
 	directionName[3] = "W";
-	if (!newGame)
-	{
-		roomName = nameshere[0];
-		//items.push_back();
 
-		ifstream openFile("gameText.txt");
-		string getItems;
+	roomName = Game::Instance()->getPlayer()->getRoomName();
 
-		while (getItems != roomName) { getline(openFile, getItems); }
-		while (getItems != "ITEMS") { getline(openFile, getItems); }
+	ifstream openFile("gameText.txt");
+	string getItems;
+
+	while (getItems != roomName) { getline(openFile, getItems); }
+	while (getItems != "ITEMS") { getline(openFile, getItems); }
 		
-		while (getItems != "END")
-		{
-			getline(openFile, getItems);
-			if (getItems != "END")
-			{
-				interactableItems.push_back(getItems);
-			}
-			cout << getItems << "    ";
-		}
-		openFile.close();
-
-		direction = 0;//Game::Instance()->getPlayer()->getDirection();
+	while (getItems != "END")
+	{
+		getline(openFile, getItems);
+		if (getItems != "END") { interactableItems.push_back(getItems); }
 	}
+	openFile.close();
+
+	direction = Game::Instance()->getPlayer()->getDirection();
+
+	seenComputer = Game::Instance()->getPlayer()->getSeenCom();
+	seenPassword = Game::Instance()->getPlayer()->getSeenPassword();
+	gotCode = Game::Instance()->getPlayer()->getgotCode();
+	gotCrank = Game::Instance()->getPlayer()->getGotCrank(); 
+	secondwindow = Game::Instance()->getPlayer()->getSecondWindow(); 
+	firstwindow = Game::Instance()->getPlayer()->getFirstWindow();
+	opensafe = Game::Instance()->getPlayer()->getOpenSafe(); 
+	gotKey = Game::Instance()->getPlayer()->getGotKey();
+	doorIsOpen = Game::Instance()->getPlayer()->getDoorIsOpen();  
+	endingStart = Game::Instance()->getPlayer()->getEndingStart();  
+	outOfBasement = Game::Instance()->getPlayer()->getOutOfBasement();  
+	lockedagain = Game::Instance()->getPlayer()->getLockedAgain();
+	bossRoom = Game::Instance()->getPlayer()->getBossRoom();
+
+	enemy = Game::Instance()->getPlayer()->getEnemy();
+	follow = Game::Instance()->getPlayer()->getFollow();
+	items = Game::Instance()->getPlayer()->getItems();
+	if (gotKey)
+		red = yellow = purple = black = white = green = true;
 }
 
 void PlayScene::output()
 {
+
 	gameText.open("gameText.txt");
 
 	string getText;
 
 	if (roomName == nameshere[7])
 	{
-		//while (getText != roomName) { getline(gameText, getText); }
-		
+		if (!textOnce)
+		{
+			while (getText != roomName) { getline(gameText, getText); }
+			txtOutput();
+			textOnce = true;
+		}
+		else
+		{
+			if (enemy.top() != "Boss Fell down") { enemy.pop(); }
+		}
+
 		for (int i = 0; i < enemy.top().size(); i++)
 		{
 			cout << enemy.top()[i];
 			Sleep(15);
 		}
-
+		
 		if (enemy.top() != "Boss Fell down") { enemy.pop(); }
 		else
 		{
@@ -68,24 +117,22 @@ void PlayScene::output()
 				Sleep(15);
 			}
 		}
+		cout << endl << endl;
 
 	}
 	else
 	{
-		if(follow.empty()){ cout << "\n" << roomName << endl << endl; }
+		if(follow.empty()) { cout << "\n" << roomName << endl << endl; }
 		else { cout << "\n" << roomName << "					" <<  follow.size() << endl << endl; }
 
 		cout << "       " << directionName[direction] << "\n       T\n       |\n";
 		cout << directionName[(((direction - 1) % 4) < 0) ? 3 : ((direction - 1) % 4)] << " <----+----> " << directionName[(1 + direction) % 4] << "\n       |\n       v\n";
 		cout << "       " << directionName[(2 + direction) % 4] << endl;
 
-
-
 		while (getText != roomName) { getline(gameText, getText); }
 		while (getText != directionName[direction]) { getline(gameText, getText); }
 		txtOutput();
 	}
-	
 	
 	gameText.close();
 
@@ -93,10 +140,19 @@ void PlayScene::output()
 
 void PlayScene::update()
 {
-	if (endingStart && finalGame != "ENDING") { finalGame = "ENDING"; }
-	if (roomName == "Basement" && action == "STAIRS") { action = "LIVINGROOM"; }
+	if (outOfBasement)
+	{
+		bossRoom = follow.front();
+		follow.pop();
+	}
+	
+	
+	//if (roomName != nameshere[7] && follow.size() > 1) { follow.pop(); }
+	if (endingStart && finalGame != "FIGHT") { finalGame = "FIGHT"; }
+	if (roomName == nameshere[7] && action == "STAIRS") { action = "LIVINGROOM"; }
 	if (action == "STAIRS") { action = "HALLWAY"; }
-	if(action == "SECOND_FLOOR_WASHROOM") {action = "SECOND_FLOOR_BATHROOM"; }
+	if (action == "SECOND_FLOOR_WASHROOM") { action = "SECOND_FLOOR_BATHROOM"; }
+	if (type == "GOTO") { type = "WALKTO"; }
 
 	if (!enemy.empty())
 	{
@@ -119,10 +175,8 @@ void PlayScene::update()
 				if (action != "UP") { Game::Instance()->changeSceneState(DEATH_SCENE_VER2); }
 			}
 		}
-		else
-		{
-			Game::Instance()->changeSceneState(DEATH_SCENE_VER2);
-		}
+		else { Game::Instance()->changeSceneState(DEATH_SCENE_VER2); }
+		
 	}
 	else
 	{
@@ -132,7 +186,6 @@ void PlayScene::update()
 			gameText.open("gameText.txt");
 
 			string getText;
-			while (getText != finalGame) { getline(gameText, getText); }
 			while (getText != type) { getline(gameText, getText); }
 			//cout << "int";
 
@@ -156,70 +209,74 @@ void PlayScene::update()
 
 			if (interactableItems.searchItem(action))
 			{
-				if (roomName == "Living Room" || roomName == "Kitchen" || roomName == "First Floor Washroom" || roomName == "Second Floor Washroom")
+				if (roomName == nameshere[0] || roomName == nameshere[1] || roomName == nameshere[2] || roomName == nameshere[8])
 				{
-					if (roomName == "Living Room")
+					if (roomName == nameshere[0])
 					{
 						if (action == "KEY_ON_BASEMENT")
 						{
 							while (getText != action) { getline(gameText, getText); }
 							while (getText != to_string(gotKey + outOfBasement + lockedagain)) { getline(gameText, getText); }
-							if (gotKey) { doorIsOpen = true; }
-							if (outOfBasement && !lockedagain)
+							if (gotKey) 
+							{ 
+								doorIsOpen = true;
+								bool check = false;
+
+								for (list<string>::iterator i = items.begin(); i != items.end(); i++)
+								{
+									if (*i == objectives[8]) { check = true; }
+								}
+								if (check) { items.remove(objectives[8]); }
+							}
+							if (outOfBasement && !lockedagain && bossRoom == nameshere[7])
 							{
 								lockedagain = true;
 								queue<string> getItemsthere;
-								while (!follow.empty())
-								{
-									getItemsthere.push(follow.front());
-									follow.pop();
-								}
-								for (int i = 0; i < 4; i++)
-								{
-									follow.push(nameshere[7]);
-								}
-								while (!follow.empty())
+								follow.swap(getItemsthere);
+								for (int i = 0; i < 4; i++) { follow.push(nameshere[7]); }
+								while (!getItemsthere.empty())
 								{
 									follow.push(getItemsthere.front());
 									getItemsthere.pop();
 								}
 							}
+
 						}
-						else if (action == "BROKEN_TV_ON_BASEMENT")
-						{
+						else if (action == "BROKEN_TV_ON_WINDOW") 
+						{ 
 							if (outOfBasement)
 							{
-								Game::Instance()->changeSceneState(ESCAPE_SCENE);
+								while (getText != "RUNAWAY") { getline(gameText, getText); }
 							}
+							while (getText != action) { getline(gameText, getText); }
+							if (outOfBasement) { Game::Instance()->changeSceneState(ESCAPE_SCENE_VER1); } 
 						}
-
+						
 					}
-					else if (roomName == "Kitchen")
+					else if (roomName == nameshere[1])
 					{
 						if (action == "CHAIR_ON_WINDOW")
 						{
 							if (outOfBasement)
 							{
-								Game::Instance()->changeSceneState(ESCAPE_SCENE);
+								while (getText != "RUNAWAY") { getline(gameText, getText); }
 							}
+							while (getText != action) { getline(gameText, getText); }
+							if (outOfBasement) { Game::Instance()->changeSceneState(ESCAPE_SCENE_VER1); }
 						}
 					}
-					else if (roomName == "First Floor Washroom")
+					else if (roomName == nameshere[2])
 					{
-						if (action == "CRANK_ON_WINDOW")
+						if (action == "CRANK_ON_WINDOW") 
 						{
-							Game::Instance()->changeSceneState(ESCAPE_SCENE);
-
+							if (outOfBasement) { Game::Instance()->changeSceneState(ESCAPE_SCENE_VER2); }
+							else { Game::Instance()->changeSceneState(ESCAPE_SCENE_VER3); }
 						}
 					}
-					else if (roomName == "Second Floor Washroom")
+					else if (roomName == nameshere[8])
 					{
 						if (action == "CRANK_ON_WINDOW") { Game::Instance()->changeSceneState(DEATH_SCENE_VER1); }
 					}
-				}
-				else
-				{
-
 				}
 			}
 
@@ -236,7 +293,8 @@ void PlayScene::update()
 
 				for (list<string>::iterator i = items.begin(); i != items.end(); i++) { cout << *i << endl; }
 			}
-
+			else if (action == "SAVE") { Game::Instance()->getPlayer()->save(); }
+			
 			cout << endl << endl;
 			system("pause");
 		}
@@ -247,7 +305,7 @@ void PlayScene::update()
 			{
 				if (action == "KEY")
 				{
-					if (roomName == "Bedroom")
+					if (roomName == nameshere[5])
 					{
 						if (gotCode)
 						{
@@ -269,6 +327,9 @@ void PlayScene::update()
 
 									string word = "KEY aquired.";
 
+									bool check = false;
+									items.remove(objectives[0]);
+									items.push_back(objectives[8]);
 									for (int i = 0; i < word.size(); i++)
 									{
 										cout << word[i];
@@ -278,9 +339,15 @@ void PlayScene::update()
 							}
 							else
 							{
-
 								string word = "The SAFE is still closed.";
+								bool check = false;
 
+								for (list<string>::iterator i = items.begin(); i != items.end(); i++) 
+								{
+									if (*i == objectives[1]) { check = true; }
+								}
+								if (!check){ items.push_back(objectives[1]); }
+								
 								for (int i = 0; i < word.size(); i++)
 								{
 									cout << word[i];
@@ -305,12 +372,11 @@ void PlayScene::update()
 				else if (action == "CRANK")
 				{
 
-					if (roomName == "Storage Room")
+					if (roomName == nameshere[6])
 					{
 						if (gotCrank)
 						{
 							string word = "We already have the CRANK.";
-
 							for (int i = 0; i < word.size(); i++)
 							{
 								cout << word[i];
@@ -320,7 +386,6 @@ void PlayScene::update()
 						else
 						{
 							string word = "Got CRANK.";
-
 							for (int i = 0; i < word.size(); i++)
 							{
 								cout << word[i];
@@ -361,10 +426,8 @@ void PlayScene::update()
 		}
 		else if (type == "WALKTO" || type == "WALK_TO")
 		{
-			if (follow.size() > 1)
-				follow.pop();
+			
 			gameText.open("gameText.txt");
-			cout << "walk";
 			string getText;
 			bool passIf = false;
 
@@ -372,50 +435,52 @@ void PlayScene::update()
 
 			if (interactableItems.searchItem(action))
 			{
-
-				if (action == "LIVINGROOM" || action == "KITCHEN" || action == "FIRST_FLOOR_BATHROOM" || action == "WORKROOM" || action == "HALLWAY" || action == "BEDROOM" || action == "STORAGEROOM"
-					|| action == "BASEMENT" || action == "SECOND_FLOOR_BATHROOM")
+				if (action == "LIVINGROOM" || action == "KITCHEN" || action == "FIRST_FLOOR_BATHROOM" || action == "WORKROOM" || action == "HALLWAY" || action == "BEDROOM" || action == "STORAGEROOM" || action == "BASEMENT" || action == "SECOND_FLOOR_BATHROOM")
 				{
+					if (endingStart) { follow.push(roomName); }
 					cout << "\n\n";
 					if (action == "LIVINGROOM")
 					{
+						if (roomName == nameshere[7]) { outOfBasement = true; }
+						
 						if (roomName == nameshere[3] || roomName == nameshere[7]) { direction = 3; }
 						else { direction = 2; }
-						roomName = "Living Room";
+						roomName = nameshere[0];
+
 					}
 					else if (action == "KITCHEN")
 					{
-						if (roomName == "Living Room") { direction = 0; }
+						if (roomName == nameshere[0]) { direction = 0; }
 						else { direction = 3; }
-						roomName = "Kitchen";
+						roomName = nameshere[1];
 					}
 					else if (action == "FIRST_FLOOR_BATHROOM")
 					{
-						if (roomName == "Living Room") { direction = 0; }
-						else if (roomName == "Kitchen") { direction = 1; }
+						if (roomName == nameshere[0]) { direction = 0; }
+						else if (roomName == nameshere[1]) { direction = 1; }
 						else { direction = 3; }
-						roomName = "First Floor Washroom";
+						roomName = nameshere[2];
 					}
 					else if (action == "WORKROOM")
 					{
-						roomName = "Work Room";
+						roomName = nameshere[3];
 						direction = 1;
 					}
 					else if (action == "HALLWAY")
 					{
-						if (roomName == "Bedroom") { direction = 1; }
-						else if (roomName == "Second Floor Washroom") { direction = 2; }
+						if (roomName == nameshere[5]) { direction = 1; }
+						else if (roomName == nameshere[8]) { direction = 2; }
 						else { direction = 0; }
-						roomName = "Hallway";
+						roomName = nameshere[4];
 					}
 					else if (action == "BEDROOM")
 					{
-						roomName = "Bedroom";
+						roomName = nameshere[5];
 						direction = 3;
 					}
 					else if (action == "STORAGEROOM")
 					{
-						roomName = "Storage Room";
+						roomName = nameshere[6];
 						direction = 2;
 					}
 					else if (action == "BASEMENT")
@@ -424,7 +489,7 @@ void PlayScene::update()
 						{
 							if (!endingStart)
 							{
-								roomName = "Basement";
+								roomName = nameshere[7];
 								direction = 2;
 								endingStart = true;
 								bossFight();
@@ -449,15 +514,15 @@ void PlayScene::update()
 								cout << word[i];
 								Sleep(15);
 							}
-
+							cout << endl << endl;
+							system("pause");
 						}
 					}
 					else if (action == "SECOND_FLOOR_BATHROOM")
 					{
-						roomName = "Second Floor Washroom";
+						roomName = nameshere[8];
 						direction = 0;
 					}
-
 
 					interactableItems.clear();
 
@@ -471,6 +536,8 @@ void PlayScene::update()
 						if (getText != "END") { interactableItems.push_back(getText); }
 						cout << getText << "    ";
 					}
+
+
 				}
 				else
 				{
@@ -481,8 +548,6 @@ void PlayScene::update()
 					system("pause");
 				}
 
-
-
 			}
 			else
 			{
@@ -490,7 +555,6 @@ void PlayScene::update()
 				txtOutput();
 				system("pause");
 			}
-
 
 			gameText.close();
 			cout << endl << endl;
@@ -505,36 +569,18 @@ void PlayScene::update()
 			while (getText != finalGame) { getline(gameText, getText); }
 			if (!endingStart)
 			{
-				if (roomName == "Bedroom")
+				if (roomName == nameshere[5])
 				{
 					while (getText != "OPEN") { getline(gameText, getText); }
 					if (action == "RED" || action == "BLACK" || action == "YELLOW" || action == "WHITE" || action == "PURPLE" || action == "GREEN")
 						while (getText != "2") { getline(gameText, getText); }
 
-					if (action == "RED")
-					{
-						red = true;
-					}
-					else if (action == "BLACK")
-					{
-						black = true;
-					}
-					else if (action == "YELLOW")
-					{
-						yellow = true;
-					}
-					else if (action == "WHITE")
-					{
-						white = true;
-					}
-					else if (action == "PURPLE")
-					{
-						purple = true;
-					}
-					else if (action == "GREEN")
-					{
-						green = true;
-					}
+					if (action == "RED") { red = true; }
+					else if (action == "BLACK") { black = true; }
+					else if (action == "YELLOW") { yellow = true; }
+					else if (action == "WHITE") { white = true; }
+					else if (action == "PURPLE") { purple = true; }
+					else if (action == "GREEN") { green = true; }
 					else if (action == "BLUE" || action == "ORANGE" || action == "INDIGO")
 					{
 						while (getText != "0") { getline(gameText, getText); }
@@ -542,38 +588,35 @@ void PlayScene::update()
 					}
 
 					bool check = false;
-					for (list<string>::iterator i = items.begin(); i != items.end(); i++)
-					{
-						if (*i == "Find SAFE code.") { check = true; }
-
+					for (list<string>::iterator i = items.begin(); i != items.end(); i++) 
+					{ 
+						if (*i == objectives[1]) { check = true; }
 					}
-					if (!check)
-						items.push_back("Find SAFE code.");
 
+					if (!check) { items.push_back(objectives[1]); }
+					
 					if (red && yellow && purple && black && white && green)
 					{
 						while (getText != "1") { getline(gameText, getText); }
 
-
 						gotCode = true;
 						bool check1 = false, check2 = false, check3 = false, check4 = false, check5 = false;
 
-
-
 						for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 						{
-							if (*i == "Find the password for the computer.") { check1 = true; }
-							if (*i == "Use type CATTHEYISHERE into the computer") { check2 = true; }
-							if (*i == "Find where this password has to go.") { check3 = true; }
-							if (*i == "Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs.") { check4 = true; }
+							if (*i == objectives[5]) { check1 = true; }
+							if (*i == objectives[3]) { check2 = true; }
+							if (*i == objectives[2]) { check3 = true; }
+							if (*i == objectives[4]) { check4 = true; }
+							if (*i == objectives[1]) { check5 = true; }
 
 						}
-						if (check1) { items.remove("Find the password for the computer."); }
-						if (check2) { items.remove("Use type CATTHEYISHERE into the computer"); }
-						if (check3) { items.remove("Find where this password has to go."); }
-						if (check4) { items.remove("Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs."); }
-						if (check5) { items.remove("Find SAFE code."); }
-						items.push_back("Get the Key.");
+						if (check1) { items.remove(objectives[5]); }
+						if (check2) { items.remove(objectives[3]); }
+						if (check3) { items.remove(objectives[2]); }
+						if (check4) { items.remove(objectives[4]); }
+						if (check5) { items.remove(objectives[1]); }
+						items.push_back(objectives[0]);
 						opensafe = true;
 					}
 
@@ -608,23 +651,20 @@ void PlayScene::update()
 						while (getText != to_string(gotCode)) { getline(gameText, getText); }
 
 
-						if (!gotCode)
-							items.push_back("Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs.");
+						if (!gotCode) { items.push_back("Look around the house for cups. The colour of the cups are the code for the safe in the bedroom up stairs."); }
+						
 						gotCode = true;
 						bool check1 = false, check2 = false, check3 = false;
 
-
-
 						for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 						{
-							if (*i == "Find the password for the computer.") { check1 = true; }
-							if (*i == "Use type CATTHEYISHERE into the computer") { check2 = true; }
-							if (*i == "Find where this password has to go.") { check3 = true; }
-
+							if (*i == objectives[5]) { check1 = true; }
+							if (*i == objectives[3]) { check2 = true; }
+							if (*i == objectives[2]) { check3 = true; }
 						}
-						if (check1) { items.remove("Find the password for the computer."); }
-						if (check2) { items.remove("Use type CATTHEYISHERE into the computer"); }
-						if (check3) { items.remove("Find where this password has to go."); }
+						if (check1) { items.remove(objectives[5]); }
+						if (check2) { items.remove(objectives[3]); }
+						if (check3) { items.remove(objectives[2]); }
 					}
 					else
 					{
@@ -632,10 +672,10 @@ void PlayScene::update()
 
 						for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 						{
-							if (*i == "Find the password for the computer.") { ifFound = true; }
+							if (*i == objectives[5]) { ifFound = true; }
 						}
 
-						if (!ifFound) { items.push_back("Find the password for the computer."); }
+						if (!ifFound) { items.push_back(objectives[5]); }
 
 						while (getText != "ELSE") { getline(gameText, getText); }
 
@@ -663,29 +703,25 @@ void PlayScene::update()
 
 					while (getText != roomName) { getline(gameText, getText); }
 					while (getText != type) { getline(gameText, getText); }
-
 					while (getText != action) { getline(gameText, getText); }
 
 					if (action == "COMPUTER")
 					{
 						while (getText != to_string((seenPassword * seenComputer) + gotCode + seenPassword)) { getline(gameText, getText); }
 
-						if (((seenPassword * seenComputer) + gotCode + seenPassword) == 0)
-						{
-							items.push_back("Find the password for the computer.");
-						}
+						if (((seenPassword * seenComputer) + gotCode + seenPassword) == 0) { items.push_back(objectives[5]); }
+
 						else if (((seenPassword * seenComputer) + gotCode + seenPassword) == 1)
 						{
 							bool ifFound = false;
 							for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 							{
-								if (*i == "Find the password for the computer.") { ifFound = true; }
+								if (*i == objectives[5]) { ifFound = true; }
 							}
-							items.push_back("Use type CATTHEYISHERE into the computer");
+							items.push_back(objectives[3]);
 						}
 
 						seenComputer = true;
-
 
 					}
 					else if (action == "PHOTO")
@@ -694,17 +730,17 @@ void PlayScene::update()
 
 						if ((seenComputer + gotCode + (seenPassword * seenComputer)) == 0)
 						{
-							items.push_back("Find where this password has to go.");
+							items.push_back(objectives[2]);
 						}
 						else if ((seenComputer + gotCode + (seenPassword * seenComputer)) == 1)
 						{
 							bool ifFound = false;
 							for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 							{
-								if (*i == "Find the password for the computer.") { ifFound = true; }
+								if (*i == objectives[5]) { ifFound = true; }
 							}
-							if (ifFound) { items.remove("Find the password for the computer."); }
-							items.push_back("Use type CATTHEYISHERE into the computer");
+							if (ifFound) { items.remove(objectives[5]); }
+							items.push_back(objectives[3]);
 
 						}
 						seenPassword = true;
@@ -712,18 +748,14 @@ void PlayScene::update()
 					}
 					else if (action == "WINDOW")
 					{
-						if (roomName == "Second Floor Washroom")
+						if (roomName == nameshere[8])
 						{
-							if (!secondwindow)
-								items.push_back("Look for missing SECOND_FLOOR_BATHROOM item.");
-
+							if (!secondwindow) { items.push_back(objectives[6]); }
 							secondwindow = true;
 						}
-						if (roomName == "First Floor Washroom")
+						if (roomName == nameshere[2])
 						{
-							if (!firstwindow)
-								items.push_back("Look for missing FIRST_FLOOR_BATHROOM item.");
-
+							if (!firstwindow) { items.push_back(objectives[7]); }
 							firstwindow = true;
 						}
 
@@ -736,11 +768,9 @@ void PlayScene::update()
 							bool check1 = false;
 							for (list<string>::iterator i = items.begin(); i != items.end(); i++)
 							{
-								if (*i == "Find SAFE code.") { check1 = true; }
-
+								if (*i == objectives[1]) { check1 = true; }
 							}
-							if (!check1)
-								items.push_back("Find SAFE code.");
+							if (!check1) { items.push_back(objectives[1]); }
 						}
 						while (getText != to_string(gotCode + gotKey + opensafe)) { getline(gameText, getText); }
 
@@ -767,25 +797,17 @@ void PlayScene::update()
 
 			for (int i = 0; i < word.size(); i++)
 			{
-				cout << word;
+				cout << word[i];
 				Sleep(15);
 			}
 			cout << endl << endl;
 			system("pause");
 		}
-	}
-		
-	if (endingStart && roomName != nameshere[7]) { follow.push(roomName); }
-	
-	if (outOfBasement)
-	{
-		string movement;
-		bossRoom = follow.front();
-		follow.pop();
+		if (outOfBasement && bossRoom == roomName) { Game::Instance()->changeSceneState(DEATH_SCENE_VER3); }
 	}
 
-	if (outOfBasement && bossRoom == roomName) { Game::Instance()->changeSceneState(DEATH_SCENE_VER3); }
-	if (enemy.empty() && roomName == "Basement") { Game::Instance()->changeSceneState(DEATH_SCENE_VER3); }
+	if (enemy.empty() && roomName == nameshere[7]) { Game::Instance()->changeSceneState(DEATH_SCENE_VER3); }
+	autoSave();
 }
 
 void PlayScene::input()
@@ -809,7 +831,7 @@ void PlayScene::input()
 
 		}
 	}
-
+	
 }
 
 void PlayScene::save()
@@ -871,9 +893,34 @@ void PlayScene::bossFight()
 	enemy.push("The boss is going for your legs");
 	enemy.push("UP");
 	enemy.push("The boss is about to pounce");
+	
 	follow.push(nameshere[7]);
 	follow.push(nameshere[7]);
 	follow.push(nameshere[7]);
 	follow.push(nameshere[7]);
 	follow.push(nameshere[7]);
+
+}
+
+void PlayScene::autoSave()
+{
+	Game::Instance()->getPlayer()->setDirection(direction);
+	Game::Instance()->getPlayer()->setBossRoom(bossRoom);
+	Game::Instance()->getPlayer()->setDoorIsOpen(doorIsOpen);
+	Game::Instance()->getPlayer()->setEndingStart(endingStart);
+	Game::Instance()->getPlayer()->setEnemy(enemy);
+	Game::Instance()->getPlayer()->setFirstWindow(firstwindow);
+	Game::Instance()->getPlayer()->setFollow(follow);
+	Game::Instance()->getPlayer()->setgotCode(gotCode);
+	Game::Instance()->getPlayer()->setGotCrank(gotCrank);
+	Game::Instance()->getPlayer()->setGotKey(gotKey);
+	Game::Instance()->getPlayer()->setItems(items);
+	Game::Instance()->getPlayer()->setLockedAgain(lockedagain);
+	Game::Instance()->getPlayer()->setOpenSafe(opensafe);
+	Game::Instance()->getPlayer()->setOutOfBasement(outOfBasement);
+	Game::Instance()->getPlayer()->setRoomName(roomName);
+	Game::Instance()->getPlayer()->setSecondWindow(secondwindow);
+	Game::Instance()->getPlayer()->setSeenCom(seenComputer);
+	Game::Instance()->getPlayer()->setSeenPassword(seenPassword);
+	Game::Instance()->getPlayer()->setTextOnce(textOnce);
 }

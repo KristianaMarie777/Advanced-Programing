@@ -140,8 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assignment 2.cpp" />
-    <ClCompile Include="DeathScene.cpp" />
-    <ClCompile Include="EscapeScene.cpp" />
+    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IntQueue.cpp" />
     <ClCompile Include="IntStack.cpp" />
@@ -155,10 +154,9 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeathScene.h" />
+    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="DynTempQueue.h" />
     <ClInclude Include="DynTempStack.h" />
-    <ClInclude Include="EscapeScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IntQueue.h" />
     <ClInclude Include="IntStack.h" />

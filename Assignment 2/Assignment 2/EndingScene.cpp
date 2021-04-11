@@ -1,21 +1,18 @@
-#include "DeathScene.h"
+#include "EndingScene.h"
 #include <string>
 #include <iostream>
 #include "Game.h"
 #include <Windows.h>
 
-DeathScene::DeathScene(int endings= 0)
-{
-	endingVer = endings;
-}
+EndingScene::EndingScene(int endings = 0) { endingVer = endings; }
 
-void DeathScene::output()
+void EndingScene::output()
 {
 	openFile.open("gameText.txt");
 
 	string getText;
 
-	while (getText != "DEATH") { getline(openFile, getText); }
+	while (getText != "ENDING") { getline(openFile, getText); }
 	while (getText != to_string(endingVer)) { getline(openFile, getText); }
 	while (getText != "END")
 	{
@@ -43,34 +40,39 @@ void DeathScene::output()
 
 }
 
-void DeathScene::update()
+void EndingScene::update()
 {
 	switch (choice[0])
 	{
 	case 'A':
+		Game::Instance()->getPlayer()->Loadsave();
 		Game::Instance()->changeSceneState(PLAY_SCENE);
 		break;
 	case 'B':
-		Game::Instance()->changeSceneState(PLAY_SCENE_0);
+		Game::Instance()->getPlayer()->NewGame();
+		Game::Instance()->getPlayer()->Loadsave();
+		Game::Instance()->changeSceneState(PLAY_SCENE);
 		break;
 	case 'C':
-
+		Game::Instance()->changeSceneState(START_SCENE);
+		break;
+	case 'D':
+		exit(1);
 		break;
 	default:
 		break;
 	}
-
-
 }
 
-void DeathScene::input()
+void EndingScene::input()
 {
-	cout << "\n\nA.Reset to previous save.\nB.Restart the entire game.\nC.Quit Game.\n\nEnter choice here: ";
+	cout << "\n\nA.Reset to previous save.\nB.Restart the entire game.\nC. Go to start\nD.Quit Game.\n\nEnter choice here: ";
+	cin >> ws;
 	getline(cin, choice);
 
 	choice[0] = toupper(choice[0]);
 }
 
-void DeathScene::save()
+void EndingScene::save()
 {
 }

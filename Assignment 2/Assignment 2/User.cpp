@@ -23,10 +23,7 @@ User::User(string player)
 	{
 		nameList++;
 		users.push(names);
-		if (!itemsExist)
-		{
-			itemsExist = true;
-		}
+		if (!itemsExist) { itemsExist = true; }
 	}
 
 	outfile.close();
@@ -137,55 +134,42 @@ void User::Loadsave()
 	string startName;
 
 	//Room_name: 
-	saveFile >> startName;
 	getline(saveFile,roomName);
-	cout << startName << "  " << roomName << endl;
 	//Seen_Computer: 
 	saveFile >> startName >> seenComputer;
-	cout << startName << "  " << seenComputer << endl;
 	//Seen_Password:
 	saveFile >> startName >> seenPassword;
-	cout << startName << "  " << seenPassword << endl;
 	//Got_Code:
 	saveFile >> startName >> gotCode;
-	cout << startName << "  " << gotCode << endl;
 	//Got_Key: 
 	saveFile >> startName >> gotKey;
-	cout << startName << "  " << gotKey << endl;
 	//Got_Crank: 
 	saveFile >> startName >> gotCrank;
-	cout << startName << "  " << gotCrank << endl;
 	//Open_Safe: 
 	saveFile >> startName >> opensafe;
-	cout << startName << "  " << opensafe << endl;
 	//Seen_Second_Floor_Bathroom_Window: 
 	saveFile >> startName >> secondwindow;
-	cout << startName << "  " << secondwindow << endl;
 	//Seen_First_Floor_Bathroom_Window: 
 	saveFile >> startName >> firstwindow;
-	cout << startName << "  " << firstwindow << endl;
 	//Door_Is_Open: 
 	saveFile >> startName >> doorIsOpen;
-	cout << startName << "  " << doorIsOpen << endl;
 	//Ending_Start : 
 	saveFile >> startName >> endingStart;
-	cout << startName << "  " << endingStart << endl;
 	//Out_Of_Basement: 
 	saveFile >> startName >> outOfBasement;
-	cout << startName << "  " << outOfBasement << endl;
 	//Locked_Again: 
-	saveFile >> startName >> lockedagain;
-	cout << startName << "  " << lockedagain << endl;
+	saveFile >> startName >> lockedagain; 
+	//Text_Once:
+	saveFile >> startName >> textOnce;
 	//Boss_Room: 
-	saveFile >> startName;
 	getline(saveFile, bossRoom);
-	cout << startName << "  " << bossRoom << endl;
+	getline(saveFile, bossRoom);
+	cout << bossRoom;
 	//OBJECTIVE
 	while (startName != "END")
 	{
 		getline(saveFile,startName);
-		if (startName != "END" && startName != "OBJECTIVE") { items.push_back(startName); }
-		cout << startName << endl;
+		if (startName != "END" && startName != "OBJECTIVE" && startName != "") { items.push_back(startName); }
 	}
 	//ENEMY
 	saveFile >> startName;
@@ -193,8 +177,7 @@ void User::Loadsave()
 	while (startName != "END")
 	{
 		getline(saveFile, startName);
-		if (startName != "END" && startName != "ENEMY") { enemy.push(startName); }
-		cout << startName << endl;
+		if (startName != "END" && startName != "ENEMY" && startName != "") { enemy.push(startName); }
 	}
 	//FOLLOW
 	saveFile >> startName;
@@ -202,8 +185,7 @@ void User::Loadsave()
 	while (startName != "END")
 	{
 		getline(saveFile, startName);
-		if (startName != "END" && startName != "FOLLOW") { follow.push(startName); }
-		cout << startName << endl;
+		if (startName != "END" && startName != "FOLLOW" && startName != "") { follow.push(startName); }
 	}
 	
 	saveFile.close();
@@ -214,7 +196,7 @@ void User::NewGame()
 
 	fstream saveFile(name + "\\" + name + ".txt", ios::out);
 
-	saveFile << "Room_name: Living Room" << endl;
+	saveFile << "Living Room" << endl;
 	saveFile << "Seen_Computer: "<< 0 << endl;
 	saveFile << "Seen_Password: " << 0 << endl;
 	saveFile << "Got_Code: " << 0 << endl;
@@ -227,7 +209,8 @@ void User::NewGame()
 	saveFile << "Ending_Start: " << 0 << endl;
 	saveFile << "Out_Of_Basement: " << 0 << endl;
 	saveFile << "Locked_Again: " << 0 << endl;
-	saveFile << "Boss_Room: H" << endl;
+	saveFile << "Text_Once: " << 0 << endl;
+	saveFile << "H" << endl;
 	saveFile << "OBJECTIVE" << endl;
 	saveFile << "Escape the house" << endl;
 	saveFile << "END" << endl;
@@ -243,7 +226,7 @@ void User::save()
 {
 	ofstream saveFile(name + "\\" + name + ".txt");
 
-	saveFile << "Room_name: " << roomName << endl;
+	saveFile << roomName << endl;
 	saveFile << "Seen_Computer: " << seenComputer << endl;
 	saveFile << "Seen_Password: " << seenPassword << endl;
 	saveFile << "Got_Code: " << gotCode << endl;
@@ -256,8 +239,12 @@ void User::save()
 	saveFile << "Ending_Start : " << endingStart << endl;
 	saveFile << "Out_Of_Basement: " << outOfBasement << endl;
 	saveFile << "Locked_Again: " << lockedagain << endl;
-	if (bossRoom == "H") { saveFile << "Boss_Room: H" << endl; }
-	else { saveFile << "Boss_Room: " << bossRoom << endl; }
+	saveFile << "Text_Once: " << textOnce << endl;
+
+	if (bossRoom == "H") { saveFile << "H" << endl; }
+	else { saveFile << bossRoom << endl; }
+
+
 	saveFile << "OBJECTIVE" << endl;
 	while (!items.empty())
 	{

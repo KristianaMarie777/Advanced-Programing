@@ -5,90 +5,39 @@ using namespace std;
 
 StartScene::StartScene()
 {
-	user();
-
-
 }
 
 void StartScene::output()
 {
-	cout << "Welcome To \n\n\n";
+	cout << "Welcome To My Game\n\n\n";
 	cout << "A. Start game\nB. Change User/Add User\nC. Load save\nD. Quit game\n\n";
 
-	if (notAChar)
-	{
-		cout << "Not a letter. Try again.\n\n";
-	}
-	if (notChoices)
-	{
-		cout << "Not one of the choices. Try again.\n\n";
-	}
-
-
+	if (notAChar) { cout << "Not a letter. Try again.\n\n"; }
+	if (notChoices) { cout << "Not one of the choices. Try again.\n\n"; }
 }
 
 void StartScene::update()
 {
-	if (!isalpha(choice[0]))
-	{
-		notAChar = true;
-	}
+	if (!isalpha(choice[0])) { notAChar = true; }
 	else
 	{
-		if (notAChar)
-		{
-			notAChar = false;
-		}
-
-		if (notChoices)
-		{
-			notChoices = false;
-		}
+		if (notAChar) { notAChar = false; }
+		if (notChoices) { notChoices = false; }
 
 		if (toupper(choice[0]) == 'A')
 		{
 			//if there a no current user
-			if (Game::Instance()->getPlayer() == nullptr)
-			{
-				Game::Instance()->setPlayer();
-			}
+			if (Game::Instance()->getPlayer() == nullptr) { Game::Instance()->setPlayer(); }
 		
 			//if there are no saves loaded
-			if (true)
-			{
-				if (!Game::Instance()->getPlayer()->getNewUser())
-				{
-
-				}
-			}
-			if (!Game::Instance()->getPlayer()->getNewUser())
-			{
-				Game::Instance()->changeSceneState(PLAY_SCENE);
-			}
-			else
-			{
-				Game::Instance()->changeSceneState(PLAY_SCENE);
-			}
+			if (!Game::Instance()->getPlayer()->getNewUser()) { Game::Instance()->changeSceneState(PLAY_SCENE); }
+			else { Game::Instance()->changeSceneState(PLAY_SCENE); }
 			
 		}
-		else if (toupper(choice[0]) == 'B')
-		{
-
-			Game::Instance()->setPlayer();
-
-		}
-		else if (toupper(choice[0]) == 'C')
-		{
-			Game::Instance()->getPlayer()->Loadsave();
-		}
-		else if (toupper(choice[0]) == 'D')
-		{
-			Game::Instance()->quit();
-		}
-		else
-		{
-			notChoices = true;
-		}
+		else if (toupper(choice[0]) == 'B') { Game::Instance()->setPlayer(); }
+		else if (toupper(choice[0]) == 'C') { Game::Instance()->getPlayer()->Loadsave(); }
+		else if (toupper(choice[0]) == 'D') { Game::Instance()->quit(); }
+		else { notChoices = true; }
 
 	}
 }

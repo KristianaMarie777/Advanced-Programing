@@ -32,6 +32,7 @@ void Game::update() const
 void Game::input()
 {
 	m_currentScene->input();
+
 }
 
 void Game::start()
@@ -58,7 +59,6 @@ void Game::changeSceneState(SceneState new_state)
 	if (new_state != m_currentSceneState)
 	{
 		// scene clean up
-		system("CLS");
 
 		m_currentScene = nullptr;
 
@@ -74,24 +74,28 @@ void Game::changeSceneState(SceneState new_state)
 			m_currentScene = new PlayScene();
 			std::cout << "play scene activated" << std::endl;
 			break;
-		case PLAY_SCENE_0:
-			m_currentScene = new PlayScene(true);
-			std::cout << "play scene activated" << std::endl;
+		case ESCAPE_SCENE_VER1:
+			m_currentScene = new EndingScene(3);
+			std::cout << "escape scene activated" << std::endl;
 			break;
-		case ESCAPE_SCENE:
-			m_currentScene = new EscapeScene();
+		case ESCAPE_SCENE_VER2:
+			m_currentScene = new EndingScene(4);
+			std::cout << "escape scene activated" << std::endl;
+			break;
+		case ESCAPE_SCENE_VER3:
+			m_currentScene = new EndingScene(5);
 			std::cout << "escape scene activated" << std::endl;
 			break;
 		case DEATH_SCENE_VER1:
-			m_currentScene = new DeathScene(0);
+			m_currentScene = new EndingScene(0);
 			std::cout << "death scene ver1 activated" << std::endl;
 			break;
 		case DEATH_SCENE_VER2:
-			m_currentScene = new DeathScene(1);
+			m_currentScene = new EndingScene(1);
 			std::cout << "death scene ver2 activated" << std::endl;
 			break;
 		case DEATH_SCENE_VER3:
-			m_currentScene = new DeathScene(2);
+			m_currentScene = new EndingScene(2);
 			std::cout << "death scene ver3 activated" << std::endl;
 			break;
 		case INVENTROY_SCENE:

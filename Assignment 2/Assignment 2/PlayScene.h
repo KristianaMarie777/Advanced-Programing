@@ -25,12 +25,13 @@ public:
 
 	void txtOutput();
 	void bossFight();
+	void autoSave();
 	//void setValues();
 private:
-	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = false, secondwindow = false, firstwindow = false,
+	bool seenComputer = false,seenPassword = false, gotCode = false, gotCrank = true, secondwindow = false, firstwindow = false,
 		red = false,yellow = false, purple = false,black = false, white = false, green = false, opensafe = false, gotKey = true,
-		doorIsOpen = false, endingStart = false, outOfBasement = false, lockedagain = false;
-	int direction/*, distance*/;
+		doorIsOpen = true, endingStart = false, outOfBasement = false, lockedagain = false, textOnce = false;
+	int direction, counter = 5;
 	string directionName[4], type, action, roomName, finalGame = "H", bossRoom = " ", attack;
 	ifstream gameText;
 	stack<string> enemy;

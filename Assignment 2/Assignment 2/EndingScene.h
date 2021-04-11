@@ -1,17 +1,17 @@
 #pragma once
-#ifndef _DEATH_SCENE_H_
-#define _DEATH_SCENE_H_
+#ifndef _ENDING_SCENE_H_
+#define _ENDING_SCENE_H_
 
 #include "Scene.h"
 #include <fstream>
 
 using namespace std;
 
-class DeathScene : public Scene
+class EndingScene : public Scene
 {
 public:
-	DeathScene(int);
-	~DeathScene() = default;
+	EndingScene(int);
+	~EndingScene() = default;
 	virtual void output() override;
 	virtual void update() override;
 	virtual void input() override;
