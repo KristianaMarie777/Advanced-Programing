@@ -23,9 +23,6 @@ public:
 	string getName() const { return name; }
 	void setName(const string name) { this->name = name; }
 
-	bool getNewUser() const { return newUser; }
-	void setNewUser(const bool newUser) { this->newUser = newUser; }
-
 	int getDirection() const { return direction; }
 	void setDirection(const int direction) { this->direction = direction; }
 
@@ -33,6 +30,9 @@ public:
 	void save();
 	void setSeenCom(bool seenComputer) { this->seenComputer = seenComputer; }
 	bool getSeenCom() const { return seenComputer; }
+
+	void setSeenStoryScene(bool passfirstscene) { this->passfirstscene = passfirstscene; }
+	bool getSeenStoryScene() const { return passfirstscene; }
 
 	void setSeenPassword(bool seenPassword) { this->seenPassword = seenPassword; }
 	bool getSeenPassword() const { return seenPassword; }
@@ -89,9 +89,8 @@ private:
 	fstream outfile;
 	string name, roomName, bossRoom = "H";
 	int loadSave = 0, direction;
-	bool newUser = false;
 	bool seenComputer = false, seenPassword = false, gotCode = false, gotCrank = false, secondwindow = false, firstwindow = false,
-		opensafe = false, gotKey = true, doorIsOpen = false, endingStart = false, outOfBasement = false, lockedagain = false, textOnce = false;
+		opensafe = false, gotKey = true, doorIsOpen = false, endingStart = false, outOfBasement = false, lockedagain = false, textOnce = false, passfirstscene = false;
 	stack<string> enemy;
 	queue<string> follow;
 	list<string> items;

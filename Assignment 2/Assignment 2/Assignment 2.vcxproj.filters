@@ -36,9 +36,6 @@
     <ClCompile Include="EndingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="StartScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -75,9 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="InventoryScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h">

@@ -32,7 +32,7 @@ private:
 		red = false,yellow = false, purple = false,black = false, white = false, green = false, opensafe = false, gotKey = true,
 		doorIsOpen = true, endingStart = false, outOfBasement = false, lockedagain = false, textOnce = false;
 	int direction, counter = 5;
-	string directionName[4], type, action, roomName, finalGame = "H", bossRoom = " ", attack;
+	string type, action, roomName, finalGame = "H", bossRoom = " ", attack;
 	ifstream gameText;
 	stack<string> enemy;
 	queue<string> follow;

@@ -1,0 +1,24 @@
+Living Room
+Seen_Computer: 0
+Seen_Password: 1
+Got_Code: 0
+Got_Key: 0
+Got_Crank: 0
+Open_Safe: 0
+Seen_Second_Floor_Bathroom_Window: 0
+Seen_First_Floor_Bathroom_Window: 0
+Door_Is_Open: 0
+Ending_Start : 0
+Out_Of_Basement: 0
+Locked_Again: 0
+Text_Once: 0
+Pass_First_Scene: 0
+H
+OBJECTIVE
+Escape the house
+Find where this password has to go.
+END
+ENEMY
+END
+FOLLOW
+END

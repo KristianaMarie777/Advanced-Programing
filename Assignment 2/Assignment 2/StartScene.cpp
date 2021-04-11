@@ -10,7 +10,7 @@ StartScene::StartScene()
 void StartScene::output()
 {
 	cout << "Welcome To My Game\n\n\n";
-	cout << "A. Start game\nB. Change User/Add User\nC. Load save\nD. Quit game\n\n";
+	cout << "A. Start game\nB. Change User/Add User\nC. Quit game\n\n";
 
 	if (notAChar) { cout << "Not a letter. Try again.\n\n"; }
 	if (notChoices) { cout << "Not one of the choices. Try again.\n\n"; }
@@ -30,13 +30,12 @@ void StartScene::update()
 			if (Game::Instance()->getPlayer() == nullptr) { Game::Instance()->setPlayer(); }
 		
 			//if there are no saves loaded
-			if (!Game::Instance()->getPlayer()->getNewUser()) { Game::Instance()->changeSceneState(PLAY_SCENE); }
-			else { Game::Instance()->changeSceneState(PLAY_SCENE); }
+			if(Game::Instance()->getPlayer()->getSeenStoryScene()) { Game::Instance()->changeSceneState(PLAY_SCENE); }
+			else{ Game::Instance()->changeSceneState(STORY_SCENE); }
 			
 		}
 		else if (toupper(choice[0]) == 'B') { Game::Instance()->setPlayer(); }
-		else if (toupper(choice[0]) == 'C') { Game::Instance()->getPlayer()->Loadsave(); }
-		else if (toupper(choice[0]) == 'D') { Game::Instance()->quit(); }
+		else if (toupper(choice[0]) == 'C') { Game::Instance()->quit(); }
 		else { notChoices = true; }
 
 	}

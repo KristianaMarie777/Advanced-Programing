@@ -801,3 +801,46 @@ You go home but, you wonder what was in that basement.
 You survived
 
 END
+STORY
+
+You are a Thief.
+You broke into the home near the end of your neighbour to steal stuff but, when you entered you found nothing of value.
+-
+When you tried to leave you found that the ENTRANCE is now locked.
+
+No matter how much you tried you could not get the door to open.
+Now you must escape the house. 
+
+END
+
+HOW TO PLAY
+
+You need to words inorder to play the game
+The first word is a command while the second word is an action or interactable item.
+
+Here is a list of commands
+
+TURN - turns the player LEFT, or RIGHT.
+TYPE - allows you to type something on a COMPUTER.
+LOOKAT - allows you to that a closer look at items.
+DODGE - allows you to dodge attacks by moving LEFT, RIGHT, UP, or DOWN. (Only available during fight scene)
+PRESS - allows you to PRESS a bunch of buttons on a SAFE.
+GET - allows you to pick up items. Does not work for ever item.
+USE - allows you to USE 2 "items" together. For example, USE KEY_ON_BASEMENT. _ON_ is necessary when using this command to seperate the two items.
+WALKTO/GOTO - allows to walk into new rooms.
+SEE - allows you to see a objective list or saves your game. Type "SEE TODO" to see the list and "USE SAVE" to save the game.
+
+
+If you see text that are fully capitalized like THIS it is an intractable iteam.
+
+
+END
+
+Here's a tip. LOOKAT all the items. They have a lot of secrets to share.
+
+There are around 6 endings so,
+-
+-
+Good luck!
+
+STOP

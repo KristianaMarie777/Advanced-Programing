@@ -11,22 +11,46 @@ StoryScene::StoryScene()
 
 void StoryScene::output()
 {
-	string text[] = { "Welcome Player...\n\n",
-						""};
 
-	for ( int i = 0; i < 2; i++)
+	string text;
+	ifstream gameText("gameText.txt");
+	while (text != "STORY") { getline(gameText, text); }
+
+	while (text != "STOP")
 	{
-		for (int a = 0; a < text[i].size(); a++)
+		while (text != "END")
 		{
-			cout << text[i][a];
-			Sleep(500);
+			getline(gameText, text);
+			if (text == "STOP") { break; }
+			if (text != "-")
+			{
+				if (text != "END")
+				{
+					for (int i = 0; i < text.size(); i++)
+					{
+						cout << text[i];
+						Sleep(15);
+					}
+				}
+
+			}
+			else
+			{
+				Sleep(500);
+			}
+			cout << endl;
+			
 		}
+		getline(gameText, text);
 		system("pause");
+		system("CLS");
 	}
+	gameText.close();
 }
 
 void StoryScene::update()
 {
+	Game::Instance()->getPlayer()->setSeenStoryScene(true);
 	Game::Instance()->changeSceneState(PLAY_SCENE);
 }
 

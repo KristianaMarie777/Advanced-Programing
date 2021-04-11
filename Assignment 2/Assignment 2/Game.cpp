@@ -70,6 +70,10 @@ void Game::changeSceneState(SceneState new_state)
 			m_currentScene = new StartScene();
 			std::cout << "start scene activated" << std::endl;
 			break;
+		case STORY_SCENE:
+			m_currentScene = new StoryScene();
+			std::cout << "play scene activated" << std::endl;
+			break;
 		case PLAY_SCENE:
 			m_currentScene = new PlayScene();
 			std::cout << "play scene activated" << std::endl;
@@ -97,10 +101,6 @@ void Game::changeSceneState(SceneState new_state)
 		case DEATH_SCENE_VER3:
 			m_currentScene = new EndingScene(2);
 			std::cout << "death scene ver3 activated" << std::endl;
-			break;
-		case INVENTROY_SCENE:
-			m_currentScene = new InventoryScene();
-			std::cout << "inventory scene activated" << std::endl;
 			break;
 		default:
 			std::cout << "default case activated" << std::endl;

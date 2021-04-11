@@ -4,7 +4,7 @@
 
 #include "StartScene.h"
 #include "PlayScene.h"
-#include "InventoryScene.h"
+#include "StoryScene.h"
 #include "EndingScene.h"
 #include "User.h"
 

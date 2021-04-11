@@ -35,12 +35,10 @@ string objectives[] = { "Get the Key.", "Find SAFE code.", "Find where this pass
 		"Find the password for the computer.","Look for missing SECOND_FLOOR_BATHROOM item.", "Look for missing FIRST_FLOOR_BATHROOM item.",
 		"Use KEY on the BASEMENT"};
 
+string directionName[] = { "N","E" ,"S","W" };
+
 PlayScene::PlayScene(bool newGame)
 {
-	directionName[0] = "N";
-	directionName[1] = "E";
-	directionName[2] = "S";
-	directionName[3] = "W";
 
 	roomName = Game::Instance()->getPlayer()->getRoomName();
 
@@ -145,8 +143,6 @@ void PlayScene::update()
 		bossRoom = follow.front();
 		follow.pop();
 	}
-	
-	
 	//if (roomName != nameshere[7] && follow.size() > 1) { follow.pop(); }
 	if (endingStart && finalGame != "FIGHT") { finalGame = "FIGHT"; }
 	if (roomName == nameshere[7] && action == "STAIRS") { action = "LIVINGROOM"; }
@@ -327,8 +323,12 @@ void PlayScene::update()
 
 									string word = "KEY aquired.";
 
-									bool check = false;
-									items.remove(objectives[0]);
+									bool ifFound = false;
+									for (list<string>::iterator i = items.begin(); i != items.end(); i++)
+									{
+										if (*i == objectives[0]) { ifFound = true; }
+									}
+									if (ifFound) { items.remove(objectives[0]); }
 									items.push_back(objectives[8]);
 									for (int i = 0; i < word.size(); i++)
 									{
@@ -437,7 +437,6 @@ void PlayScene::update()
 			{
 				if (action == "LIVINGROOM" || action == "KITCHEN" || action == "FIRST_FLOOR_BATHROOM" || action == "WORKROOM" || action == "HALLWAY" || action == "BEDROOM" || action == "STORAGEROOM" || action == "BASEMENT" || action == "SECOND_FLOOR_BATHROOM")
 				{
-					if (endingStart) { follow.push(roomName); }
 					cout << "\n\n";
 					if (action == "LIVINGROOM")
 					{
@@ -555,7 +554,7 @@ void PlayScene::update()
 				txtOutput();
 				system("pause");
 			}
-
+			if (outOfBasement) { follow.push(roomName); }
 			gameText.close();
 			cout << endl << endl;
 
@@ -730,6 +729,11 @@ void PlayScene::update()
 
 						if ((seenComputer + gotCode + (seenPassword * seenComputer)) == 0)
 						{
+							bool ifFound = false;
+							for (list<string>::iterator i = items.begin(); i != items.end(); i++)
+							{
+								if (*i == objectives[2]) { ifFound = true; }
+							}
 							items.push_back(objectives[2]);
 						}
 						else if ((seenComputer + gotCode + (seenPassword * seenComputer)) == 1)

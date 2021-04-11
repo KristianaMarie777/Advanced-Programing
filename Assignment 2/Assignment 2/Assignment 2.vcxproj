@@ -144,7 +144,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IntQueue.cpp" />
     <ClCompile Include="IntStack.cpp" />
-    <ClCompile Include="InventoryScene.cpp" />
     <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="IntQueue.h" />
     <ClInclude Include="IntStack.h" />
-    <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NumberList.h" />
     <ClInclude Include="PlayScene.h" />
